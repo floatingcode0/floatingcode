@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!-- ==========================================================
+  KURSSIDA: Introduktion till Scratch
+
+  Så fungerar skyddet:
+  1. Filnamnet är avsiktligt "ogissbart" – bara den som betalat
+     får länken (via Stripe/Gumroads bekräftelse).
+  2. Sidan är markerad noindex, så Google visar den aldrig.
+  3. Videorna laddas upp på Vimeo (inte här i filen!) med
+     inställningarna:
+       • Privacy → "Hide from Vimeo"
+       • Where can this be embedded → endast floatingcode.se
+       • Ladda ner: AV
+     Då spelar filmerna bara upp på just din sida och har
+     ingen nedladdningsknapp.
+  4. Byt ut VIMEO-ID nedan mot dina riktiga video-ID:n
+     (siffrorna i videons Vimeo-länk).
+
+  Vill du byta filnamn på sidan? Gör det gärna – se bara till
+  att betallänkens "redirect" pekar på samma namn.
+========================================================== -->
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Kurs: Introduktion till Scratch – Floating Code</title>
+<link rel="icon" type="image/png" href="logga.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1D2A4D;
+  --navy-deep:#141F3B;
+  --ink:#2A3757;
+  --mint:#4FC3AB;
+  --mint-strong:#2FA98F;
+  --mint-soft:#DFF5EF;
+  --lavender:#9F84DE;
+  --lavender-strong:#7E5FC7;
+  --lavender-soft:#EFE9FB;
+  --bg:#F7FBFA;
+  --card:#FFFFFF;
+  --radius:22px;
+  --shadow:0 8px 28px rgba(29,42,77,.09);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Nunito',sans-serif;color:var(--ink);background:var(--bg);
+  line-height:1.65;font-size:17px;
+}
+h1,h2,h3{font-family:'Fredoka',sans-serif;color:var(--navy);line-height:1.2}
+.wrap{max-width:860px;margin:0 auto;padding:0 22px}
+header{
+  position:sticky;top:0;z-index:50;background:rgba(247,251,250,.92);
+  backdrop-filter:blur(10px);border-bottom:1px solid rgba(29,42,77,.08);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.25rem;
+  color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:.5rem;
+}
+.logo img{height:40px;width:40px;object-fit:cover;border-radius:12px}
+.nav a.back{font-weight:800;color:var(--lavender-strong);text-decoration:none;font-size:.95rem}
+.hero{
+  padding:56px 0 40px;text-align:center;
+  background:
+    radial-gradient(500px 300px at 85% 0%, var(--lavender-soft) 0%, transparent 65%),
+    radial-gradient(500px 300px at 10% 100%, var(--mint-soft) 0%, transparent 65%),
+    var(--bg);
+}
+.hero h1{font-size:clamp(1.7rem,5vw,2.5rem);font-weight:600}
+.hero p{max-width:34rem;margin:1rem auto 0}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--mint-strong);
+  display:block;margin-bottom:.6rem;
+}
+.eyebrow::before{content:"-- ";opacity:.6}
+main{padding:40px 0 70px}
+.lektion{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  margin-bottom:2rem;overflow:hidden;
+}
+.lektion-head{
+  display:flex;align-items:center;gap:1rem;padding:1.2rem 1.4rem;
+}
+.lektion-num{
+  font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.1rem;
+  background:var(--mint-soft);color:var(--mint-strong);
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.lektion:nth-child(even) .lektion-num{background:var(--lavender-soft);color:var(--lavender-strong)}
+.lektion h3{font-size:1.15rem}
+.video-ram{
+  position:relative;padding-top:56.25%;background:var(--navy-deep);
+}
+.video-ram iframe{
+  position:absolute;top:0;left:0;width:100%;height:100%;border:0;
+}
+footer{
+  background:var(--navy-deep);color:#9FB0D6;text-align:center;
+  padding:2.2rem 22px;font-size:.92rem;
+}
+footer .flyt{
+  font-family:'Fredoka',sans-serif;color:var(--mint);font-size:1.15rem;margin-bottom:.4rem;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html">
+      <img src="logga.png" alt="Floating Code">
+      <span>Floating Code</span>
+    </a>
+    <a class="back" href="index.html">← Till startsidan</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">din kurs</span>
+    <h1>Introduktion till Scratch 🎉</h1>
+    <p>Välkommen! Spara den här sidan som bokmärke – du kan komma tillbaka och se filmerna hur många gånger du vill. Bygg i din egen takt och ha kul!</p>
+  </div>
+</section>
+
+<main>
+  <div class="wrap">
+
+    <!-- LEKTION 1 – byt VIMEO-ID mot din videos ID-nummer -->
+    <div class="lektion">
+      <div class="lektion-head">
+        <div class="lektion-num">1</div>
+        <h3>Välkommen till Scratch</h3>
+      </div>
+      <div class="video-ram">
+        <iframe src="https://player.vimeo.com/video/VIMEO-ID?dnt=1" allow="fullscreen" allowfullscreen title="Lektion 1"></iframe>
+      </div>
+    </div>
+
+    <div class="lektion">
+      <div class="lektion-head">
+        <div class="lektion-num">2</div>
+        <h3>Verktygen du behöver kunna</h3>
+      </div>
+      <div class="video-ram">
+        <iframe src="https://player.vimeo.com/video/VIMEO-ID?dnt=1" allow="fullscreen" allowfullscreen title="Lektion 2"></iframe>
+      </div>
+    </div>
+
+    <div class="lektion">
+      <div class="lektion-head">
+        <div class="lektion-num">3</div>
+        <h3>Skapa din första figur</h3>
+      </div>
+      <div class="video-ram">
+        <iframe src="https://player.vimeo.com/video/VIMEO-ID?dnt=1" allow="fullscreen" allowfullscreen title="Lektion 3"></iframe>
+      </div>
+    </div>
+
+    <div class="lektion">
+      <div class="lektion-head">
+        <div class="lektion-num">4</div>
+        <h3>Dina första kodblock</h3>
+      </div>
+      <div class="video-ram">
+        <iframe src="https://player.vimeo.com/video/VIMEO-ID?dnt=1" allow="fullscreen" allowfullscreen title="Lektion 4"></iframe>
+      </div>
+    </div>
+
+    <div class="lektion">
+      <div class="lektion-head">
+        <div class="lektion-num">5</div>
+        <h3>Få din figur att röra sig</h3>
+      </div>
+      <div class="video-ram">
+        <iframe src="https://player.vimeo.com/video/VIMEO-ID?dnt=1" allow="fullscreen" allowfullscreen title="Lektion 5"></iframe>
+      </div>
+    </div>
+
+    <div class="lektion">
+      <div class="lektion-head">
+        <div class="lektion-num">6</div>
+        <h3>Poäng, ljud och effekter</h3>
+      </div>
+      <div class="video-ram">
+        <iframe src="https://player.vimeo.com/video/VIMEO-ID?dnt=1" allow="fullscreen" allowfullscreen title="Lektion 6"></iframe>
+      </div>
+    </div>
+
+    <div class="lektion">
+      <div class="lektion-head">
+        <div class="lektion-num">7</div>
+        <h3>Testa, förbättra och visa upp!</h3>
+      </div>
+      <div class="video-ram">
+        <iframe src="https://player.vimeo.com/video/VIMEO-ID?dnt=1" allow="fullscreen" allowfullscreen title="Lektion 7"></iframe>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="flyt">Flyt lugnt! 🌊</div>
+  Frågor om kursen? Mejla <a href="mailto:contact.floatingcode@gmail.com" style="color:var(--mint)">contact.floatingcode@gmail.com</a>
+</footer>
+
+</body>
+</html>

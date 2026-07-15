@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<!-- ==========================================================
+  FLOATING CODE – SÅ REDIGERAR DU SIDAN SJÄLV
+  
+  • Öppna den här filen i valfri textredigerare
+    (t.ex. Visual Studio Code, gratis).
+  • All text på sidan hittar du längre ner – ändra bara orden
+    mellan taggarna, t.ex. <p>Din text här</p>.
+  • Varje sektion är tydligt markerad med en kommentar som
+    denna: SEKTION BÖRJAR ... SEKTION SLUTAR.
+    Vill du ta bort en sektion? Radera allt mellan de två
+    markeringarna. Vill du lägga till? Kopiera en hel sektion
+    och klistra in den där du vill ha den, byt sedan ut texten.
+  • Färgerna styrs högst upp i <style> under :root –
+    ändra hex-koderna där så slår det igenom på hela sidan.
+  • Din logotyp: lägg en bildfil som heter "logga.png" i samma
+    mapp som denna fil, så visas den automatiskt i menyn.
+  • Spara filen och ladda om i webbläsaren för att se ändringen.
+========================================================== -->
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Floating Code – Kreativt kodande och digital kompetens</title>
+<link rel="icon" type="image/png" href="logga.png">
+<meta property="og:title" content="Floating Code – Kreativt kodande och digital kompetens">
+<meta property="og:description" content="Kurser i Scratch och Roblox Studio för barn, julkalendrar i programmering för skolan och vardagsteknik för seniorer.">
+<meta property="og:image" content="https://floatingcode.se/logga.png">
+<meta property="og:url" content="https://floatingcode.se">
+<meta property="og:type" content="website">
+<meta name="description" content="Floating Code erbjuder kurser i Roblox Studio och digitalt skapande för barn 8–13 år, vardagsteknik för seniorer samt föreläsningar. Fysiska kurser för företag, digitala kurser för föräldrar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1D2A4D;
+  --navy-deep:#141F3B;
+  --ink:#2A3757;
+  --mint:#4FC3AB;
+  --mint-strong:#2FA98F;
+  --mint-soft:#DFF5EF;
+  --lavender:#9F84DE;
+  --lavender-strong:#7E5FC7;
+  --lavender-soft:#EFE9FB;
+  --bg:#F7FBFA;
+  --card:#FFFFFF;
+  --radius:22px;
+  --shadow:0 8px 28px rgba(29,42,77,.09);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.65;
+  font-size:17px;
+}
+h1,h2,h3{font-family:'Fredoka',sans-serif;color:var(--navy);line-height:1.2}
+h1{font-size:clamp(2rem,6vw,3.3rem);font-weight:600}
+h2{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:600;margin-bottom:.5rem}
+h3{font-size:1.2rem;font-weight:600}
+p{margin-bottom:1rem}
+a{color:var(--lavender-strong)}
+img{max-width:100%}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+section{padding:72px 0}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.82rem;
+  color:var(--mint-strong);
+  display:block;
+  margin-bottom:.6rem;
+  letter-spacing:.02em;
+}
+.eyebrow::before{content:"-- ";opacity:.6}
+
+/* NAV */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,251,250,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(29,42,77,.08);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.25rem;
+  color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:.5rem;
+}
+.logo-img{height:40px;width:40px;object-fit:cover;display:inline-block;border-radius:12px}
+.logo-dot{
+  width:14px;height:14px;border-radius:50%;
+  background:linear-gradient(135deg,var(--mint),var(--lavender));
+  display:inline-block;
+}
+.nav-links{display:flex;gap:1.4rem;list-style:none}
+.nav-links a{
+  text-decoration:none;color:var(--ink);font-weight:700;font-size:.95rem;
+}
+.nav-links a:hover{color:var(--mint-strong)}
+.menu-btn{
+  display:none;background:none;border:none;font-size:1.7rem;color:var(--navy);cursor:pointer;
+  line-height:1;
+}
+@media(max-width:760px){
+  .menu-btn{display:block}
+  .nav-links{
+    display:none;position:absolute;top:64px;left:0;right:0;
+    flex-direction:column;background:#fff;padding:1.2rem 22px 1.6rem;
+    border-bottom:1px solid rgba(29,42,77,.1);gap:1.1rem;
+    box-shadow:0 14px 30px rgba(29,42,77,.12);
+  }
+  .nav-links.open{display:flex}
+}
+
+/* HERO */
+.hero{
+  padding:76px 0 84px;
+  background:
+    radial-gradient(600px 380px at 88% 8%, var(--lavender-soft) 0%, transparent 65%),
+    radial-gradient(560px 400px at 4% 90%, var(--mint-soft) 0%, transparent 65%),
+    var(--bg);
+  overflow:hidden;
+  position:relative;
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr}}
+.hero p.lead{font-size:1.13rem;max-width:32rem;margin:1.1rem 0 1.7rem}
+.hero .hl-mint{color:var(--mint-strong)}
+.hero .hl-lav{color:var(--lavender-strong)}
+.btn{
+  display:inline-block;padding:.85rem 1.6rem;border-radius:999px;
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;
+  text-decoration:none;transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--navy);color:#fff;box-shadow:0 6px 18px rgba(29,42,77,.25)}
+.btn-ghost{background:#fff;color:var(--navy);border:2px solid var(--navy);margin-left:.6rem}
+@media(max-width:480px){.btn-ghost{margin-left:0;margin-top:.7rem}}
+
+/* code window */
+.codewin{
+  background:var(--navy-deep);
+  border-radius:18px;
+  box-shadow:0 20px 50px rgba(29,42,77,.3);
+  font-family:'JetBrains Mono',monospace;
+  font-size:.9rem;
+  overflow:hidden;
+  transform:rotate(1.5deg);
+}
+.codewin-bar{
+  display:flex;gap:7px;padding:12px 14px;background:rgba(255,255,255,.06);
+}
+.codewin-bar span{width:11px;height:11px;border-radius:50%}
+.codewin-bar span:nth-child(1){background:var(--lavender)}
+.codewin-bar span:nth-child(2){background:var(--mint)}
+.codewin-bar span:nth-child(3){background:#5A6FA8}
+.codewin pre{
+  padding:1.2rem 1.3rem 1.5rem;color:#E8EEF9;white-space:pre-wrap;line-height:1.7;
+}
+.c-comment{color:#7A8BB8}
+.c-key{color:var(--lavender)}
+.c-str{color:var(--mint)}
+.c-fn{color:#8FB8F0}
+.cursor{display:inline-block;width:9px;height:1.1em;background:var(--mint);vertical-align:text-bottom;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.float-shape{position:absolute;border-radius:50%;opacity:.55;pointer-events:none;animation:floaty 7s ease-in-out infinite}
+.fs1{width:70px;height:70px;background:var(--mint-soft);top:14%;left:55%;animation-delay:0s}
+.fs2{width:44px;height:44px;background:var(--lavender-soft);bottom:16%;left:6%;animation-delay:2.2s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+@media(prefers-reduced-motion:reduce){
+  .float-shape,.cursor{animation:none}
+  html{scroll-behavior:auto}
+  .btn:hover{transform:none}
+}
+
+/* AUDIENCE CARDS */
+.aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.2rem}
+@media(max-width:820px){.aud-grid{grid-template-columns:1fr}}
+.aud-card{
+  background:var(--card);border-radius:var(--radius);padding:1.8rem 1.6rem;
+  box-shadow:var(--shadow);
+  border-top:6px solid var(--mint);
+  display:flex;flex-direction:column;
+}
+.aud-card.lav{border-top-color:var(--lavender)}
+.aud-card.navy{border-top-color:var(--navy)}
+.aud-emoji{font-size:1.9rem;margin-bottom:.6rem}
+.aud-card h3{margin-bottom:.5rem}
+.aud-card ul{list-style:none;margin:.4rem 0 1rem}
+.aud-card li{
+  padding-left:1.5rem;position:relative;margin-bottom:.5rem;font-size:.98rem;
+}
+.aud-card li::before{
+  content:"~";position:absolute;left:0;font-family:'Fredoka',sans-serif;
+  color:var(--mint-strong);font-weight:600;
+}
+.aud-card.lav li::before{color:var(--lavender-strong)}
+.aud-card .tag{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  background:var(--mint-soft);color:var(--mint-strong);
+  padding:.2rem .6rem;border-radius:999px;align-self:flex-start;margin-bottom:.8rem;
+}
+.aud-card.lav .tag{background:var(--lavender-soft);color:var(--lavender-strong)}
+.aud-card.navy .tag{background:#E7EBF6;color:var(--navy)}
+.aud-link{
+  margin-top:auto;font-weight:800;text-decoration:none;color:var(--navy);font-size:.95rem;
+}
+.aud-link:hover{color:var(--mint-strong)}
+
+/* KURSER */
+.kurser{background:linear-gradient(180deg,var(--bg) 0%,var(--mint-soft) 100%)}
+.kurs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:1.8rem}
+@media(max-width:760px){.kurs-grid{grid-template-columns:1fr}}
+.kurs-card2{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  overflow:hidden;display:flex;flex-direction:column;
+}
+.kurs-topp{
+  display:flex;align-items:center;justify-content:center;padding:1.6rem;
+}
+.mint-topp{background:linear-gradient(150deg,var(--mint) 0%,var(--mint-strong) 100%)}
+.lav-topp{background:linear-gradient(150deg,var(--lavender) 0%,var(--lavender-strong) 100%)}
+.kurs-ikon{
+  font-size:2.2rem;background:rgba(255,255,255,.25);border:3px solid #fff;
+  width:74px;height:74px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+.kurs-body{padding:1.6rem 1.6rem 1.8rem;display:flex;flex-direction:column;flex:1}
+.kurs-body .btn{align-self:flex-start;margin-top:auto}
+.tag-mint,.tag-lav,.tag-jul{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  padding:.25rem .7rem;border-radius:999px;display:inline-block;margin-bottom:.9rem;
+  align-self:flex-start;
+}
+.tag-mint{background:var(--mint-soft);color:var(--mint-strong)}
+.tag-lav{background:var(--lavender-soft);color:var(--lavender-strong)}
+.tag-jul{background:rgba(255,255,255,.15);color:#fff}
+.kurs-list{list-style:none;margin:.6rem 0 1.4rem}
+.kurs-list li{padding-left:1.6rem;position:relative;margin-bottom:.45rem;font-size:.97rem}
+.kurs-list li::before{
+  content:"▸";position:absolute;left:0;color:var(--lavender-strong);font-weight:700;
+}
+.kurs-fine{font-size:.85rem;color:#6B7695;margin-top:.9rem;margin-bottom:0}
+.kurs-pris{
+  font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.45rem;color:var(--navy);
+  margin-bottom:.9rem;
+}
+.kurs-pris small{font-size:.8rem;font-weight:600;color:#6B7695;font-family:'Nunito',sans-serif}
+.jul-pris{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.2rem;color:var(--mint);margin-bottom:.6rem}
+
+/* JULKALENDERN */
+.jul-card{
+  margin-top:1.6rem;border-radius:var(--radius);overflow:hidden;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);
+  color:#E8EEF9;display:grid;grid-template-columns:1.35fr .65fr;
+  box-shadow:0 14px 40px rgba(20,31,59,.35);
+}
+@media(max-width:760px){.jul-card{grid-template-columns:1fr}}
+.jul-info{padding:2rem 1.8rem}
+.jul-info h3{color:#fff;font-size:1.35rem;margin-bottom:.6rem}
+.jul-info p{color:#C6D2EC}
+.jul-list li{color:#C6D2EC}
+.jul-list li::before{color:var(--mint)}
+.jul-knappar{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.4rem}
+.jul-knappar .btn-primary{background:var(--mint-strong);box-shadow:0 6px 18px rgba(47,169,143,.35)}
+.jul-visual{
+  display:grid;grid-template-columns:1fr 1fr;gap:.7rem;
+  padding:2rem;align-content:center;
+}
+.jul-lucka{
+  aspect-ratio:1;border-radius:14px;border:2px dashed rgba(255,255,255,.4);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.4rem;color:#fff;
+}
+.jul-lucka.oppen{background:var(--mint-strong);border-style:solid;transform:rotate(-4deg)}
+.jul-lucka.las{background:rgba(255,255,255,.08);font-size:1.1rem}
+
+/* SKOLAN */
+.skolan{background:var(--mint-soft)}
+.skola-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1.8rem}
+@media(max-width:820px){.skola-grid{grid-template-columns:1fr}}
+.skola-card{
+  background:var(--card);border-radius:var(--radius);padding:1.7rem 1.6rem;
+  box-shadow:var(--shadow);
+}
+.skola-card h3{margin:.4rem 0 .5rem;font-size:1.1rem}
+.skola-card p{margin:0;font-size:.96rem}
+.skola-cta{
+  margin-top:1.8rem;background:var(--card);border-radius:var(--radius);
+  padding:1.7rem 1.8rem;box-shadow:var(--shadow);
+  display:flex;align-items:center;justify-content:space-between;gap:1.4rem;flex-wrap:wrap;
+}
+.skola-cta p{margin:0;max-width:34rem}
+
+/* LECTURES */
+.lect{background:var(--navy);color:#E8EEF9}
+.lect h2,.lect h3{color:#fff}
+.lect .eyebrow{color:var(--mint)}
+.lect-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:1.8rem}
+@media(max-width:760px){.lect-grid{grid-template-columns:1fr}}
+.lect-card{
+  background:rgba(255,255,255,.07);border-radius:var(--radius);padding:1.7rem 1.6rem;
+  border:1px solid rgba(255,255,255,.12);
+}
+.lect-card p{color:#C6D2EC;margin-bottom:0}
+.lect-card .aud-emoji{margin-bottom:.4rem}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1.8rem}
+@media(max-width:820px){.proj-grid{grid-template-columns:1fr}}
+.proj-card{
+  background:var(--card);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow);
+}
+.proj-num{
+  font-family:'Fredoka',sans-serif;font-size:2rem;font-weight:700;color:var(--mint-strong);
+  line-height:1;
+}
+.proj-card.lav .proj-num{color:var(--lavender-strong)}
+.proj-card small{font-weight:800;color:var(--navy);display:block;margin:.3rem 0 .6rem;font-size:.95rem}
+.proj-card p{font-size:.95rem;margin:0}
+
+/* ABOUT */
+.about{background:linear-gradient(180deg,var(--lavender-soft) 0%,var(--bg) 100%)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr}}
+.about-quote{
+  font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:500;color:var(--lavender-strong);
+  border-left:4px solid var(--lavender);padding-left:1rem;margin:1.2rem 0;
+}
+.profil-img{
+  width:min(240px,60%);border-radius:50%;display:block;
+  margin:0 auto 1.4rem;box-shadow:var(--shadow);
+}
+
+/* NYHETSBREV */
+.nyhetsbrev{
+  background:linear-gradient(120deg,var(--lavender-strong) 0%,var(--lavender) 60%,var(--mint) 130%);
+  padding:52px 0;
+}
+.nb-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:1.6rem;flex-wrap:wrap;
+}
+.nyhetsbrev h2{color:#fff;margin-bottom:.3rem}
+.nyhetsbrev p{color:#F0EBFC;margin:0;max-width:32rem}
+.btn-nb{
+  background:#fff;color:var(--lavender-strong);
+  box-shadow:0 8px 22px rgba(20,31,59,.25);white-space:nowrap;
+}
+
+/* CONTACT */
+.contact{text-align:center}
+.contact .btn-primary{margin-top:.8rem}
+.socials{display:flex;justify-content:center;gap:1.4rem;margin-top:1.8rem;flex-wrap:wrap}
+.socials a{font-weight:800;text-decoration:none}
+
+/* FOOTER */
+footer{
+  background:var(--navy-deep);color:#9FB0D6;text-align:center;
+  padding:2.2rem 22px;font-size:.92rem;
+}
+footer .flyt{
+  font-family:'Fredoka',sans-serif;color:var(--mint);font-size:1.15rem;margin-bottom:.4rem;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <!-- Logotypen: syns alltid högst upp eftersom menyn är "fastklistrad".
+         Lägg filen logga.png i samma mapp så visas den automatiskt.
+         Finns ingen bild visas en färgprick + namnet i stället. -->
+    <a class="logo" href="#top">
+      <img src="logga.png" alt="Floating Code" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+      <span class="logo-dot" style="display:none"></span>
+      <span>Floating Code</span>
+    </a>
+    <button class="menu-btn" aria-label="Öppna meny" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <!-- MENYN: tar du bort en sektion nedan, ta även bort dess
+         rad här. Lägger du till en sektion med id="nytt-namn",
+         lägg till <li><a href="#nytt-namn">Namn</a></li> -->
+    <ul class="nav-links">
+      <li><a href="#top">Startsida</a></li>
+      <li><a href="#tjanster">Tjänster</a></li>
+      <li><a href="#kurser">Kurser</a></li>
+      <li><a href="aktuella-kurser.html">Aktuella kurser</a></li>
+      <li><a href="#skolan">Skolan</a></li>
+      <li><a href="#forelasningar">Föreläsningar</a></li>
+      <li><a href="#projekt">Uppdrag &amp; Projekt</a></li>
+      <li><a href="#om-mig">Om mig</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================= SEKTION BÖRJAR: STARTSIDA/HERO ================= -->
+<section class="hero">
+  <div class="float-shape fs1"></div>
+  <div class="float-shape fs2"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">kreativt kodande och digital kompetens</span>
+      <h1>Teknik ska vara <span class="hl-mint">lekfullt</span> – i alla åldrar</h1>
+      <p class="lead">Jag lär barn att bygga egna spel – i <strong>Scratch</strong> för 7–9 år och <strong>Roblox Studio</strong> för 10–13 år – och hjälper <strong>seniorer</strong> att känna sig trygga med tekniken i vardagen. Alltid med nyfikenhet, värme och mycket skratt.</p>
+      <a class="btn btn-primary" href="#tjanster">Se vad jag erbjuder</a>
+      <a class="btn btn-ghost" href="#kontakt">Kontakta mig</a>
+    </div>
+    <div class="codewin" aria-hidden="true">
+      <div class="codewin-bar"><span></span><span></span><span></span></div>
+      <pre><span class="c-comment">-- Mitt första Roblox-skript!</span>
+<span class="c-key">local</span> del = script.Parent
+
+del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span>()
+  <span class="c-fn">print</span>(<span class="c-str">"Hej! Nu kodar vi! 🌊"</span>)
+<span class="c-key">end</span>)<span class="cursor"></span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEKTION SLUTAR: STARTSIDA/HERO ================= -->
+
+<!-- ================= SEKTION BÖRJAR: TJÄNSTER =================
+     De tre korten (Företag / Föräldrar / Seniorer) kan du
+     kopiera för att skapa fler, eller radera ett helt
+     <div class="aud-card"> ... </div> för att ta bort ett. -->
+<section id="tjanster">
+  <div class="wrap">
+    <span class="eyebrow">tjänster</span>
+    <h2>Vem är du?</h2>
+    <p style="max-width:36rem">Jag erbjuder olika format beroende på vem du är – välj det som passar dig, så berättar jag mer.</p>
+
+    <div class="aud-grid">
+      <div class="aud-card">
+        <div class="aud-emoji">🏢</div>
+        <span class="tag">fysiska kurser</span>
+        <h3>För företag</h3>
+        <p>Ge medarbetarnas barn en förmån utöver det vanliga! Jag håller fysiska kurser i Scratch (7–9 år) och Roblox Studio (10–13 år) – på plats hos er eller i anslutning till arbetsplatsen.</p>
+        <ul>
+          <li>Fysiska kurser i spelutveckling för barn</li>
+          <li>Lovkurser – aktiviteter som gör skollovet kreativt</li>
+          <li>Uppskattad familjeförmån inom employer branding</li>
+        </ul>
+        <a class="aud-link" href="#kontakt">Hör av dig för upplägg och offert →</a>
+      </div>
+
+      <div class="aud-card lav">
+        <div class="aud-emoji">👨‍👩‍👧</div>
+        <span class="tag">digitala kurser</span>
+        <h3>För föräldrar</h3>
+        <p>Har du ett barn som älskar spel? Här får hen skapa egna i stället för att bara spela andras. Digitala kurser som passar hemifrån, i barnets egen takt.</p>
+        <ul>
+          <li>Scratch för de yngre, 7–9 år</li>
+          <li>Roblox Studio för de äldre, 10–13 år</li>
+          <li>Julkalender med en kodutmaning om dagen 🎄</li>
+        </ul>
+        <a class="aud-link" href="#kurser">Se digitala kurser →</a>
+      </div>
+
+      <div class="aud-card navy">
+        <div class="aud-emoji">📱</div>
+        <span class="tag">digitala kurser</span>
+        <h3>För seniorer</h3>
+        <p>Tekniken i vardagen ska vara en hjälp – inte ett hinder. Jag håller digitala kurser i vardagsteknik där vi i lugn takt går igenom det du faktiskt använder.</p>
+        <ul>
+          <li>Mobilen och surfplattan – steg för steg</li>
+          <li>Praktiska övningar i vardagsteknik</li>
+          <li>Trygghet och självständighet i din digitala vardag</li>
+        </ul>
+        <a class="aud-link" href="#kontakt">Boka en kurs →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEKTION SLUTAR: TJÄNSTER ================= -->
+
+<!-- ================= SEKTION BÖRJAR: KURSER =================
+     Här säljer du dina digitala kurspaket.
+     VIKTIGT: Klistra in din betalningslänk (Stripe Payment Link
+     eller Gumroad) där det står BETALLÄNK-HÄR nedan.
+     Kopiera hela <div class="kurs-card"> ... </div> för att
+     lägga till fler kurser. -->
+<section id="kurser" class="kurser">
+  <div class="wrap">
+    <span class="eyebrow">digitala kurser</span>
+    <h2>Köp kurs – börja skapa direkt</h2>
+    <p style="max-width:36rem">Du betalar tryggt med kort och får direkt tillgång till kursens filmer. Filmerna streamas på min kurssida och går inte att ladda ner. Vill du hellre gå en kurs live med mig? <a href="aktuella-kurser.html"><strong>Se aktuella kurstillfällen →</strong></a></p>
+
+    <div class="kurs-grid">
+
+      <!-- KURS 1: SCRATCH (7–9 år) -->
+      <div class="kurs-card2 scratch">
+        <div class="kurs-topp lav-topp"><span class="kurs-ikon">🐱</span></div>
+        <div class="kurs-body">
+          <span class="tag-lav">nybörjare · 7–9 år</span>
+          <h3>Introduktion till Scratch</h3>
+          <p>Den perfekta starten för de yngsta! Med färgglada kodblock bygger ditt barn sina första spel och animationer – inga förkunskaper behövs.</p>
+          <ul class="kurs-list">
+            <li>Lär känna Scratch och kodblocken</li>
+            <li>Skapa figurer som rör sig och pratar</li>
+            <li>Bygg ditt första egna spel</li>
+            <li>Ljud, poäng och roliga effekter</li>
+          </ul>
+          <!-- Byt ut PRIS-HÄR mot ditt pris och länken mot din betallänk för Scratch-kursen -->
+          <div class="kurs-pris">PRIS-HÄR kr <small>inkl. moms · tillgång direkt</small></div>
+          <a class="btn btn-primary" href="BETALLÄNK-HÄR">Köp paketet</a>
+        </div>
+      </div>
+
+      <!-- KURS 2: ROBLOX STUDIO (10–13 år) -->
+      <div class="kurs-card2">
+        <div class="kurs-topp mint-topp"><span class="kurs-ikon">🎮</span></div>
+        <div class="kurs-body">
+          <span class="tag-mint">7 filmer · nybörjare · 10–13 år</span>
+          <h3>Introduktion till Roblox Studio</h3>
+          <p>Kurspaketet där ditt barn går från noll till sitt första egna spel! I sju korta filmer bygger vi tillsammans – steg för steg.</p>
+          <ul class="kurs-list">
+            <li>Kom igång med Roblox Studio och verktygen</li>
+            <li>Bygg din första bana med delar och färger</li>
+            <li>Skriv dina första rader Lua-kod</li>
+            <li>Hopp, fällor, mål – och visa upp för familjen!</li>
+          </ul>
+          <!-- Byt ut PRIS-HÄR mot ditt pris och länken mot din betallänk för Roblox-kursen -->
+          <div class="kurs-pris">PRIS-HÄR kr <small>inkl. moms · tillgång direkt</small></div>
+          <a class="btn btn-primary" href="BETALLÄNK-HÄR">Köp paketet</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- JULKALENDERN – bred festlig banner -->
+    <div class="jul-card">
+      <div class="jul-info">
+        <span class="tag-jul">🎄 säsongsfavorit · 24 luckor</span>
+        <h3>Kodkalendern – en lucka om dagen i december</h3>
+        <p>Ett adventspaket fyllt med kodglädje! Varje dag 1–24 december låses en ny lucka upp med dagens kodutmaning. Finns i två versioner: <strong>Scratch</strong> (7–9 år) och <strong>Roblox Studio</strong> (10–13 år).</p>
+        <ul class="kurs-list jul-list">
+          <li>En ny utmaning varje dag – luckorna öppnas automatiskt</li>
+          <li>Lagom stora uppgifter, cirka 15–30 minuter per dag</li>
+          <li>Perfekt hemma vid frukosten – eller i klassrummet!</li>
+        </ul>
+        <div class="jul-pris">PRIS-HÄR kr per kalender <small style="font-size:.8rem;color:#C6D2EC">· inkl. moms · tillgång direkt</small></div>
+        <div class="jul-knappar">
+          <!-- Byt ut länkarna mot dina betallänkar för respektive kalender -->
+          <a class="btn btn-primary" href="BETALLÄNK-HÄR">Köp Scratch-kalendern</a>
+          <a class="btn btn-primary" href="BETALLÄNK-HÄR">Köp Roblox-kalendern</a>
+        </div>
+      </div>
+      <div class="jul-visual" aria-hidden="true">
+        <div class="jul-lucka">1</div>
+        <div class="jul-lucka oppen">2</div>
+        <div class="jul-lucka">3</div>
+        <div class="jul-lucka las">🔒</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: KURSER ================= -->
+
+<!-- ================= SEKTION BÖRJAR: SKOLAN ================= -->
+<section id="skolan" class="skolan">
+  <div class="wrap">
+    <span class="eyebrow">för skola, fritids &amp; bibliotek</span>
+    <h2>Julkalendrar i programmering 🎄</h2>
+    <p style="max-width:38rem">Ge era barngrupper en adventskalender de sent glömmer! Tre digitala julkalendrar där barnen bygger något eget, lucka för lucka – <strong>video, dagens uppgift och pedagogstöd i varje lucka.</strong> Inga förkunskaper krävs av dig som pedagog.</p>
+    <div class="skola-grid">
+      <div class="skola-card">
+        <div class="aud-emoji">📖</div>
+        <h3>Tomtens julsaga · 5–7 år</h3>
+        <p>Barnen skapar en animerad julsaga i ScratchJr med egna inspelade röster – tomten pratar, renen hoppar, snön faller. Surfplatta, inga konton behövs. Avslutas med sagostund.</p>
+      </div>
+      <div class="skola-card">
+        <div class="aud-emoji">🍪</div>
+        <h3>Fånga pepparkakorna · 8–9 år</h3>
+        <p>Barnen programmerar ett komplett eget spel i Scratch – poäng, liv, ökande fart och julmusik. Funkar direkt i webbläsaren. Avslutas med spelmässa.</p>
+      </div>
+      <div class="skola-card">
+        <div class="aud-emoji">🎮</div>
+        <h3>Tomtens verkstad · 10–13 år</h3>
+        <p>Barnen bygger och kodar ett vinterspel i riktiga Roblox Studio – med Lua-skript, leaderboard och snöfall – och publicerar det på Roblox i sista luckan.</p>
+      </div>
+    </div>
+    <div class="skola-cta">
+      <p><strong>En lucka öppnas varje skoldag i december.</strong> Till varje lucka finns "klart-kollen" och en diskussionsfråga för dig som pedagog. Kalendrarna stödjer arbetet med <strong>programmering och digital kompetens enligt Lgr22</strong>. Licens per skola, fritidsavdelning eller bibliotek – paketpris och kommunlicens finns också.</p>
+      <a class="btn btn-primary" href="julkalendrar.html">Se kalendrarna &amp; priser →</a>
+    </div>
+    <p style="margin-top:1rem;text-align:center;font-size:.95rem">Osäker? <a href="julkalendrar.html#prova"><strong>Testa en lucka gratis med klassen →</strong></a></p>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: SKOLAN ================= -->
+
+<!-- ================= SEKTION BÖRJAR: FÖRELÄSNINGAR ================= -->
+<section class="lect" id="forelasningar">
+  <div class="wrap">
+    <span class="eyebrow">föreläsningar</span>
+    <h2>Föreläsningar som väcker nyfikenhet</h2>
+    <p style="max-width:36rem;color:#C6D2EC">Jag föreläser för både stora och små – bokas av företag, arrangörer och föreningar.</p>
+    <div class="lect-grid">
+      <div class="lect-card">
+        <div class="aud-emoji">🎮</div>
+        <h3>Roblox Studio för barn</h3>
+        <p>En inspirerande föreläsning där barnen får se hur ett spel byggs på riktigt – med livekodning i Lua och massor av aha-upplevelser. Passar allt från klassrum till stora salar med 100 barn.</p>
+      </div>
+      <div class="lect-card">
+        <div class="aud-emoji">🔒</div>
+        <h3>Säkerhet på nätet för seniorer</h3>
+        <p>En trygg och konkret genomgång av hur man känner igen bedrägerier, skyddar sina konton och surfar säkert – utan krångliga facktermer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEKTION SLUTAR: FÖRELÄSNINGAR ================= -->
+
+<!-- ================= SEKTION BÖRJAR: UPPDRAG & PROJEKT =================
+     Uppdatera siffrorna i <div class="proj-num"> när nya
+     milstolpar dyker upp! -->
+<section id="projekt">
+  <div class="wrap">
+    <span class="eyebrow">uppdrag och projekt</span>
+    <h2>Det här har jag gjort</h2>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-num">90</div>
+        <small>barn på Code Summer Camp</small>
+        <p>Workshopen "Teknik &amp; Framtid" med livekodning i Roblox Studio – i samarbete med Skill.</p>
+      </div>
+      <div class="proj-card lav">
+        <div class="proj-num">2026</div>
+        <small>Floating Code Cup</small>
+        <p>Sveriges spelutvecklingstävling i Roblox för barn 8–13 år, med final på Bricks and Games i Göteborg den 3 oktober.</p>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">76 000</div>
+        <small>deltagare online</small>
+        <p>Barn som följt mina digitala genomgångar och skapande på YouTube.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEKTION SLUTAR: UPPDRAG & PROJEKT ================= -->
+
+<!-- ================= SEKTION BÖRJAR: OM MIG ================= -->
+<section class="about" id="om-mig">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow">om mig</span>
+      <h2>Hej, jag heter Angelica!</h2>
+      <p>Jag är pedagog med över tio års erfarenhet av utbildning och digitalt skapande. Hösten 2024 startade jag Floating Code med en tydlig vision: att göra digital kompetens tillgänglig för både barn och seniorer.</p>
+      <p>Barn behöver kreativa sätt att utforska programmering – och seniorer behöver stöd för att känna sig trygga i en alltmer digital värld. Floating Code bygger bron däremellan.</p>
+    </div>
+    <div>
+      <!-- Din profilbild – byt fil genom att ersätta profil.png i mappen -->
+      <img src="profil.png" alt="Angelica, grundare av Floating Code" class="profil-img">
+      <p class="about-quote">"Att inspirera både barn och seniorer att upptäcka och använda teknik är nyckeln till framtiden."</p>
+      <p>Varje deltagare – ung som äldre – ska gå därifrån med starkare självförtroende, mer nyfikenhet och en känsla av att <em>det här klarar jag</em>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEKTION SLUTAR: OM MIG ================= -->
+
+<!-- ================= SEKTION BÖRJAR: NYHETSBREV =================
+     Byt ut FORMULÄR-LÄNK-HÄR mot länken till ditt
+     anmälningsformulär (t.ex. ditt Google-formulär). -->
+<section class="nyhetsbrev">
+  <div class="wrap nb-inner">
+    <div>
+      <h2>Vill du få mitt nyhetsbrev? 💌</h2>
+      <p>Kodtips, nya kurser och roliga utmaningar för barnen – direkt i din inkorg. Lagom ofta, aldrig spam.</p>
+    </div>
+    <a class="btn btn-nb" href="FORMULÄR-LÄNK-HÄR">Skriv upp dig här!</a>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: NYHETSBREV ================= -->
+
+<!-- ================= SEKTION BÖRJAR: KONTAKT ================= -->
+<section class="contact" id="kontakt">
+  <div class="wrap">
+    <span class="eyebrow">kontakt</span>
+    <h2>Ska vi skapa något tillsammans?</h2>
+    <p style="max-width:32rem;margin:0 auto 1rem">Oavsett om du är företag, förälder, senior eller arrangör – hör av dig så hittar vi ett upplägg som passar.</p>
+    <a class="btn btn-primary" href="mailto:contact.floatingcode@gmail.com">Mejla mig: contact.floatingcode@gmail.com</a>
+    <div class="socials">
+      <a href="https://www.instagram.com/angelica.speldesign/">Instagram</a>
+      <a href="https://www.youtube.com/@FloatingCode">YouTube</a>
+      <a href="https://www.linkedin.com/company/floating-code">LinkedIn</a>
+      <a href="https://www.tiktok.com/@floatingcode">TikTok</a>
+    </div>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: KONTAKT ================= -->
+
+</main>
+
+<footer>
+  <div class="flyt">Flyt lugnt! 🌊</div>
+  © 2026 Floating Code AB · Org.nr FYLL-I-ORGANISATIONSNUMMER · Stockholm<br>
+  <a href="#kurser" style="color:var(--mint)">Kurser</a> · <a href="aktuella-kurser.html" style="color:var(--mint)">Aktuella kurser</a> · <a href="julkalendrar.html" style="color:var(--mint)">Julkalendrar för skolan</a> · <a href="villkor.html" style="color:var(--mint)">Köpvillkor &amp; integritet</a>
+</footer>
+
+<script>
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open'));
+});
+</script>
+
+</body>
+</html>

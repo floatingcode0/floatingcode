@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Julkalendrar för skola, fritids &amp; bibliotek — Floating Code</title>
+<meta name="description" content="Digitala julkalendrar i programmering för skola, fritids och bibliotek. 15 luckor med video, uppgift och pedagogstöd — inga förkunskaper krävs.">
+<meta property="og:title" content="Julkalendrar i programmering — för skola, fritids &amp; bibliotek">
+<meta property="og:description" content="En lucka om dagen, ett helt eget spel till jul. Tre kalendrar för 5–13 år med video och pedagogstöd i varje lucka.">
+<meta property="og:image" content="https://floatingcode.se/logga.png">
+<meta property="og:url" content="https://floatingcode.se/julkalendrar.html">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="logga.png">
+<!-- FAQ-data för Google: gör att frågorna kan visas direkt i sökresultatet.
+     Håll texterna i synk med FAQ-sektionen längre ner på sidan. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Hur mycket behöver jag som pedagog förbereda?","acceptedAnswer":{"@type":"Answer","text":"Ingenting utöver tekniken. Du behöver inga förkunskaper i programmering — varje lucka har en video som visar allt, en färdig uppgift och en klart-koll. Pedagogguiden tar 5 minuter att läsa."}},
+    {"@type":"Question","name":"Behöver eleverna egna konton?","acceptedAnswer":{"@type":"Answer","text":"Tomtens julsaga (5–7 år): nej. Fånga pepparkakorna (8–9 år): nej, men ett kostnadsfritt lärarkonto på Scratch rekommenderas. Tomtens verkstad (10–13 år): ja, ett Roblox-konto per barn — guide ingår."}},
+    {"@type":"Question","name":"Hur lång tid tar en lucka?","acceptedAnswer":{"@type":"Answer","text":"Cirka 20–40 minuter: en kort video, dagens bygguppgift och en diskussionsfråga. Passar en lektion, en fritidsaktivitet eller ett bibliotekspass."}},
+    {"@type":"Question","name":"Kan vi betala via faktura?","acceptedAnswer":{"@type":"Answer","text":"Ja, både kortbetalning och faktura fungerar — även e-faktura enligt kommunens rutiner. Kalenderkoden mejlas samma dag vid fakturaköp."}},
+    {"@type":"Question","name":"Behandlas elevernas personuppgifter?","acceptedAnswer":{"@type":"Answer","text":"Nej. Kalendern nås med en gemensam kalenderkod per enhet — eleverna loggar aldrig in och inga elevuppgifter samlas in."}}
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#2C2E58; --navy-deep:#1F2142;
+    --mint:#83E4D2; --lavender:#A98BE8; --gold:#F5C24B; --snow:#F7F9FF;
+    --r:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Nunito',sans-serif;color:var(--snow);
+    background:linear-gradient(180deg,var(--navy-deep) 0%,var(--navy) 60%,#3A3D74 100%);
+    min-height:100vh;overflow-x:hidden;
+  }
+  #sno{position:fixed;inset:0;pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:1020px;margin:0 auto;padding:0 20px}
+
+  h1,h2,h3{font-family:'Fredoka',sans-serif}
+
+  /* ---------- Toppmeny ---------- */
+  .topnav{
+    position:relative;z-index:3;max-width:1020px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 20px 0;
+  }
+  .topnav .logo{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;
+    color:var(--snow);text-decoration:none;display:flex;align-items:center;gap:.55rem;
+  }
+  .topnav .logo img{height:38px;width:38px;object-fit:cover;border-radius:11px}
+  .topnav .back{color:var(--mint);text-decoration:none;font-weight:800;font-size:.92rem}
+  .topnav .back:hover{text-decoration:underline}
+  .eyebrow{
+    display:inline-block;background:var(--gold);color:var(--navy);
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.78rem;
+    padding:6px 16px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;
+  }
+
+  /* ---------- Översikt ---------- */
+  header{ text-align:center;padding:56px 0 8px }
+  h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.12;margin-top:16px}
+  h1 em{font-style:normal;color:var(--mint)}
+  .ingress{max-width:600px;margin:14px auto 0;color:#cfd3f5;font-size:1.08rem;line-height:1.6}
+
+  .steg{
+    display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+    margin:30px 0 8px;font-size:.92rem;
+  }
+  .steg span{
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+    padding:8px 16px;border-radius:999px;color:#dfe2ff;
+  }
+  .steg b{color:var(--gold)}
+
+  .kort-grid{
+    display:grid;gap:20px;margin:36px 0 10px;
+    grid-template-columns:1fr;
+  }
+  @media(min-width:760px){.kort-grid{grid-template-columns:repeat(3,1fr)}}
+
+  .kal-kort{
+    background:var(--snow);color:var(--navy);border-radius:var(--r);
+    padding:26px 24px 24px;text-align:left;border:none;cursor:pointer;
+    font-family:'Nunito',sans-serif;
+    display:flex;flex-direction:column;gap:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+    transition:transform .2s ease, box-shadow .2s ease;
+    position:relative;overflow:hidden;
+  }
+  .kal-kort:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+  .kal-kort:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
+  .kal-kort::before{content:"";position:absolute;top:0;left:0;right:0;height:8px}
+  .kal-kort.k-jr::before{background:var(--gold)}
+  .kal-kort.k-scratch::before{background:var(--mint)}
+  .kal-kort.k-roblox::before{background:var(--lavender)}
+  .kal-alder{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.8rem;
+    text-transform:uppercase;letter-spacing:.07em;color:#6c6f9e;
+  }
+  .kal-kort h3{font-size:1.35rem;line-height:1.2}
+  .kal-verktyg{font-weight:800;font-size:.9rem}
+  .k-jr .kal-verktyg{color:#b8860f}
+  .k-scratch .kal-verktyg{color:#1f9e83}
+  .k-roblox .kal-verktyg{color:#7a5fc0}
+  .kal-desc{font-size:.95rem;line-height:1.5;color:#3d3f6e;flex:1}
+  .kal-fot{
+    display:flex;justify-content:space-between;align-items:center;
+    border-top:2px dashed #d8daf0;padding-top:12px;margin-top:4px;
+  }
+  .kal-pris{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.15rem}
+  .kal-pil{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
+    color:var(--navy);background:var(--mint);padding:8px 14px;border-radius:999px;
+  }
+
+  .paket{
+    margin:26px auto 0;max-width:680px;
+    background:linear-gradient(120deg,rgba(131,228,210,.16),rgba(169,139,232,.16));
+    border:2px solid var(--gold);border-radius:var(--r);
+    padding:22px 26px;text-align:center;
+  }
+  .paket h3{color:var(--gold);font-size:1.2rem}
+  .paket p{color:#e3e5ff;margin-top:6px;font-size:.98rem;line-height:1.55}
+  .paket .pris{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:var(--snow);margin-top:8px}
+  .paket .pris s{color:#9a9ecf;font-size:1rem;margin-right:10px}
+  .paket-knapp{
+    display:inline-block;margin-top:14px;background:var(--gold);color:var(--navy);
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;
+    padding:12px 28px;border-radius:999px;border:none;cursor:pointer;text-decoration:none;
+  }
+  .paket-knapp:hover{background:#ffd66b}
+  .paket.kommun{border-color:var(--lavender);margin-top:18px}
+  .paket.kommun h3{color:var(--lavender)}
+  .paket.kommun .paket-knapp{background:var(--lavender);color:var(--navy)}
+  .paket.kommun .paket-knapp:hover{background:#c0a8f2}
+  .paket-knapp:focus-visible{outline:3px solid var(--mint)}
+
+  .trygghet{
+    display:flex;gap:22px;justify-content:center;flex-wrap:wrap;
+    margin:34px 0 60px;color:#b9bde8;font-size:.88rem;
+  }
+  .trygghet span::before{content:"✓ ";color:var(--mint);font-weight:800}
+
+  /* ---------- Produktvy ---------- */
+  .vy{display:none}
+  .vy.aktiv{display:block}
+  .tillbaka{
+    margin:28px 0 0;background:none;border:2px solid rgba(255,255,255,.3);
+    color:var(--snow);font-family:'Fredoka',sans-serif;font-size:.92rem;
+    padding:9px 20px;border-radius:999px;cursor:pointer;
+  }
+  .tillbaka:hover{border-color:var(--mint);color:var(--mint)}
+  .tillbaka:focus-visible{outline:3px solid var(--gold)}
+
+  .produkt{
+    background:var(--snow);color:var(--navy);border-radius:26px;
+    margin:22px 0 60px;overflow:hidden;
+    box-shadow:0 24px 60px rgba(0,0,0,.4);
+  }
+  .produkt-topp{padding:34px 34px 26px;color:var(--navy)}
+  .produkt.k-jr .produkt-topp{background:linear-gradient(120deg,var(--gold),#ffe09a)}
+  .produkt.k-scratch .produkt-topp{background:linear-gradient(120deg,var(--mint),#c8f5ec)}
+  .produkt.k-roblox .produkt-topp{background:linear-gradient(120deg,var(--lavender),#d3c2f7)}
+  .produkt-topp .kal-alder{color:rgba(44,46,88,.6)}
+  .produkt-topp h2{font-size:clamp(1.5rem,4vw,2.2rem);margin-top:4px}
+  .produkt-topp .pitch{margin-top:10px;font-size:1.02rem;line-height:1.55;max-width:560px}
+
+  .produkt-inner{
+    padding:28px 34px 34px;display:grid;gap:30px;
+    grid-template-columns:1fr;
+  }
+  @media(min-width:760px){.produkt-inner{grid-template-columns:1.5fr 1fr}}
+
+  .produkt-inner h3{font-size:1.05rem;color:var(--lavender);margin-bottom:10px}
+  .lucklista{list-style:none;counter-reset:lucka}
+  .lucklista li{
+    counter-increment:lucka;position:relative;
+    padding:7px 0 7px 44px;font-size:.94rem;line-height:1.4;
+    border-bottom:1px solid #ececf7;
+  }
+  .lucklista li::before{
+    content:counter(lucka);position:absolute;left:0;top:6px;
+    width:30px;height:30px;border-radius:9px;
+    background:var(--navy);color:var(--snow);
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.85rem;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .ingar{list-style:none}
+  .ingar li{padding:5px 0 5px 26px;position:relative;font-size:.94rem;line-height:1.45}
+  .ingar li::before{content:"🎁";position:absolute;left:0;font-size:.85rem}
+  .teknik{
+    background:#eef0fb;border-radius:14px;padding:14px 16px;
+    font-size:.9rem;line-height:1.5;margin-top:14px;
+  }
+  .teknik b{font-family:'Fredoka',sans-serif}
+
+  .kop-ruta{
+    background:var(--navy);color:var(--snow);border-radius:18px;
+    padding:24px;position:sticky;top:20px;align-self:start;
+  }
+  .kop-ruta .prisrad{display:flex;align-items:baseline;gap:10px}
+  .kop-ruta .pris{font-family:'Fredoka',sans-serif;font-size:2rem;color:var(--gold)}
+  .kop-ruta .prisinfo{font-size:.82rem;color:#b9bde8}
+  .kop-ruta .licens{font-size:.88rem;color:#dfe2ff;margin:10px 0 16px;line-height:1.5}
+  .kopknapp{
+    display:block;width:100%;text-align:center;text-decoration:none;
+    background:var(--mint);color:var(--navy);
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.02rem;
+    padding:14px;border-radius:12px;border:none;cursor:pointer;margin-bottom:10px;
+  }
+  .kopknapp:hover{background:#9ff0e0}
+  .kopknapp:focus-visible{outline:3px solid var(--gold)}
+  .kopknapp.faktura{background:transparent;color:var(--snow);border:2px solid rgba(255,255,255,.4)}
+  .kopknapp.faktura:hover{border-color:var(--mint);color:var(--mint)}
+  .kop-steg{font-size:.82rem;color:#b9bde8;line-height:1.6;margin-top:12px;border-top:1px solid rgba(255,255,255,.15);padding-top:12px}
+  .kop-steg b{color:var(--mint)}
+
+  /* ---------- Provlucka, läroplan, röster & FAQ ---------- */
+  .extra{margin:0 0 44px}
+  .extra h2{
+    font-size:clamp(1.4rem,3.5vw,1.9rem);text-align:center;margin-bottom:6px;
+  }
+  .extra .underrubrik{text-align:center;color:#cfd3f5;max-width:560px;margin:0 auto 24px;line-height:1.55}
+
+  .prova{
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+    border-radius:var(--r);padding:26px;max-width:680px;margin:0 auto;text-align:center;
+  }
+  .prova .video-ram{
+    position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;
+    background:var(--navy-deep);margin-bottom:16px;
+  }
+  .prova .video-ram iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .prova p{color:#dfe2ff;font-size:.95rem;line-height:1.55}
+  .prova .paket-knapp{margin-top:12px}
+
+  .lgr{
+    max-width:680px;margin:0 auto;
+    background:rgba(131,228,210,.1);border:1px solid rgba(131,228,210,.35);
+    border-radius:var(--r);padding:22px 26px;
+  }
+  .lgr h3{color:var(--mint);font-size:1.1rem;margin-bottom:8px}
+  .lgr ul{list-style:none}
+  .lgr li{padding:5px 0 5px 26px;position:relative;color:#dfe2ff;font-size:.94rem;line-height:1.5}
+  .lgr li::before{content:"✓";position:absolute;left:0;color:var(--mint);font-weight:800}
+
+  .roster-grid{display:grid;gap:16px;grid-template-columns:1fr;max-width:900px;margin:0 auto}
+  @media(min-width:760px){.roster-grid{grid-template-columns:repeat(2,1fr)}}
+  .rost{
+    background:var(--snow);color:var(--navy);border-radius:var(--r);padding:22px 24px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+  }
+  .rost p{font-size:.97rem;line-height:1.55;font-style:italic}
+  .rost .vem{margin-top:10px;font-style:normal;font-weight:800;font-size:.86rem;color:#6c6f9e}
+
+  .faq{max-width:680px;margin:0 auto}
+  .faq details{
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+    border-radius:14px;margin-bottom:10px;overflow:hidden;
+  }
+  .faq summary{
+    cursor:pointer;list-style:none;padding:15px 46px 15px 18px;position:relative;
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.98rem;color:var(--snow);
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{
+    content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);
+    font-size:1.3rem;color:var(--mint);font-family:'Fredoka',sans-serif;
+  }
+  .faq details[open] summary::after{content:"–"}
+  .faq summary:focus-visible{outline:3px solid var(--gold);outline-offset:-3px;border-radius:14px}
+  .faq .svar{padding:0 18px 16px;color:#dfe2ff;font-size:.93rem;line-height:1.6}
+  .faq .svar b{color:var(--mint)}
+
+  footer{
+    position:relative;z-index:2;text-align:center;
+    padding:10px 20px 50px;color:#aeb2e0;font-size:.9rem;
+  }
+  footer .signatur{font-family:'Fredoka',sans-serif;color:var(--mint);font-size:1.05rem;margin-top:6px}
+
+  @media (prefers-reduced-motion:reduce){
+    #sno{display:none}
+    .kal-kort{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="sno" aria-hidden="true"></canvas>
+
+<nav class="topnav">
+  <a class="logo" href="index.html">
+    <img src="logga.png" alt="Floating Code">
+    <span>Floating Code</span>
+  </a>
+  <a class="back" href="index.html">← Till startsidan</a>
+</nav>
+
+<!-- ============ VY: ÖVERSIKT ============ -->
+<div class="vy aktiv" id="vy-oversikt">
+  <div class="wrap">
+    <header>
+      <span class="eyebrow">Floating Code · Julkalendrar 2026</span>
+      <h1>En lucka om dagen.<br>Ett helt <em>eget spel</em> till jul.</h1>
+      <p class="ingress">Digitala julkalendrar i programmering för skola, fritids och bibliotek.
+      15 luckor med video, uppgift och pedagogstöd — barnen bygger, ni behöver inga förkunskaper.</p>
+      <div class="steg">
+        <span><b>1.</b> Köp kalendern online</span>
+        <span><b>2.</b> Få kalenderkoden direkt via mejl</span>
+        <span><b>3.</b> Öppna en lucka varje skoldag</span>
+      </div>
+    </header>
+
+    <div class="kort-grid">
+      <button class="kal-kort k-jr" data-vy="vy-jr">
+        <span class="kal-alder">5–7 år · Förskoleklass–åk 1</span>
+        <h3>Tomtens julsaga</h3>
+        <span class="kal-verktyg">ScratchJr på surfplatta</span>
+        <p class="kal-desc">Barnen skapar en animerad julsaga med egna inspelade röster — tomten pratar, renen hoppar, snön faller. Avslutas med sagostund. Inga konton behövs.</p>
+        <div class="kal-fot"><span class="kal-pris">4 995 kr</span><span class="kal-pil">Läs mer →</span></div>
+      </button>
+
+      <button class="kal-kort k-scratch" data-vy="vy-scratch">
+        <span class="kal-alder">8–9 år · Åk 2–3</span>
+        <h3>Fånga pepparkakorna</h3>
+        <span class="kal-verktyg">Scratch i webbläsaren</span>
+        <p class="kal-desc">Barnen programmerar ett komplett eget spel: poäng, liv, ökande fart, startskärm och julmusik. Avslutas med spelmässa där alla spelar varandras spel.</p>
+        <div class="kal-fot"><span class="kal-pris">4 995 kr</span><span class="kal-pil">Läs mer →</span></div>
+      </button>
+
+      <button class="kal-kort k-roblox" data-vy="vy-roblox">
+        <span class="kal-alder">10–13 år · Åk 4–7</span>
+        <h3>Tomtens verkstad</h3>
+        <span class="kal-verktyg">Roblox Studio på dator</span>
+        <p class="kal-desc">Barnen bygger och kodar ett vinterspel i riktiga Roblox Studio — med Lua-skript, leaderboard och snöfall — och publicerar det på Roblox sista luckan.</p>
+        <div class="kal-fot"><span class="kal-pris">4 995 kr</span><span class="kal-pil">Läs mer →</span></div>
+      </button>
+    </div>
+
+    <div class="paket">
+      <h3>🎄 Hela paketet — alla tre kalendrarna</h3>
+      <p>För F–6-skolor och bibliotek som vill nå hela åldersspannet. ScratchJr berättar, Scratch spelar, Roblox skapar världar.</p>
+      <div class="pris"><s>14 985 kr</s> 9 995 kr</div>
+      <a class="paket-knapp" href="#" id="paketkop">Köp hela paketet</a>
+    </div>
+
+    <div class="paket kommun">
+      <h3>🏛 Kommunlicens</h3>
+      <p>Alla tre kalendrarna för <b>samtliga skolor, fritids och bibliotek i kommunen</b>. En faktura, en kalenderkod per kalender att sprida internt — och programmering på schemat hela december, i hela kommunen.</p>
+      <div class="pris">från 24 995 kr</div>
+      <a class="paket-knapp" href="#" id="kommunkop">Begär offert via faktura</a>
+    </div>
+
+    <div class="trygghet">
+      <span>Faktura eller kortbetalning</span>
+      <span>Tillgång direkt efter köp</span>
+      <span>Inga förkunskaper krävs av pedagoger</span>
+      <span>Licens per skola/avdelning/bibliotek</span>
+    </div>
+
+    <!-- ============ SEKTION: TESTA EN LUCKA GRATIS ============
+         Klistra in Vimeo-ID:t för provluckan i inställningarna
+         längst ner i filen (GRATISLUCKA). Tomt värde = knappen
+         "Mejla mig provluckan" visas i stället för videon. -->
+    <section class="extra" id="prova">
+      <h2>Testa en lucka gratis med klassen 🎁</h2>
+      <p class="underrubrik">Osäker på om det passar er grupp? Öppna lucka 1 ur Tomtens verkstad tillsammans med barnen — helt gratis. Då ser ni exakt hur en lucka fungerar innan ni bestämmer er.</p>
+      <div class="prova">
+        <div class="video-ram" id="prova-video" hidden>
+          <!-- Videon fylls i automatiskt från inställningarna nedan -->
+        </div>
+        <p id="prova-text">Varje lucka består av en kort video där jag visar dagens steg, en tydlig uppgift och en "klart-koll" för dig som pedagog. Barnen bygger — du behöver bara trycka på play.</p>
+        <a class="paket-knapp" id="prova-knapp" href="#">Mejla mig provluckan</a>
+      </div>
+    </section>
+
+    <!-- ============ SEKTION: KOPPLING TILL LÄROPLANEN ============ -->
+    <section class="extra" id="laroplan">
+      <div class="lgr">
+        <h3>📚 Kopplat till läroplanen</h3>
+        <ul>
+          <li><b>Lgr22:</b> programmering ingår i teknik och matematik — kalendrarna ger eleverna praktisk erfarenhet av att skapa, felsöka och styra med kod.</li>
+          <li><b>Digital kompetens:</b> eleverna går från konsumenter till skapare av digital teknik, ett av läroplanens övergripande mål.</li>
+          <li><b>Fritidshemmet:</b> stödjer uppdraget kring skapande med digitala verktyg — färdigt att använda rakt av i verksamheten.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SEKTION: RÖSTER FRÅN KLASSRUMMEN ============
+         AKTIVERA NÄR DU HAR CITAT: ta bort raderna <!—— och ——>
+         runt sektionen nedan och byt ut exempeltexterna mot
+         riktiga citat (fråga alltid läraren om lov först, och
+         ange namn + roll + skola om hen godkänner det).
+         Tips: erbjud 2–3 pilotskolor rabatt i utbyte mot ett
+         omdöme — även ett enda citat gör stor skillnad!
+
+    <section class="extra" id="roster">
+      <h2>Röster från klassrummen 💬</h2>
+      <div class="roster-grid">
+        <div class="rost">
+          <p>"Eleverna sprang in från rasten för att hinna öppna dagens lucka. Jag behövde inte förbereda någonting."</p>
+          <p class="vem">FÖRNAMN EFTERNAMN · Lärare åk 4, SKOLANS NAMN</p>
+        </div>
+        <div class="rost">
+          <p>"Perfekt för fritids i december — färdigt upplägg och barnen var stolta som tuppar över sina spel."</p>
+          <p class="vem">FÖRNAMN EFTERNAMN · Fritidspedagog, SKOLANS NAMN</p>
+        </div>
+      </div>
+    </section>
+    ============ SLUT RÖSTER ============ -->
+
+    <!-- ============ SEKTION: VANLIGA FRÅGOR ============ -->
+    <section class="extra" id="faq">
+      <h2>Vanliga frågor</h2>
+      <p class="underrubrik">Det här undrar pedagoger oftast — hittar du inte ditt svar? Mejla mig så svarar jag snabbt.</p>
+      <div class="faq">
+        <details>
+          <summary>Hur mycket behöver jag som pedagog förbereda?</summary>
+          <p class="svar">Ingenting utöver tekniken. Du behöver <b>inga förkunskaper i programmering</b> — varje lucka har en video som visar allt, en färdig uppgift och en "klart-koll". Pedagogguiden tar 5 minuter att läsa.</p>
+        </details>
+        <details>
+          <summary>Behöver eleverna egna konton?</summary>
+          <p class="svar"><b>Tomtens julsaga (5–7 år):</b> nej, inga konton alls. <b>Fånga pepparkakorna (8–9 år):</b> nej, men ett kostnadsfritt lärarkonto på Scratch rekommenderas — guide ingår. <b>Tomtens verkstad (10–13 år):</b> ja, ett Roblox-konto per barn — konto- och installationsguide till IT och vårdnadshavare ingår.</p>
+        </details>
+        <details>
+          <summary>Vilken teknik krävs?</summary>
+          <p class="svar"><b>5–7 år:</b> iPad eller Android-platta med gratisappen ScratchJr. <b>8–9 år:</b> valfri dator, Chromebook eller iPad — allt körs i webbläsaren. <b>10–13 år:</b> Windows- eller Mac-datorer med Roblox Studio (gratis). Beställ installationen av IT i november — checklista ingår.</p>
+        </details>
+        <details>
+          <summary>Hur lång tid tar en lucka?</summary>
+          <p class="svar">Cirka <b>20–40 minuter</b> beroende på ålder och grupp: en kort video (2–5 min), dagens bygguppgift och en avslutande diskussionsfråga. Passar en lektion, en fritidsaktivitet eller ett bibliotekspass.</p>
+        </details>
+        <details>
+          <summary>Hinner vi inte alla luckor — vad händer då?</summary>
+          <p class="svar">Ingen stress! Luckorna ligger kvar hela december och det går utmärkt att ta två luckor samma dag eller hoppa in senare. I varje kalender finns dessutom en genväg för er som bara hinner en handfull luckor men ändå vill nå det festliga avslutet.</p>
+        </details>
+        <details>
+          <summary>Vad gäller för licensen?</summary>
+          <p class="svar">Skollicensen gäller <b>en skola, en fritidsavdelning eller ett bibliotek</b> — med obegränsat antal barngrupper under hela december. Vill ni bara köra med en enda klass eller grupp finns en <b>klasslicens för 1 995 kr</b> (beställs via faktura). Flera enheter? Välj paketet eller kommunlicensen ovan.</p>
+        </details>
+        <details>
+          <summary>Kan vi betala via faktura eller e-faktura?</summary>
+          <p class="svar">Ja! Klicka på <b>"Beställ via faktura"</b> så öppnas ett färdigt mejl där ni fyller i fakturaadress och eventuell referenskod — vi hanterar e-faktura enligt kommunens rutiner. Kalenderkoden mejlas samma dag.</p>
+        </details>
+        <details>
+          <summary>Behandlas elevernas personuppgifter?</summary>
+          <p class="svar">Nej. Kalendern nås med <b>en gemensam kalenderkod per enhet</b> — eleverna loggar aldrig in hos oss och vi samlar inte in några elevuppgifter. Läs mer i vår <a href="villkor.html" style="color:var(--mint)">integritetspolicy</a>.</p>
+        </details>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ============ VY: SCRATCHJR ============ -->
+<div class="vy" id="vy-jr">
+  <div class="wrap">
+    <button class="tillbaka" data-vy="vy-oversikt">← Alla kalendrar</button>
+    <div class="produkt k-jr">
+      <div class="produkt-topp">
+        <span class="kal-alder">5–7 år · ScratchJr på surfplatta</span>
+        <h2>Tomtens julsaga</h2>
+        <p class="pitch">Barnen skapar en egen animerad julsaga, lucka för lucka: figurer som rör sig, snö som faller och repliker med barnens egna inspelade röster. Sista luckan blir sagostund där varje par visar sin saga för gruppen. Byggd för parprogrammering — två barn per platta.</p>
+      </div>
+      <div class="produkt-inner">
+        <div>
+          <h3>Luckorna — sagan växer varje dag</h3>
+          <ol class="lucklista">
+            <li>Möt ScratchJr — första blocken och gröna flaggan</li>
+            <li>Tomten kommer — välj och färglägg huvudpersonen</li>
+            <li>Vinterlandskapet — måla sagans värld</li>
+            <li>Renen hoppar — upprepa-blocket</li>
+            <li>Snön faller — "för alltid"-loopen</li>
+            <li>Tomten pratar! — spela in egna röster ⭐</li>
+            <li>Ljud i hela sagan</li>
+            <li>Tryck på mig! — interaktiva figurer</li>
+            <li>Brev mellan figurerna — meddelanden</li>
+            <li>Sida två — sagan får flera scener</li>
+            <li>Storleksmagi — väx och krymp</li>
+            <li>Fart och väntan — tempo och spänning</li>
+            <li>Julklappen dyker upp — göm och visa</li>
+            <li>Gör klart sagan — öva på att visa den</li>
+            <li>Sagostund! Premiär med diplom 🎄</li>
+          </ol>
+          <div class="teknik"><b>Teknik:</b> iPad eller Android-platta med gratisappen ScratchJr. <b>Inga konton behövs</b> — ingenting att logga in på, allt sparas på plattan.</div>
+        </div>
+        <div>
+          <div class="kop-ruta">
+            <div class="prisrad"><span class="pris">4 995 kr</span><span class="prisinfo">ex. moms</span></div>
+            <p class="licens">Licens för en skola, fritidsavdelning eller ett bibliotek. Obegränsat antal barngrupper under hela december.</p>
+            <p class="licens" style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px">Bara en klass eller grupp? <b style="color:var(--mint)">Klasslicens 1 995 kr</b> — välj "Beställ via faktura" och skriv "klasslicens" i mejlet.</p>
+            <a class="kopknapp" href="#" data-kop="jr-kort">Betala med kort</a>
+            <a class="kopknapp faktura" href="#" data-kop="jr-faktura">Beställ via faktura</a>
+            <p class="kop-steg">Vid kortköp får ni <b>kalenderkoden och länken direkt på skärmen</b> efter betalningen, och samma uppgifter via mejl. Vid fakturaköp mejlar vi koden samma dag.</p>
+          </div>
+          <div style="margin-top:22px">
+            <h3>Det här ingår</h3>
+            <ul class="ingar">
+              <li>15 luckor med video (2–4 min) och dagens uppgift</li>
+              <li>Pedagogguide: kom igång på 5 minuter</li>
+              <li>"Klart-kollen" och diskussionsfråga till varje lucka</li>
+              <li>Blockkarta i A3 att sätta på väggen</li>
+              <li>Utskrivbara diplom till alla barn</li>
+              <li>"Om ni bara hinner 5 luckor"-genvägen</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ VY: SCRATCH ============ -->
+<div class="vy" id="vy-scratch">
+  <div class="wrap">
+    <button class="tillbaka" data-vy="vy-oversikt">← Alla kalendrar</button>
+    <div class="produkt k-scratch">
+      <div class="produkt-topp">
+        <span class="kal-alder">8–9 år · Scratch i webbläsaren</span>
+        <h2>Fånga pepparkakorna</h2>
+        <p class="pitch">Barnen programmerar ett komplett eget spel från grunden: tomten fångar fallande pepparkakor, poängen tickar, brända pepparkakor tar liv, farten ökar — och spelet får startskärm, game over och julmusik. Avslutas med spelmässa där alla spelar varandras spel.</p>
+      </div>
+      <div class="produkt-inner">
+        <div>
+          <h3>Luckorna — spelet växer varje dag</h3>
+          <ol class="lucklista">
+            <li>Välkommen till Scratch — första blocken</li>
+            <li>Styr tomten med piltangenterna</li>
+            <li>Vinterbakgrund och speltomten</li>
+            <li>Pepparkakan faller — spelets motor</li>
+            <li>Fånga! — träffdetektering ⭐</li>
+            <li>Poäng — spelets minne ⭐</li>
+            <li>Pling och julmusik</li>
+            <li>Den brända pepparkakan — en fara</li>
+            <li>Tre liv — och spelets slut</li>
+            <li>Snabbare och snabbare — svårighetskurva</li>
+            <li>Startskärm — meddelanden</li>
+            <li>Game over-skärm med slutpoäng</li>
+            <li>Snöfall och stämning</li>
+            <li>Speltest två och två</li>
+            <li>Spelmässa! Premiär med diplom 🎄</li>
+          </ol>
+          <div class="teknik"><b>Teknik:</b> fungerar på dator, Chromebook och iPad — direkt i webbläsaren på scratch.mit.edu, inget installeras. Guide för kostnadsfritt lärarkonto ingår (sökes i november).</div>
+        </div>
+        <div>
+          <div class="kop-ruta">
+            <div class="prisrad"><span class="pris">4 995 kr</span><span class="prisinfo">ex. moms</span></div>
+            <p class="licens">Licens för en skola, fritidsavdelning eller ett bibliotek. Obegränsat antal barngrupper under hela december.</p>
+            <p class="licens" style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px">Bara en klass eller grupp? <b style="color:var(--mint)">Klasslicens 1 995 kr</b> — välj "Beställ via faktura" och skriv "klasslicens" i mejlet.</p>
+            <a class="kopknapp" href="#" data-kop="scratch-kort">Betala med kort</a>
+            <a class="kopknapp faktura" href="#" data-kop="scratch-faktura">Beställ via faktura</a>
+            <p class="kop-steg">Vid kortköp får ni <b>kalenderkoden och länken direkt på skärmen</b> efter betalningen, och samma uppgifter via mejl. Vid fakturaköp mejlar vi koden samma dag.</p>
+          </div>
+          <div style="margin-top:22px">
+            <h3>Det här ingår</h3>
+            <ul class="ingar">
+              <li>15 luckor med video (3–5 min) och dagens uppgift</li>
+              <li>Pedagogguide: kom igång på 5 minuter</li>
+              <li>"Klart-kollen" och diskussionsfråga till varje lucka</li>
+              <li>4 kodsheets i A3 att sätta på väggen</li>
+              <li>Utskrivbara diplom till alla barn</li>
+              <li>Guide till lärarkonto på Scratch</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ VY: ROBLOX ============ -->
+<div class="vy" id="vy-roblox">
+  <div class="wrap">
+    <button class="tillbaka" data-vy="vy-oversikt">← Alla kalendrar</button>
+    <div class="produkt k-roblox">
+      <div class="produkt-topp">
+        <span class="kal-alder">10–13 år · Roblox Studio på dator</span>
+        <h2>Tomtens verkstad</h2>
+        <p class="pitch">Barnen bygger och programmerar ett eget vinterspel i riktiga Roblox Studio — samma verktyg som spelen de spelar är byggda i. Hinderbana, Lua-skript, rörliga plattformar, poängtavla och snöfall. Sista luckan publiceras spelet på Roblox. Allt byggs från grunden med Parts — samma regler som i Floating Code Cup.</p>
+      </div>
+      <div class="produkt-inner">
+        <div>
+          <h3>Luckorna — spelet växer varje dag</h3>
+          <ol class="lucklista">
+            <li>Välkommen till verkstan — kamera och Parts</li>
+            <li>Vinterlandskapet — material och ankring</li>
+            <li>Verkstadens väggar — bygg effektivt</li>
+            <li>Tak och detaljer — kilar och Neon</li>
+            <li>Spawn och första hindret</li>
+            <li>Isbanan — halka som spelmekanik</li>
+            <li>Första skriptet! — Lua på riktigt ⭐</li>
+            <li>Dörren som öppnar sig</li>
+            <li>Checkpoints — en rättvis bana</li>
+            <li>Den rörliga plattformen</li>
+            <li>Samla julklappar — leaderboard ⭐</li>
+            <li>Ljud och julmusik</li>
+            <li>Snöfall och vinterljus</li>
+            <li>Speltest och finslipning</li>
+            <li>Publicera på Roblox! 🎄</li>
+          </ol>
+          <div class="teknik"><b>Teknik:</b> Windows- eller Mac-datorer med Roblox Studio (gratis) och ett Roblox-konto per barn. <b>Beställ installationen av er IT-avdelning i november</b> — checklista ingår.</div>
+        </div>
+        <div>
+          <div class="kop-ruta">
+            <div class="prisrad"><span class="pris">4 995 kr</span><span class="prisinfo">ex. moms</span></div>
+            <p class="licens">Licens för en skola, fritidsavdelning eller ett bibliotek. Obegränsat antal barngrupper under hela december.</p>
+            <p class="licens" style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px">Bara en klass eller grupp? <b style="color:var(--mint)">Klasslicens 1 995 kr</b> — välj "Beställ via faktura" och skriv "klasslicens" i mejlet.</p>
+            <a class="kopknapp" href="#" data-kop="roblox-kort">Betala med kort</a>
+            <a class="kopknapp faktura" href="#" data-kop="roblox-faktura">Beställ via faktura</a>
+            <p class="kop-steg">Vid kortköp får ni <b>kalenderkoden och länken direkt på skärmen</b> efter betalningen, och samma uppgifter via mejl. Vid fakturaköp mejlar vi koden samma dag.</p>
+          </div>
+          <div style="margin-top:22px">
+            <h3>Det här ingår</h3>
+            <ul class="ingar">
+              <li>15 luckor med video (3–5 min) och dagens uppgift</li>
+              <li>Pedagogguide: kom igång på 5 minuter</li>
+              <li>"Klart-kollen" och diskussionsfråga till varje lucka</li>
+              <li>5 kodsheets i A3 med alla Lua-skript</li>
+              <li>Utskrivbara diplom till alla barn</li>
+              <li>Konto- och installationsguide till vårdnadshavare och IT</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Frågor? Mejla <a href="mailto:contact.floatingcode@gmail.com" style="color:var(--mint)">contact.floatingcode@gmail.com</a> — vi hjälper gärna till att välja rätt kalender.</p>
+  <p style="margin-top:6px">© 2026 Floating Code AB · Org.nr FYLL-I-ORGANISATIONSNUMMER · FYLL-I-ORT · <a href="villkor.html" style="color:var(--mint)">Köpvillkor &amp; integritetspolicy</a></p>
+  <p class="signatur">Flyt lugnt! 🌊</p>
+</footer>
+
+<script>
+/* ================================================================
+   INSTÄLLNINGAR — det enda du behöver ändra
+   ================================================================ */
+
+// Kortbetalning: klistra in dina produktlänkar från t.ex. Payhip
+// eller Lemon Squeezy. Tomt värde = knappen visar ett meddelande.
+const KORTLANKAR = {
+  "jr-kort":      "",   // t.ex. "https://payhip.com/b/xxxxx"
+  "scratch-kort": "",
+  "roblox-kort":  "",
+  "paket-kort":   ""
+};
+
+// Faktura: mejlet beställningar går till.
+const FAKTURAMEJL = "contact.floatingcode@gmail.com";
+
+// Gratis provlucka: klistra in Vimeo-ID:t för lucka 1 (bara siffrorna,
+// t.ex. "123456789"). Tomt värde = en "Mejla mig provluckan"-knapp
+// visas i stället för videon.
+const GRATISLUCKA = "";
+
+const PRODUKTNAMN = {
+  "jr":      "Tomtens julsaga (ScratchJr, 5–7 år) — 4 995 kr ex. moms",
+  "scratch": "Fånga pepparkakorna (Scratch, 8–9 år) — 4 995 kr ex. moms",
+  "roblox":  "Tomtens verkstad (Roblox Studio, 10–13 år) — 4 995 kr ex. moms",
+  "paket":   "Hela paketet — alla tre julkalendrarna — 9 995 kr ex. moms",
+  "kommun":  "Kommunlicens — alla tre kalendrarna för kommunens samtliga skolor, fritids och bibliotek — offert från 24 995 kr ex. moms"
+};
+
+/* ================================================================ */
+
+/* ---------- Gratis provlucka ---------- */
+const provaVideo = document.getElementById("prova-video");
+const provaKnapp = document.getElementById("prova-knapp");
+if (GRATISLUCKA){
+  provaVideo.hidden = false;
+  provaVideo.innerHTML = '<iframe src="https://player.vimeo.com/video/' + GRATISLUCKA +
+    '" allow="fullscreen; picture-in-picture" allowfullscreen title="Provlucka: Tomtens verkstad, lucka 1"></iframe>';
+  provaKnapp.style.display = "none";
+} else {
+  provaKnapp.href = "mailto:" + FAKTURAMEJL +
+    "?subject=" + encodeURIComponent("Skicka mig provluckan!") +
+    "&body=" + encodeURIComponent(
+      "Hej Floating Code!\n\nJag vill gärna testa lucka 1 ur Tomtens verkstad med min grupp.\n\n" +
+      "Skola/fritids/bibliotek: \nMin roll: \n\nHälsningar"
+    );
+}
+
+/* ---------- Vyväxling ---------- */
+function visaVy(id){
+  document.querySelectorAll(".vy").forEach(v => v.classList.remove("aktiv"));
+  document.getElementById(id).classList.add("aktiv");
+  window.scrollTo({top:0, behavior:"instant"});
+}
+document.querySelectorAll("[data-vy]").forEach(el => {
+  el.addEventListener("click", () => visaVy(el.dataset.vy));
+});
+
+/* ---------- Köpknappar ---------- */
+function fakturaLank(produktId){
+  const namn = PRODUKTNAMN[produktId];
+  const amne = encodeURIComponent("Beställning via faktura: " + namn.split(" — ")[0]);
+  const kropp = encodeURIComponent(
+    "Hej Floating Code!\n\n" +
+    "Vi vill beställa: " + namn + "\n\n" +
+    "Skola/fritids/bibliotek: \n" +
+    "Fakturaadress (gärna e-faktura/referenskod om kommunen kräver det): \n" +
+    "Kontaktperson och e-post (dit kalenderkoden ska skickas): \n\n" +
+    "Hälsningar"
+  );
+  return "mailto:" + FAKTURAMEJL + "?subject=" + amne + "&body=" + kropp;
+}
+
+document.querySelectorAll("[data-kop]").forEach(knapp => {
+  const [produkt, typ] = knapp.dataset.kop.split("-");
+  if (typ === "faktura"){
+    knapp.href = fakturaLank(produkt);
+  } else {
+    const lank = KORTLANKAR[knapp.dataset.kop];
+    if (lank){ knapp.href = lank; knapp.target = "_blank"; knapp.rel = "noopener"; }
+    else {
+      knapp.addEventListener("click", e => {
+        e.preventDefault();
+        alert("Kortbetalning kopplas på snart — beställ gärna via faktura så länge!");
+      });
+    }
+  }
+});
+document.getElementById("kommunkop").href =
+  "mailto:" + FAKTURAMEJL +
+  "?subject=" + encodeURIComponent("Offertförfrågan: Kommunlicens julkalendrar") +
+  "&body=" + encodeURIComponent(
+    "Hej Floating Code!\n\n" +
+    "Vi är intresserade av en kommunlicens för julkalendrarna.\n\n" +
+    "Kommun: \n" +
+    "Ungefärligt antal skolor/fritids/bibliotek: \n" +
+    "Kontaktperson och e-post: \n\n" +
+    "Hälsningar"
+  );
+
+const paketknapp = document.getElementById("paketkop");
+if (KORTLANKAR["paket-kort"]){
+  paketknapp.href = KORTLANKAR["paket-kort"]; paketknapp.target = "_blank"; paketknapp.rel = "noopener";
+} else {
+  paketknapp.href = fakturaLank("paket");
+}
+
+/* ---------- Snöfall ---------- */
+const canvas = document.getElementById("sno");
+const ctx = canvas.getContext("2d");
+let flingor = [];
+function storlek(){
+  canvas.width = innerWidth; canvas.height = innerHeight;
+  const antal = Math.min(80, Math.floor(innerWidth / 16));
+  flingor = Array.from({length: antal}, () => ({
+    x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+    r: Math.random()*2 + .7, f: Math.random()*.6 + .25, v: Math.random()*.5 - .25
+  }));
+}
+addEventListener("resize", storlek); storlek();
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches){
+  (function rita(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "rgba(247,249,255,.8)";
+    flingor.forEach(s => {
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,7); ctx.fill();
+      s.y += s.f; s.x += s.v;
+      if (s.y > canvas.height){ s.y = -4; s.x = Math.random()*canvas.width; }
+      if (s.x > canvas.width) s.x = 0; if (s.x < 0) s.x = canvas.width;
+    });
+    requestAnimationFrame(rita);
+  })();
+}
+</script>
+</body>
+</html>

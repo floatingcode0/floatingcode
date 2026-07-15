@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!-- ==========================================================
+  KODKALENDERN – Floating Code
+
+  Så fungerar sidan:
+  • 24 luckor visas i ett rutnät. En lucka går bara att öppna
+    om dagens datum är samma dag i december eller senare.
+    (Lucka 5 öppnas alltså 5 december och är sedan öppen
+    resten av månaden.)
+  • ALLA UTMANINGAR redigerar du på ETT ställe: listan
+    UTMANINGAR i <script> längst ner. Varje lucka har:
+      titel     – utmaningens namn
+      uppgift   – texten barnet/eleven ser
+      larartips – (valfritt) syns i lärarläget
+      video     – (valfritt) Vimeo-ID om luckan har en film
+  • Lärarläge: lägg till ?larare i adressen
+    (t.ex. ...j9w4t.html?larare) så visas lärartipsen.
+  • Testläge: lägg till ?testdag=10 i adressen för att
+    låtsas att det är 10 december – bra när du bygger!
+  • Gör en kopia av filen för Scratch-versionen och byt
+    utmaningarna och rubriken.
+  • Filnamnet är ogissbart – bara betalande kunder får länken.
+========================================================== -->
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Kodkalendern – Roblox Studio | Floating Code</title>
+<link rel="icon" type="image/png" href="logga.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1D2A4D;
+  --navy-deep:#141F3B;
+  --ink:#2A3757;
+  --mint:#4FC3AB;
+  --mint-strong:#2FA98F;
+  --mint-soft:#DFF5EF;
+  --lavender:#9F84DE;
+  --lavender-strong:#7E5FC7;
+  --lavender-soft:#EFE9FB;
+  --card:#FFFFFF;
+  --radius:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Nunito',sans-serif;color:#E8EEF9;line-height:1.65;font-size:17px;
+  background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);
+  min-height:100vh;
+}
+h1,h2,h3{font-family:'Fredoka',sans-serif;line-height:1.2;color:#fff}
+.wrap{max-width:900px;margin:0 auto;padding:0 22px}
+header{
+  position:sticky;top:0;z-index:50;background:rgba(20,31,59,.9);
+  backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.1);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.2rem;
+  color:#fff;text-decoration:none;display:flex;align-items:center;gap:.5rem;
+}
+.logo img{height:40px;width:40px;object-fit:cover;border-radius:12px}
+.nav a.back{font-weight:800;color:var(--mint);text-decoration:none;font-size:.95rem}
+.hero{text-align:center;padding:50px 0 30px}
+.hero h1{font-size:clamp(1.7rem,5vw,2.5rem)}
+.hero p{max-width:34rem;margin:.9rem auto 0;color:#C6D2EC}
+.dagens{
+  font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--mint);
+  margin-top:1rem;display:inline-block;background:rgba(255,255,255,.08);
+  padding:.4rem 1rem;border-radius:999px;
+}
+.kalender{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;
+  padding:34px 0 60px;
+}
+@media(max-width:560px){.kalender{grid-template-columns:repeat(3,1fr)}}
+.lucka{
+  aspect-ratio:1;border-radius:16px;border:2px dashed rgba(255,255,255,.35);
+  background:rgba(255,255,255,.05);
+  font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.6rem;color:#fff;
+  cursor:pointer;transition:transform .15s ease;
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.lucka:hover{transform:scale(1.05)}
+.lucka.oppnad{background:var(--mint-strong);border-style:solid;border-color:var(--mint)}
+.lucka.last{cursor:not-allowed;opacity:.55}
+.lucka.last:hover{transform:none}
+.lucka.last::after{content:"🔒";position:absolute;bottom:8px;right:10px;font-size:.85rem}
+.lucka:nth-child(3n).oppnad{background:var(--lavender-strong);border-color:var(--lavender)}
+
+/* Utmaningspanelen */
+.panel-bak{
+  position:fixed;inset:0;background:rgba(10,16,33,.75);z-index:100;
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+.panel-bak.visa{display:flex}
+.panel{
+  background:var(--card);color:var(--ink);border-radius:var(--radius);
+  max-width:560px;width:100%;max-height:85vh;overflow-y:auto;padding:1.8rem 1.7rem;
+  position:relative;
+}
+.panel h2{color:var(--navy);font-size:1.35rem;margin-bottom:.3rem}
+.panel .lucknr{
+  font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--mint-strong);
+}
+.panel .stang{
+  position:absolute;top:14px;right:16px;background:none;border:none;
+  font-size:1.5rem;cursor:pointer;color:var(--navy);line-height:1;
+}
+.panel .uppgift{margin-top:.9rem;white-space:pre-line}
+.panel .larartips{
+  margin-top:1.2rem;background:var(--lavender-soft);border-radius:14px;
+  padding:1rem 1.1rem;font-size:.94rem;
+}
+.panel .larartips strong{color:var(--lavender-strong)}
+.video-ram{position:relative;padding-top:56.25%;background:var(--navy-deep);border-radius:14px;overflow:hidden;margin-top:1.1rem}
+.video-ram iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+footer{
+  text-align:center;padding:2rem 22px;color:#9FB0D6;font-size:.92rem;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+footer .flyt{font-family:'Fredoka',sans-serif;color:var(--mint);font-size:1.15rem;margin-bottom:.3rem}
+@media(prefers-reduced-motion:reduce){.lucka:hover{transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html">
+      <img src="logga.png" alt="Floating Code">
+      <span>Floating Code</span>
+    </a>
+    <a class="back" href="index.html">← Till startsidan</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>🎄 Kodkalendern – Roblox Studio</h1>
+    <p>En ny kodutmaning varje dag fram till jul! Luckorna öppnas automatiskt – dagens lucka lyser, och du kan alltid gå tillbaka till tidigare luckor.</p>
+    <span class="dagens" id="dagensText"></span>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="kalender" id="kalender"></div>
+</main>
+
+<div class="panel-bak" id="panelBak">
+  <div class="panel" role="dialog" aria-modal="true">
+    <button class="stang" id="stangKnapp" aria-label="Stäng">✕</button>
+    <span class="lucknr" id="pLucknr"></span>
+    <h2 id="pTitel"></h2>
+    <div class="uppgift" id="pUppgift"></div>
+    <div id="pVideo"></div>
+    <div class="larartips" id="pLarartips" style="display:none"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="flyt">Flyt lugnt! 🌊</div>
+  Frågor? Mejla <a href="mailto:contact.floatingcode@gmail.com" style="color:var(--mint)">contact.floatingcode@gmail.com</a>
+</footer>
+
+<script>
+/* =========================================================
+   HÄR REDIGERAR DU ALLA 24 UTMANINGAR!
+   Fyll i titel + uppgift för varje lucka.
+   larartips och video är frivilliga – lämna "" om de inte används.
+   Radbryt i uppgiften med \n
+========================================================= */
+const UTMANINGAR = [
+  {titel:"Bygg din startplatta", uppgift:"Öppna Roblox Studio och skapa en ny Baseplate.\nLägg till en Part, gör den STOR och måla den i din favoritfärg!\n\n⭐ Extrautmaning: kan du få den att sväva i luften?", larartips:"Eleverna behöver Roblox Studio installerat. Visa gärna Explorer-panelen först – allt de skapar hamnar där.", video:""},
+  {titel:"Lucka 2 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 3 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 4 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 5 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 6 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 7 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 8 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 9 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 10 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 11 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 12 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 13 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 14 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 15 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 16 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 17 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 18 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 19 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 20 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 21 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 22 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"Lucka 23 – din titel här", uppgift:"Skriv dagens utmaning här.", larartips:"", video:""},
+  {titel:"God jul! 🎁", uppgift:"Den sista och största utmaningen – skriv den här!", larartips:"", video:""}
+];
+
+/* ---- Nedanför behöver du inte ändra något ---- */
+const params = new URLSearchParams(location.search);
+const lararlage = params.has('larare');
+const nu = new Date();
+const testdag = parseInt(params.get('testdag'));
+const arDecember = !isNaN(testdag) || nu.getMonth() === 11;
+const dagensDag = !isNaN(testdag) ? testdag : (nu.getMonth() === 11 ? nu.getDate() : 0);
+
+document.getElementById('dagensText').textContent = arDecember
+  ? `-- idag är det ${Math.min(dagensDag,24)} december` + (lararlage ? ' · lärarläge 👩‍🏫' : '')
+  : '-- kalendern öppnar 1 december!';
+
+const kal = document.getElementById('kalender');
+UTMANINGAR.forEach((u, i) => {
+  const dag = i + 1;
+  const btn = document.createElement('button');
+  btn.className = 'lucka';
+  btn.textContent = dag;
+  const oppen = arDecember && dag <= dagensDag;
+  if (oppen) {
+    btn.classList.add('oppnad');
+    btn.addEventListener('click', () => visaLucka(dag, u));
+  } else {
+    btn.classList.add('last');
+    btn.addEventListener('click', () => {
+      btn.animate([{transform:'translateX(0)'},{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:250});
+    });
+  }
+  kal.appendChild(btn);
+});
+
+function visaLucka(dag, u){
+  document.getElementById('pLucknr').textContent = `-- lucka ${dag} av 24`;
+  document.getElementById('pTitel').textContent = u.titel;
+  document.getElementById('pUppgift').textContent = u.uppgift;
+  const v = document.getElementById('pVideo');
+  v.innerHTML = u.video
+    ? `<div class="video-ram"><iframe src="https://player.vimeo.com/video/${u.video}?dnt=1" allow="fullscreen" allowfullscreen title="Lucka ${dag}"></iframe></div>`
+    : '';
+  const lt = document.getElementById('pLarartips');
+  if (lararlage && u.larartips) {
+    lt.style.display = 'block';
+    lt.innerHTML = `<strong>👩‍🏫 Lärartips:</strong> ${u.larartips}`;
+  } else {
+    lt.style.display = 'none';
+  }
+  document.getElementById('panelBak').classList.add('visa');
+}
+document.getElementById('stangKnapp').addEventListener('click', () =>
+  document.getElementById('panelBak').classList.remove('visa'));
+document.getElementById('panelBak').addEventListener('click', e => {
+  if (e.target.id === 'panelBak') e.target.classList.remove('visa');
+});
+</script>
+
+</body>
+</html>

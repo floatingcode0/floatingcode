@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!-- ==========================================================
+  AKTUELLA KURSER – Floating Code
+
+  SÅ LÄGGER DU UT EN NY KURS (tar 2 minuter):
+  • Scrolla ner till listan KURSTILLFALLEN i <script> längst ner.
+  • Kopiera ett befintligt kursblock { ... }, klistra in och
+    ändra texterna. Glöm inte kommatecknet mellan blocken!
+  • Kurser vars datum passerat försvinner AUTOMATISKT från
+    sidan – du behöver aldrig städa.
+  • fullbokad:true visar "Fullbokad" i stället för boka-knappen.
+  • lank:"" gör att knappen blir "Anmäl intresse" via mejl i
+    stället – bra innan betallänken är klar.
+  • Finns inga kommande kurser visas ett vänligt meddelande
+    med länk till nyhetsbrevet – helt automatiskt.
+========================================================== -->
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aktuella kurser – Floating Code</title>
+<meta property="og:title" content="Aktuella kurser – Floating Code">
+<meta property="og:description" content="Kommande digitala kodkurser live – lovkurser och helgkurser i Scratch och Roblox Studio för barn.">
+<meta property="og:image" content="https://floatingcode.se/logga.png">
+<meta property="og:type" content="website">
+<meta name="description" content="Kommande digitala kodkurser live med Floating Code – lovkurser och kurstillfällen i Scratch och Roblox Studio för barn.">
+<link rel="icon" type="image/png" href="logga.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1D2A4D;
+  --navy-deep:#141F3B;
+  --ink:#2A3757;
+  --mint:#4FC3AB;
+  --mint-strong:#2FA98F;
+  --mint-soft:#DFF5EF;
+  --lavender:#9F84DE;
+  --lavender-strong:#7E5FC7;
+  --lavender-soft:#EFE9FB;
+  --bg:#F7FBFA;
+  --card:#FFFFFF;
+  --radius:22px;
+  --shadow:0 8px 28px rgba(29,42,77,.09);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Nunito',sans-serif;color:var(--ink);background:var(--bg);
+  line-height:1.65;font-size:17px;
+}
+h1,h2,h3{font-family:'Fredoka',sans-serif;color:var(--navy);line-height:1.2}
+a{color:var(--lavender-strong)}
+.wrap{max-width:860px;margin:0 auto;padding:0 22px}
+header{
+  position:sticky;top:0;z-index:50;background:rgba(247,251,250,.92);
+  backdrop-filter:blur(10px);border-bottom:1px solid rgba(29,42,77,.08);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1060px;margin:0 auto;padding:0 22px}
+.logo{
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.25rem;
+  color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:.5rem;
+}
+.logo img{height:40px;width:40px;object-fit:cover;border-radius:12px}
+.nav a.back{font-weight:800;color:var(--lavender-strong);text-decoration:none;font-size:.95rem}
+.hero{
+  padding:56px 0 40px;text-align:center;
+  background:
+    radial-gradient(500px 300px at 85% 0%, var(--lavender-soft) 0%, transparent 65%),
+    radial-gradient(500px 300px at 10% 100%, var(--mint-soft) 0%, transparent 65%),
+    var(--bg);
+}
+.hero h1{font-size:clamp(1.7rem,5vw,2.5rem);font-weight:600}
+.hero p{max-width:34rem;margin:1rem auto 0}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--mint-strong);
+  display:block;margin-bottom:.6rem;
+}
+.eyebrow::before{content:"-- ";opacity:.6}
+main{padding:40px 0 70px}
+
+.kurs{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  margin-bottom:1.6rem;padding:1.7rem 1.7rem 1.6rem;
+  display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start;
+}
+@media(max-width:600px){.kurs{grid-template-columns:1fr}}
+.datumbricka{
+  background:var(--navy);color:#fff;border-radius:16px;
+  width:86px;padding:.8rem .4rem;text-align:center;
+  font-family:'Fredoka',sans-serif;
+}
+.datumbricka .dag{font-size:1.7rem;font-weight:700;line-height:1.1}
+.datumbricka .man{font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mint)}
+.kurs h3{font-size:1.25rem;margin-bottom:.25rem}
+.kurs .taggar{display:flex;gap:.5rem;flex-wrap:wrap;margin:.4rem 0 .7rem}
+.kurs .tagg{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  padding:.22rem .65rem;border-radius:999px;
+  background:var(--mint-soft);color:var(--mint-strong);
+}
+.kurs .tagg.lav{background:var(--lavender-soft);color:var(--lavender-strong)}
+.kurs p{margin-bottom:.9rem;font-size:.98rem}
+.kursfot{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.pris{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.25rem;color:var(--navy)}
+.pris small{font-size:.78rem;font-weight:600;color:#6B7695;font-family:'Nunito',sans-serif}
+.btn{
+  display:inline-block;padding:.75rem 1.5rem;border-radius:999px;
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:.98rem;
+  text-decoration:none;background:var(--navy);color:#fff;
+  box-shadow:0 6px 18px rgba(29,42,77,.25);transition:transform .15s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.fullbokad{
+  font-family:'Fredoka',sans-serif;font-weight:600;color:#B9536E;
+  background:#FBE9EE;padding:.7rem 1.4rem;border-radius:999px;font-size:.95rem;
+}
+.tom{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  text-align:center;padding:3rem 2rem;
+}
+.tom .stor{font-size:2.6rem;margin-bottom:.6rem}
+.tom p{max-width:30rem;margin:0 auto 1.2rem}
+.tips-ruta{
+  margin-top:2.2rem;background:linear-gradient(120deg,var(--lavender-strong) 0%,var(--lavender) 60%,var(--mint) 130%);
+  border-radius:var(--radius);padding:1.6rem 1.8rem;color:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;
+}
+.tips-ruta p{margin:0;max-width:32rem}
+.tips-ruta .btn{background:#fff;color:var(--lavender-strong);box-shadow:0 8px 22px rgba(20,31,59,.25)}
+footer{
+  background:var(--navy-deep);color:#9FB0D6;text-align:center;
+  padding:2.2rem 22px;font-size:.92rem;
+}
+footer .flyt{
+  font-family:'Fredoka',sans-serif;color:var(--mint);font-size:1.15rem;margin-bottom:.4rem;
+}
+footer a{color:var(--mint)}
+@media(prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="index.html">
+      <img src="logga.png" alt="Floating Code">
+      <span>Floating Code</span>
+    </a>
+    <a class="back" href="index.html">← Till startsidan</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">live och digitalt</span>
+    <h1>Aktuella kurser 🗓️</h1>
+    <p>Här hittar du mina kommande digitala kodkurser live – lovkurser, helgkurser och andra tillfällen. Platserna är begränsade, så boka i tid!</p>
+  </div>
+</section>
+
+<main>
+  <div class="wrap">
+    <div id="kurslista"></div>
+
+    <div class="tips-ruta">
+      <p><strong>Vill du få nästa kurstillfälle direkt i inkorgen? 💌</strong><br>Nyhetsbrevet får alltid veta först när nya kurser släpps.</p>
+      <!-- Byt ut FORMULÄR-LÄNK-HÄR mot samma nyhetsbrevslänk som på startsidan -->
+      <a class="btn" href="FORMULÄR-LÄNK-HÄR">Skriv upp dig här!</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="flyt">Flyt lugnt! 🌊</div>
+  Frågor? Mejla <a href="mailto:contact.floatingcode@gmail.com">contact.floatingcode@gmail.com</a><br>
+  <a href="index.html">Startsida</a> · <a href="julkalendrar.html">Julkalendrar för skolan</a> · <a href="villkor.html">Köpvillkor &amp; integritet</a>
+</footer>
+
+<script>
+/* =========================================================
+   HÄR LÄGGER DU UT DINA KURSER!
+   Kopiera ett block { ... }, klistra in och ändra texterna.
+   • datum: kursens (första) dag, ÅÅÅÅ-MM-DD. Passerade datum
+     döljs automatiskt.
+   • tid: fritext, t.ex. "Kl. 10–12" eller "Mån–fre kl. 9–11"
+   • lank: betallänk/bokningslänk. Lämna "" så blir knappen
+     "Anmäl intresse" via mejl i stället.
+   • fullbokad: true/false
+========================================================= */
+const KURSTILLFALLEN = [
+  {
+    datum: "2026-10-26",
+    titel: "Höstlovskurs: Bygg ditt första Roblox-spel",
+    tid: "Mån–ons kl. 10–12 (3 tillfällen, digitalt via Zoom)",
+    alder: "10–13 år",
+    verktyg: "Roblox Studio",
+    beskrivning: "Tre förmiddagar på höstlovet där vi bygger en egen hinderbana från grunden – med checkpoints, fällor och ditt allra första Lua-skript. Max 10 barn per grupp.",
+    pris: "PRIS-HÄR kr",
+    lank: "",
+    fullbokad: false
+  },
+  {
+    datum: "2026-11-07",
+    titel: "Helgkurs: Skapa ett spel i Scratch",
+    tid: "Lördag kl. 10–12 (digitalt via Zoom)",
+    alder: "7–9 år",
+    verktyg: "Scratch",
+    beskrivning: "En rolig förmiddag där vi bygger ett eget fångarspel med poäng och ljud – perfekt första kurs för nyfikna nybörjare.",
+    pris: "PRIS-HÄR kr",
+    lank: "",
+    fullbokad: false
+  }
+];
+
+/* ---- Nedanför behöver du inte ändra något ---- */
+const MEJL = "contact.floatingcode@gmail.com";
+const man = ["JAN","FEB","MAR","APR","MAJ","JUN","JUL","AUG","SEP","OKT","NOV","DEC"];
+const idag = new Date(); idag.setHours(0,0,0,0);
+
+const kommande = KURSTILLFALLEN
+  .filter(k => new Date(k.datum + "T00:00:00") >= idag)
+  .sort((a,b) => a.datum.localeCompare(b.datum));
+
+const lista = document.getElementById("kurslista");
+
+if (kommande.length === 0){
+  lista.innerHTML =
+    '<div class="tom"><div class="stor">🌊</div>' +
+    '<h3>Inga inplanerade kurstillfällen just nu</h3>' +
+    '<p>Nya kurser släpps inför loven och helgerna. Skriv upp dig på nyhetsbrevet nedan så får du veta först – eller kika på mina <a href="index.html#kurser">digitala kurspaket</a> som du kan börja med direkt!</p></div>';
+} else {
+  kommande.forEach(k => {
+    const d = new Date(k.datum + "T00:00:00");
+    const intresse = "mailto:" + MEJL +
+      "?subject=" + encodeURIComponent("Anmälan/intresse: " + k.titel + " (" + k.datum + ")") +
+      "&body=" + encodeURIComponent("Hej!\n\nVi vill anmäla oss till kursen \"" + k.titel + "\" den " + k.datum + ".\n\nBarnets förnamn och ålder: \nVårdnadshavarens namn: \n\nHälsningar");
+    const knapp = k.fullbokad
+      ? '<span class="fullbokad">Fullbokad – mejla för väntelista</span>'
+      : (k.lank
+          ? '<a class="btn" href="' + k.lank + '">Boka plats</a>'
+          : '<a class="btn" href="' + intresse + '">Anmäl intresse</a>');
+    const el = document.createElement("div");
+    el.className = "kurs";
+    el.innerHTML =
+      '<div class="datumbricka"><div class="dag">' + d.getDate() + '</div><div class="man">' + man[d.getMonth()] + '</div></div>' +
+      '<div>' +
+        '<h3>' + k.titel + '</h3>' +
+        '<div class="taggar"><span class="tagg lav">' + k.alder + '</span><span class="tagg">' + k.verktyg + '</span><span class="tagg lav">' + k.tid + '</span></div>' +
+        '<p>' + k.beskrivning + '</p>' +
+        '<div class="kursfot"><span class="pris">' + k.pris + ' <small>inkl. moms</small></span>' + knapp + '</div>' +
+      '</div>';
+    lista.appendChild(el);
+  });
+}
+</script>
+
+</body>
+</html>

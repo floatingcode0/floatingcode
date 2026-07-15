@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- ==========================================================
+  404-SIDA – visas automatiskt av GitHub Pages när någon
+  skriver in en adress som inte finns. Ingen inställning krävs,
+  filen behöver bara heta exakt 404.html.
+========================================================== -->
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Hoppsan, sidan finns inte – Floating Code</title>
+<link rel="icon" type="image/png" href="/logga.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1D2A4D; --navy-deep:#141F3B; --ink:#2A3757;
+  --mint:#4FC3AB; --mint-strong:#2FA98F; --mint-soft:#DFF5EF;
+  --lavender:#9F84DE; --lavender-strong:#7E5FC7; --lavender-soft:#EFE9FB;
+  --bg:#F7FBFA;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Nunito',sans-serif;color:var(--ink);
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:24px;
+  background:
+    radial-gradient(600px 380px at 88% 8%, var(--lavender-soft) 0%, transparent 65%),
+    radial-gradient(560px 400px at 4% 90%, var(--mint-soft) 0%, transparent 65%),
+    var(--bg);
+}
+.kort{max-width:480px}
+img{width:130px;border-radius:24px;margin-bottom:1rem}
+.kod{
+  font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--mint-strong);
+}
+h1{font-family:'Fredoka',sans-serif;color:var(--navy);font-size:clamp(1.6rem,5vw,2.2rem);margin:.4rem 0 .7rem}
+p{margin-bottom:1.4rem}
+.btn{
+  display:inline-block;padding:.85rem 1.6rem;border-radius:999px;
+  font-family:'Fredoka',sans-serif;font-weight:600;text-decoration:none;
+  background:var(--navy);color:#fff;box-shadow:0 6px 18px rgba(29,42,77,.25);
+}
+.lankar{margin-top:1.4rem;font-size:.95rem}
+.lankar a{color:var(--lavender-strong);font-weight:700;margin:0 .5rem}
+</style>
+</head>
+<body>
+<div class="kort">
+  <img src="/logga.png" alt="Floating Code-roboten">
+  <div class="kod">-- fel 404: sidan hittades inte</div>
+  <h1>Hoppsan, den här sidan har simmat iväg! 🌊</h1>
+  <p>Adressen finns inte – kanske ett litet stavfel? Kolla länken i mejlet du fick, eller ta dig vidare härifrån:</p>
+  <a class="btn" href="/">Till startsidan</a>
+  <div class="lankar">
+    <a href="/julkalendrar.html">Julkalendrar för skolan</a> ·
+    <a href="/aktuella-kurser.html">Aktuella kurser</a> ·
+    <a href="mailto:contact.floatingcode@gmail.com">Mejla mig</a>
+  </div>
+</div>
+</body>
+</html>
