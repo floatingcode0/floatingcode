@@ -94,16 +94,17 @@ header{
   background:linear-gradient(135deg,var(--mint),var(--lavender));
   display:inline-block;
 }
-.nav-links{display:flex;gap:1.4rem;list-style:none}
+.nav-links{display:flex;gap:clamp(.7rem,1.6vw,1.4rem);list-style:none;flex-wrap:nowrap}
 .nav-links a{
-  text-decoration:none;color:var(--ink);font-weight:700;font-size:.95rem;
+  text-decoration:none;color:var(--ink);font-weight:700;font-size:.92rem;
+  white-space:nowrap;
 }
 .nav-links a:hover{color:var(--mint-strong)}
 .menu-btn{
   display:none;background:none;border:none;font-size:1.7rem;color:var(--navy);cursor:pointer;
   line-height:1;
 }
-@media(max-width:760px){
+@media(max-width:1080px){
   .menu-btn{display:block}
   .nav-links{
     display:none;position:absolute;top:64px;left:0;right:0;
@@ -382,7 +383,6 @@ footer .flyt{
          rad här. Lägger du till en sektion med id="nytt-namn",
          lägg till <li><a href="#nytt-namn">Namn</a></li> -->
     <ul class="nav-links">
-      <li><a href="#top">Startsida</a></li>
       <li><a href="#tjanster">Tjänster</a></li>
       <li><a href="#kurser">Kurser</a></li>
       <li><a href="aktuella-kurser.html">Aktuella kurser</a></li>
