@@ -649,13 +649,12 @@
    INSTÄLLNINGAR — det enda du behöver ändra
    ================================================================ */
 
-// Kortbetalning: klistra in dina produktlänkar från t.ex. Payhip
-// eller Lemon Squeezy. Tomt värde = knappen visar ett meddelande.
+// Kortbetalning: Stripe-betallänkar (priserna i kassan är inkl. 25 % moms).
 const KORTLANKAR = {
-  "jr-kort":      "",   // t.ex. "https://payhip.com/b/xxxxx"
-  "scratch-kort": "",
-  "roblox-kort":  "",
-  "paket-kort":   ""
+  "jr-kort":      "https://buy.stripe.com/9B6aEXfjS2Wf95gcvm8ww01",   // Tomtens julsaga – Skollicens
+  "scratch-kort": "https://buy.stripe.com/fZu00j7Rq2Wf2GSdzq8ww02",   // Fånga pepparkakorna – Skollicens
+  "roblox-kort":  "https://buy.stripe.com/dRm5kD5Ji9kDbdobri8ww03",   // Tomtens verkstad – Skollicens
+  "paket-kort":   "https://buy.stripe.com/14A3cv8Vu8gzdlwfHy8ww00"    // Julkalenderpaketet – Alla tre
 };
 
 // Faktura: mejlet beställningar går till.
