@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Tomtens verkstad — Floating Code Julkalender</title>
+<link rel="icon" type="image/png" href="logga.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#2C2E58;
+    --navy-deep:#1F2142;
+    --mint:#83E4D2;
+    --lavender:#A98BE8;
+    --gold:#F5C24B;
+    --snow:#F7F9FF;
+    --door-r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:linear-gradient(180deg,var(--navy-deep) 0%,var(--navy) 55%,#3A3D74 100%);
+    color:var(--snow);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  #sno{position:fixed;inset:0;pointer-events:none;z-index:1}
+
+  /* ---------- Lösenordsgrind ---------- */
+  #grind{
+    position:fixed;inset:0;z-index:50;
+    background:linear-gradient(180deg,var(--navy-deep),var(--navy));
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+  }
+  .grind-kort{
+    background:var(--snow);color:var(--navy);
+    border-radius:24px;padding:40px 32px;max-width:420px;width:100%;
+    text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.4);
+  }
+  .grind-kort h1{font-family:'Fredoka',sans-serif;font-size:1.6rem;margin-bottom:8px}
+  .grind-kort p{font-size:.95rem;margin-bottom:20px;color:#4a4c7a}
+  .grind-kort input{
+    width:100%;padding:14px 16px;border-radius:12px;
+    border:2px solid var(--lavender);font-size:1.1rem;font-family:'Nunito',sans-serif;
+    text-align:center;letter-spacing:.1em;margin-bottom:12px;
+  }
+  .grind-kort input:focus{outline:3px solid var(--mint);border-color:var(--mint)}
+  .grind-kort button{
+    width:100%;padding:14px;border:none;border-radius:12px;
+    background:var(--navy);color:var(--snow);
+    font-family:'Fredoka',sans-serif;font-size:1.05rem;cursor:pointer;
+  }
+  .grind-kort button:hover{background:var(--lavender)}
+  .grind-kort button:focus-visible{outline:3px solid var(--gold)}
+  .grind-fel{color:#c0392b;font-size:.9rem;min-height:1.2em;margin-top:8px}
+
+  /* ---------- Sidhuvud ---------- */
+  header{position:relative;z-index:2;text-align:center;padding:48px 20px 20px}
+  .marke{
+    display:inline-block;background:var(--gold);color:var(--navy);
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.8rem;
+    padding:6px 16px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  h1.titel{
+    font-family:'Fredoka',sans-serif;font-weight:700;
+    font-size:clamp(2rem,6vw,3.4rem);line-height:1.1;
+  }
+  h1.titel .glans{color:var(--mint)}
+  .undertitel{margin-top:10px;font-size:1.05rem;color:#cfd3f5;max-width:520px;margin-inline:auto}
+  .framsteg{
+    margin:22px auto 0;max-width:320px;
+  }
+  .framsteg-text{font-size:.85rem;color:var(--gold);font-weight:700;margin-bottom:6px}
+  .framsteg-spar{height:10px;background:rgba(255,255,255,.15);border-radius:999px;overflow:hidden}
+  .framsteg-fyll{height:100%;width:0%;background:linear-gradient(90deg,var(--mint),var(--gold));border-radius:999px;transition:width .6s ease}
+
+  /* ---------- Luckgrid ---------- */
+  main{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:28px 16px 80px}
+  .grid{
+    display:grid;gap:14px;
+    grid-template-columns:repeat(3,1fr);
+  }
+  @media(min-width:560px){.grid{grid-template-columns:repeat(4,1fr);gap:16px}}
+  @media(min-width:820px){.grid{grid-template-columns:repeat(5,1fr);gap:18px}}
+
+  .lucka{
+    aspect-ratio:1/1;perspective:600px;position:relative;
+    border:none;background:none;padding:0;cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .lucka-inre{
+    position:absolute;inset:0;border-radius:var(--door-r);
+    transition:transform .5s cubic-bezier(.34,1.4,.5,1);
+    transform-style:preserve-3d;
+  }
+  .lucka-fram,.lucka-bak{
+    position:absolute;inset:0;border-radius:var(--door-r);
+    backface-visibility:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .lucka-fram{
+    font-family:'Fredoka',sans-serif;font-weight:700;
+    font-size:clamp(1.5rem,4vw,2.1rem);color:var(--navy);
+    box-shadow:inset 0 -6px 0 rgba(0,0,0,.12), 0 6px 14px rgba(0,0,0,.25);
+  }
+  .lucka.f-mint .lucka-fram{background:var(--mint)}
+  .lucka.f-lavendel .lucka-fram{background:var(--lavender);color:var(--snow)}
+  .lucka.f-gold .lucka-fram{background:var(--gold)}
+  .lucka.f-snow .lucka-fram{background:var(--snow)}
+  /* korsband som ett paket */
+  .lucka-fram::before,.lucka-fram::after{
+    content:"";position:absolute;background:rgba(44,46,88,.14);
+  }
+  .lucka-fram::before{left:50%;top:0;bottom:0;width:10%;transform:translateX(-50%)}
+  .lucka-fram::after{top:50%;left:0;right:0;height:10%;transform:translateY(-50%)}
+  .lucka-fram span{position:relative;z-index:1}
+
+  .lucka-bak{
+    background:var(--navy-deep);color:var(--gold);
+    transform:rotateY(180deg);
+    font-size:1.6rem;border:2px dashed var(--gold);
+  }
+  .lucka.oppnad .lucka-inre{transform:rotateY(180deg)}
+
+  .lucka.last{cursor:not-allowed}
+  .lucka.last .lucka-fram{filter:saturate(.25) brightness(.6)}
+  .lucka.last .lucka-fram span::after{content:" 🔒";font-size:.6em}
+
+  .lucka.idag:not(.oppnad) .lucka-inre{
+    box-shadow:0 0 0 3px var(--gold),0 0 26px 4px rgba(245,194,75,.55);
+    border-radius:var(--door-r);
+    animation:pling 2.4s ease-in-out infinite;
+  }
+  @keyframes pling{
+    0%,100%{transform:rotate(0deg) scale(1)}
+    5%{transform:rotate(-2.5deg) scale(1.03)}
+    10%{transform:rotate(2.5deg) scale(1.03)}
+    15%{transform:rotate(0deg) scale(1)}
+  }
+  .lucka:focus-visible .lucka-inre{outline:3px solid var(--mint);outline-offset:3px;border-radius:var(--door-r)}
+
+  .datum-etikett{
+    position:absolute;bottom:6px;left:0;right:0;text-align:center;
+    font-size:.62rem;font-weight:700;color:rgba(44,46,88,.55);z-index:1;
+    text-transform:uppercase;letter-spacing:.04em;
+  }
+  .lucka.f-lavendel .datum-etikett{color:rgba(247,249,255,.75)}
+
+  /* ---------- Modal ---------- */
+  #modal{
+    position:fixed;inset:0;z-index:40;display:none;
+    align-items:flex-start;justify-content:center;
+    background:rgba(31,33,66,.8);backdrop-filter:blur(4px);
+    padding:24px 16px;overflow-y:auto;
+  }
+  #modal.visas{display:flex}
+  .modal-kort{
+    background:var(--snow);color:var(--navy);
+    border-radius:24px;max-width:640px;width:100%;
+    padding:0 0 28px;overflow:hidden;position:relative;
+    margin:auto 0;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+  }
+  .modal-topp{
+    background:linear-gradient(120deg,var(--mint),var(--lavender));
+    padding:26px 28px 20px;color:var(--navy);
+  }
+  .modal-topp .lucknr{
+    font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:.1em;opacity:.8;
+  }
+  .modal-topp h2{font-family:'Fredoka',sans-serif;font-size:1.6rem;margin-top:4px}
+  .stang{
+    position:absolute;top:14px;right:14px;
+    width:40px;height:40px;border-radius:50%;border:none;
+    background:rgba(44,46,88,.85);color:var(--snow);
+    font-size:1.2rem;cursor:pointer;line-height:1;
+  }
+  .stang:hover{background:var(--navy-deep)}
+  .stang:focus-visible{outline:3px solid var(--gold)}
+  .video-yta{
+    background:var(--navy-deep);aspect-ratio:16/9;position:relative;
+  }
+  .video-yta iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .video-tom{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:8px;color:#8f93c9;
+    font-size:.95rem;text-align:center;padding:20px;
+  }
+  .video-tom .ikon{font-size:2.2rem}
+  .modal-inner{padding:22px 28px 0}
+  .modal-inner h3{
+    font-family:'Fredoka',sans-serif;font-size:1.02rem;
+    color:var(--lavender);margin:18px 0 6px;
+  }
+  .modal-inner h3:first-child{margin-top:0}
+  .modal-inner h3.klar{color:#1f9e83}
+  .modal-inner p{font-size:.98rem;line-height:1.55}
+  .klart-ruta{
+    background:#e8faf5;border:2px solid var(--mint);
+    border-radius:14px;padding:12px 16px;font-size:.95rem;line-height:1.5;
+  }
+
+  footer{
+    position:relative;z-index:2;text-align:center;
+    padding:0 20px 48px;color:#aeb2e0;font-size:.9rem;
+  }
+  footer .signatur{font-family:'Fredoka',sans-serif;color:var(--mint);font-size:1.05rem;margin-top:6px}
+
+  @media (prefers-reduced-motion:reduce){
+    .lucka-inre{transition:none}
+    .lucka.idag:not(.oppnad) .lucka-inre{animation:none}
+    .framsteg-fyll{transition:none}
+    #sno{display:none}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="sno" aria-hidden="true"></canvas>
+
+<!-- Lösenordsgrind -->
+<div id="grind">
+  <div class="grind-kort" role="dialog" aria-labelledby="grind-titel">
+    <div style="font-size:2.4rem">🤖🎄</div>
+    <h1 id="grind-titel">Tomtens verkstad</h1>
+    <p>Skriv in kalenderkoden som din skola eller ditt bibliotek fick vid köpet.</p>
+    <input type="text" id="kodfalt" placeholder="KALENDERKOD" autocomplete="off" aria-label="Kalenderkod">
+    <button id="kodknapp">Öppna kalendern</button>
+    <div class="grind-fel" id="grindfel" aria-live="polite"></div>
+  </div>
+</div>
+
+<header>
+  <span class="marke">Floating Code · Julkalender</span>
+  <h1 class="titel">Tomtens <span class="glans">verkstad</span></h1>
+  <p class="undertitel">Bygg ditt eget vinterspel i Roblox Studio — en lucka i taget. Luckorna öppnas på skoldagar 1–17 december — lagom till skolavslutningen är spelet klart och publicerat.</p>
+  <div class="framsteg">
+    <div class="framsteg-text" id="framstegtext">0 av 15 luckor öppnade</div>
+    <div class="framsteg-spar"><div class="framsteg-fyll" id="framstegfyll"></div></div>
+  </div>
+</header>
+
+<main>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  <p>© Floating Code AB · Endast för licensierad skola/fritids/bibliotek</p>
+  <p class="signatur">Flyt lugnt! 🌊</p>
+</footer>
+
+<!-- Modal -->
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="modaltitel">
+  <div class="modal-kort">
+    <button class="stang" id="stangknapp" aria-label="Stäng luckan">✕</button>
+    <div class="modal-topp">
+      <div class="lucknr" id="modalnr"></div>
+      <h2 id="modaltitel"></h2>
+    </div>
+    <div class="video-yta" id="videoyta"></div>
+    <div class="modal-inner">
+      <h3>Dagens uppgift</h3>
+      <p id="modaluppgift"></p>
+      <h3 class="klar">Klart-kollen (för pedagogen)</h3>
+      <div class="klart-ruta" id="modalklart"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   INSTÄLLNINGAR — det enda du behöver ändra
+   ================================================================ */
+
+// Kalenderkoden som köpare får via mejl. Byt per säsong/produkt.
+const KALENDERKOD = "TOMTEN2026";
+
+// Testläge: öppna sidan med ?testa=1 i adressen för att låsa upp
+// alla luckor och hoppa över koden (bra när du bygger och testar).
+
+// Luckorna. datum = dagen luckan låses upp (ÅÅÅÅ-MM-DD).
+// vimeo = videons ID (siffrorna i vimeo-länken). Tom sträng = platshållare visas.
+const LUCKOR = [
+  {datum:"2026-12-01", vimeo:"", titel:"Välkommen till verkstan",
+   uppgift:"Bygg en snöhög av minst fem Parts i olika storlekar. Färglägg dem vita eller ljusblå.",
+   klart:"Barnet kan snurra kameran runt sin snöhög och har sparat filen med sitt namn."},
+  {datum:"2026-12-02", vimeo:"", titel:"Vinterlandskapet",
+   uppgift:"Bygg landskapet runt snöhögen: snötäckt mark, en frusen damm av Ice-material och minst tre granar av koner.",
+   klart:"Tryck Play — ingenting ramlar eller flyter iväg. Gör det det: ankra!"},
+  {datum:"2026-12-03", vimeo:"", titel:"Verkstadens väggar",
+   uppgift:"Bygg verkstadens fyra väggar i trämaterial, med en dörröppning och två fönsteröppningar. Använd Ctrl+D för att kopiera.",
+   klart:"Barnet kan gå in i huset genom dörröppningen i Play-läge."},
+  {datum:"2026-12-03", vimeo:"", titel:"Tak och detaljer",
+   uppgift:"Sätt snedtak av WedgeParts, bygg en skorsten och fyll fönstren med gult Neon-glas som lyser.",
+   klart:"Verkstan ser ut som ett hus och fönstren lyser."},
+  {datum:"2026-12-04", vimeo:"", titel:"Spawn och första hindret",
+   uppgift:"Placera en SpawnLocation vid banans start och bygg minst fem hopp-plattformar mot verkstan. Testa att banan går att klara!",
+   klart:"Barnet spawnar på rätt ställe och tar sig hela vägen fram."},
+  {datum:"2026-12-07", vimeo:"", titel:"Isbanan",
+   uppgift:"Bygg en hal isbro av Ice-material över den frusna dammen, med minst en sväng.",
+   klart:"Figuren glider tydligt på isen i Play-läge."},
+  {datum:"2026-12-08", vimeo:"", titel:"Första skriptet! ⭐",
+   uppgift:"Skriv av lava-skriptet från kodsheeten och gör minst tre röda \u201dhet glögg\u201d-block i banan.",
+   klart:"Barnet nuddar blocket i Play-läge och åker tillbaka till start."},
+  {datum:"2026-12-09", vimeo:"", titel:"Dörren som öppnar sig",
+   uppgift:"Bygg en magisk dörr in till verkstan som blir genomskinlig och passerbar när man nuddar den.",
+   klart:"Dörren släpper igenom spelaren i Play-läge."},
+  {datum:"2026-12-10", vimeo:"", titel:"Checkpoints",
+   uppgift:"Lägg in minst två checkpoints — en efter isbron och en vid verkstadsdörren.",
+   klart:"Ramla efter en checkpoint → spawna vid checkpointen, inte vid start."},
+  {datum:"2026-12-11", vimeo:"", titel:"Den rörliga plattformen",
+   uppgift:"Bygg en rörlig plattform över ett stup med skriptet från kodsheeten. Ändra sedan siffrorna tills farten känns lagom.",
+   klart:"Plattformen rör sig och går att åka med i Play-läge."},
+  {datum:"2026-12-14", vimeo:"", titel:"Samla julklappar ⭐",
+   uppgift:"Bygg små paket av Parts och placera minst åtta längs banan. Lägg in poängskripten så räknaren tickar när du plockar dem.",
+   klart:"Poängtavlan syns uppe till höger och räknar upp vid varje paket."},
+  {datum:"2026-12-15", vimeo:"", titel:"Ljud och julmusik",
+   uppgift:"Lägg in julmusik som loopar i bakgrunden och ett plingljud när man plockar ett paket.",
+   klart:"Musik hörs i Play-läge (hörlurar på!)."},
+  {datum:"2026-12-15", vimeo:"", titel:"Snöfall och vinterljus",
+   uppgift:"Låt det snöa över banan med en ParticleEmitter, sätt kvällsljus och placera minst två lysande lyktor.",
+   klart:"Det snör och det är mysigt — enklaste klart-kollen i hela kalendern."},
+  {datum:"2026-12-16", vimeo:"", titel:"Speltest och finslipning",
+   uppgift:"Byt plats med en kompis och spela varandras spel. Säg en sak som var bra och en som var svår — gör sedan minst en förbättring.",
+   klart:"Barnet kan berätta vad hen ändrade och varför."},
+  {datum:"2026-12-17", vimeo:"", titel:"Publicera! 🎄",
+   uppgift:"Publicera Tomtens verkstad till Roblox och spela minst två klasskompisars spel. Glöm inte diplomen!",
+   klart:"Spelet går att öppna från roblox.com."}
+];
+
+/* ================================================================ */
+
+const TESTLAGE = new URLSearchParams(location.search).get("testa") === "1";
+const idag = new Date(); idag.setHours(0,0,0,0);
+let oppnade = new Set();          // hålls i minnet under besöket
+let senastFokuserad = null;
+
+const manader = ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec"];
+function fintDatum(s){
+  const d = new Date(s+"T00:00:00");
+  return d.getDate()+" "+manader[d.getMonth()];
+}
+function arLast(lucka){
+  if (TESTLAGE) return false;
+  return new Date(lucka.datum+"T00:00:00") > idag;
+}
+function arIdag(lucka){
+  const d = new Date(lucka.datum+"T00:00:00");
+  return d.getTime() === idag.getTime();
+}
+
+/* ---------- Lösenordsgrind ---------- */
+const grind = document.getElementById("grind");
+if (TESTLAGE){ grind.style.display = "none"; }
+document.getElementById("kodknapp").addEventListener("click", provaKod);
+document.getElementById("kodfalt").addEventListener("keydown", e => { if(e.key==="Enter") provaKod(); });
+function provaKod(){
+  const v = document.getElementById("kodfalt").value.trim().toUpperCase();
+  if (v === KALENDERKOD.toUpperCase()){
+    grind.style.display = "none";
+  } else {
+    document.getElementById("grindfel").textContent = "Fel kod — kolla mejlet från Floating Code.";
+  }
+}
+
+/* ---------- Bygg luckgriden ---------- */
+const farger = ["f-mint","f-lavendel","f-gold","f-snow"];
+const grid = document.getElementById("grid");
+LUCKOR.forEach((lucka, i) => {
+  const knapp = document.createElement("button");
+  knapp.className = "lucka " + farger[i % farger.length];
+  if (arLast(lucka)) knapp.classList.add("last");
+  if (arIdag(lucka)) knapp.classList.add("idag");
+  knapp.setAttribute("aria-label",
+    "Lucka " + (i+1) + (arLast(lucka) ? ", öppnas " + fintDatum(lucka.datum) : ": " + lucka.titel));
+  knapp.innerHTML =
+    '<div class="lucka-inre">' +
+      '<div class="lucka-fram"><span>' + (i+1) + '</span>' +
+        '<div class="datum-etikett">' + fintDatum(lucka.datum) + '</div></div>' +
+      '<div class="lucka-bak">🎁</div>' +
+    '</div>';
+  knapp.addEventListener("click", () => oppnaLucka(i, knapp));
+  grid.appendChild(knapp);
+});
+
+function oppnaLucka(i, knapp){
+  const lucka = LUCKOR[i];
+  if (arLast(lucka)){
+    knapp.animate(
+      [{transform:"translateX(0)"},{transform:"translateX(-6px)"},{transform:"translateX(6px)"},{transform:"translateX(0)"}],
+      {duration:260});
+    return;
+  }
+  if (!oppnade.has(i)){
+    oppnade.add(i);
+    knapp.classList.add("oppnad");
+    uppdateraFramsteg();
+    setTimeout(() => visaModal(i, knapp), 420);
+  } else {
+    visaModal(i, knapp);
+  }
+}
+
+function uppdateraFramsteg(){
+  document.getElementById("framstegtext").textContent =
+    oppnade.size + " av " + LUCKOR.length + " luckor öppnade";
+  document.getElementById("framstegfyll").style.width =
+    (oppnade.size / LUCKOR.length * 100) + "%";
+}
+
+/* ---------- Modal ---------- */
+const modal = document.getElementById("modal");
+function visaModal(i, knapp){
+  senastFokuserad = knapp;
+  const lucka = LUCKOR[i];
+  document.getElementById("modalnr").textContent = "Lucka " + (i+1) + " · " + fintDatum(lucka.datum);
+  document.getElementById("modaltitel").textContent = lucka.titel;
+  document.getElementById("modaluppgift").textContent = lucka.uppgift;
+  document.getElementById("modalklart").textContent = lucka.klart;
+
+  const yta = document.getElementById("videoyta");
+  if (lucka.vimeo){
+    yta.innerHTML = '<iframe src="https://player.vimeo.com/video/' + lucka.vimeo +
+      '?dnt=1" allow="fullscreen" allowfullscreen title="Video för lucka ' + (i+1) + '"></iframe>';
+  } else {
+    yta.innerHTML = '<div class="video-tom"><div class="ikon">🎬</div>' +
+      '<div><strong>Videon läggs in här</strong><br>Fyll i Vimeo-ID för lucka ' + (i+1) + ' i inställningarna.</div></div>';
+  }
+  modal.classList.add("visas");
+  document.getElementById("stangknapp").focus();
+}
+function stangModal(){
+  modal.classList.remove("visas");
+  document.getElementById("videoyta").innerHTML = "";
+  if (senastFokuserad) senastFokuserad.focus();
+}
+document.getElementById("stangknapp").addEventListener("click", stangModal);
+modal.addEventListener("click", e => { if (e.target === modal) stangModal(); });
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && modal.classList.contains("visas")) stangModal();
+});
+
+/* ---------- Snöfall ---------- */
+const canvas = document.getElementById("sno");
+const ctx = canvas.getContext("2d");
+let flingor = [];
+function storlek(){
+  canvas.width = innerWidth; canvas.height = innerHeight;
+  const antal = Math.min(90, Math.floor(innerWidth / 14));
+  flingor = Array.from({length: antal}, () => ({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*2.2 + .8,
+    f: Math.random()*.7 + .3,
+    v: Math.random()*.6 - .3
+  }));
+}
+addEventListener("resize", storlek); storlek();
+const reduceradRorelse = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function rita(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = "rgba(247,249,255,.85)";
+  flingor.forEach(s => {
+    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,7); ctx.fill();
+    s.y += s.f; s.x += s.v;
+    if (s.y > canvas.height){ s.y = -4; s.x = Math.random()*canvas.width; }
+    if (s.x > canvas.width) s.x = 0; if (s.x < 0) s.x = canvas.width;
+  });
+  requestAnimationFrame(rita);
+}
+if (!reduceradRorelse) rita();
+</script>
+</body>
+</html>
