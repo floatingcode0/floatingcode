@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!-- ==========================================================
+  TACK-SIDA: Julkalenderpaketet — Alla tre (skolkalender)
+
+  Så används den:
+  • Ställ in din betallänk (Stripe/Payhip/Lemon Squeezy) så att
+    kunden skickas hit EFTER genomförd betalning
+    ("Redirect after payment").
+  • Kunden ser då kalenderkoden och länken direkt på skärmen
+    = tillgång direkt, precis som utlovat.
+  • Filnamnet är ogissbart och sidan är noindex – bara den som
+    betalat kommer hit.
+  • Byter du någon KALENDERKOD i kalenderfilerna? Byt då
+    motsvarande kod här också (TOMTEN2026 / JULSAGA7315 / PEPPAR4926).
+  • Gör en kopia av denna fil per kalender när Scratch- och
+    ScratchJr-kalendrarna är byggda (nytt ogissbart filnamn,
+    ny kod, ny länk).
+========================================================== -->
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Tack för ert köp! – Floating Code</title>
+<link rel="icon" type="image/png" href="logga.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#2C2E58; --navy-deep:#1F2142;
+    --mint:#83E4D2; --lavender:#A98BE8; --gold:#F5C24B; --snow:#F7F9FF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Nunito',sans-serif;color:var(--snow);
+    background:linear-gradient(180deg,var(--navy-deep) 0%,var(--navy) 60%,#3A3D74 100%);
+    min-height:100vh;overflow-x:hidden;
+  }
+  #sno{position:fixed;inset:0;pointer-events:none;z-index:1}
+  .wrap{position:relative;z-index:2;max-width:640px;margin:0 auto;padding:40px 20px 60px}
+  .topnav{
+    position:relative;z-index:3;max-width:640px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;padding:16px 20px 0;
+  }
+  .topnav .logo{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;
+    color:var(--snow);text-decoration:none;display:flex;align-items:center;gap:.55rem;
+  }
+  .topnav .logo img{height:38px;width:38px;object-fit:cover;border-radius:11px}
+  h1,h2,h3{font-family:'Fredoka',sans-serif}
+  .kort{
+    background:var(--snow);color:var(--navy);border-radius:24px;
+    padding:36px 30px;text-align:center;
+    box-shadow:0 24px 60px rgba(0,0,0,.4);
+  }
+  .kort .stor{font-size:3rem}
+  .kort h1{font-size:clamp(1.5rem,5vw,2rem);margin:10px 0 6px}
+  .kort p{color:#4a4c7a;line-height:1.6;max-width:460px;margin:0 auto 6px}
+  .kodruta{
+    margin:22px auto 6px;max-width:340px;
+    background:var(--navy);color:var(--snow);border-radius:16px;padding:18px 20px;
+  }
+  .kodruta .etikett{
+    font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:.1em;color:var(--mint);
+  }
+  .kodruta .kod{
+    font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;
+    letter-spacing:.12em;color:var(--gold);margin-top:4px;user-select:all;
+  }
+  .kalenderknapp{
+    display:inline-block;margin-top:20px;background:var(--mint);color:var(--navy);
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;
+    padding:15px 32px;border-radius:999px;text-decoration:none;
+  }
+  .kalenderknapp:hover{background:#9ff0e0}
+  .kalenderknapp:focus-visible{outline:3px solid var(--gold)}
+  .steg{
+    text-align:left;margin:26px auto 0;max-width:460px;
+    background:#eef0fb;border-radius:16px;padding:18px 22px;
+  }
+  .steg h3{font-size:1rem;margin-bottom:8px;color:var(--navy)}
+  .steg ol{margin-left:1.2rem;font-size:.94rem;line-height:1.6;color:#3d3f6e}
+  .steg li{margin-bottom:6px}
+  .tips{font-size:.88rem;color:#8f93c9;margin-top:18px}
+  footer{
+    position:relative;z-index:2;text-align:center;
+    padding:10px 20px 46px;color:#aeb2e0;font-size:.9rem;
+  }
+  footer .signatur{font-family:'Fredoka',sans-serif;color:var(--mint);font-size:1.05rem;margin-top:6px}
+  footer a{color:var(--mint)}
+  @media (prefers-reduced-motion:reduce){#sno{display:none}}
+</style>
+</head>
+<body>
+
+<canvas id="sno" aria-hidden="true"></canvas>
+
+<nav class="topnav">
+  <a class="logo" href="index.html">
+    <img src="logga.png" alt="Floating Code">
+    <span>Floating Code</span>
+  </a>
+</nav>
+
+<div class="wrap">
+  <div class="kort">
+    <div class="stor">🎉🎄</div>
+    <h1>Tack för ert köp!</h1>
+    <p>Ert <strong>Julkalenderpaket — alla tre kalendrarna</strong> är redo. Här är koderna och länkarna – spara den här sidan eller skriv ner dem.</p>
+
+    <div class="kodruta">
+      <div class="etikett">Tomtens julsaga (5–7 år, ScratchJr)</div>
+      <div class="kod">JULSAGA7315</div>
+    </div>
+    <a class="kalenderknapp" href="julkalender-tomtens-julsaga-m6p2s.html">Öppna Tomtens julsaga →</a>
+
+    <div class="kodruta" style="margin-top:22px">
+      <div class="etikett">Fånga pepparkakorna (8–9 år, Scratch)</div>
+      <div class="kod">PEPPAR4926</div>
+    </div>
+    <a class="kalenderknapp" href="julkalender-pepparkakorna-t8k4n.html">Öppna Fånga pepparkakorna →</a>
+
+    <div class="kodruta" style="margin-top:22px">
+      <div class="etikett">Tomtens verkstad (10–13 år, Roblox Studio)</div>
+      <div class="kod">TOMTEN2026</div>
+    </div>
+    <a class="kalenderknapp" href="julkalender-tomtens-verkstad-v7r3k.html">Öppna Tomtens verkstad →</a>
+
+    <div class="steg">
+      <h3>Så kommer ni igång</h3>
+      <ol>
+        <li>Klicka på respektive knapp ovan och skriv in den kalenderns kod.</li>
+        <li>Dela rätt länk och kod med pedagogerna för respektive åldersgrupp.</li>
+        <li>Bocka av tekniken i god tid: plattor med ScratchJr (5–7 år), webbläsare för Scratch (8–9 år) och Roblox Studio + konton (10–13 år) — guider ingår i välkomstmejlet.</li>
+        <li>Första luckan öppnas <strong>1 december</strong> i alla tre kalendrarna – sista luckan öppnas <strong>17 december</strong>.</li>
+      </ol>
+    </div>
+
+    <p class="tips">Ni får också ett mejl med samma uppgifter. Kommer det inte fram? Kolla skräpposten eller mejla oss så hjälper vi er direkt.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Frågor? Mejla <a href="mailto:info@floatingcode.se">info@floatingcode.se</a></p>
+  <p class="signatur">Flyt lugnt! 🌊</p>
+</footer>
+
+<script>
+const canvas = document.getElementById("sno");
+const ctx = canvas.getContext("2d");
+let flingor = [];
+function storlek(){
+  canvas.width = innerWidth; canvas.height = innerHeight;
+  const antal = Math.min(70, Math.floor(innerWidth / 18));
+  flingor = Array.from({length: antal}, () => ({
+    x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+    r: Math.random()*2 + .7, f: Math.random()*.6 + .25, v: Math.random()*.5 - .25
+  }));
+}
+addEventListener("resize", storlek); storlek();
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches){
+  (function rita(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = "rgba(247,249,255,.8)";
+    flingor.forEach(s => {
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,7); ctx.fill();
+      s.y += s.f; s.x += s.v;
+      if (s.y > canvas.height){ s.y = -4; s.x = Math.random()*canvas.width; }
+      if (s.x > canvas.width) s.x = 0; if (s.x < 0) s.x = canvas.width;
+    });
+    requestAnimationFrame(rita);
+  })();
+}
+</script>
+</body>
+</html>

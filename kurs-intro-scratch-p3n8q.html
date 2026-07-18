@@ -109,6 +109,20 @@ footer .flyt{
 </style>
 </head>
 <body>
+<!-- Kurskodslås: koden visas på tacksidan efter köp och i välkomstmejlet.
+     Testläge: öppna sidan med ?testa=1 för att hoppa över koden. -->
+<div id="kursgrind" style="position:fixed;inset:0;z-index:999;background:linear-gradient(180deg,#141F3B,#1D2A4D);display:flex;align-items:center;justify-content:center;padding:20px">
+  <div style="background:#fff;border-radius:22px;box-shadow:0 8px 28px rgba(29,42,77,.3);padding:36px 30px;max-width:420px;width:100%;text-align:center">
+    <div style="font-size:2.4rem">🐱</div>
+    <h1 style="font-family:'Fredoka',sans-serif;color:#1D2A4D;font-size:1.4rem;margin:10px 0 8px">Introduktion till Scratch</h1>
+    <p style="font-size:.97rem;color:#2A3757;margin-bottom:16px">Skriv in kurskoden du fick vid köpet — den står på bekräftelsesidan och i ditt mejl.</p>
+    <input type="text" id="kurskodfalt" placeholder="KURSKOD" autocomplete="off" aria-label="Kurskod" style="width:100%;padding:12px 14px;border:2px solid #DFF5EF;border-radius:12px;font-size:1.05rem;text-align:center;font-family:'JetBrains Mono',monospace;text-transform:uppercase">
+    <button id="kurskodknapp" style="margin-top:12px;width:100%;padding:13px;border:none;border-radius:12px;background:#2FA98F;color:#fff;font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;cursor:pointer">Öppna kursen</button>
+    <div id="kurskodfel" aria-live="polite" style="color:#c0392b;font-size:.9rem;margin-top:10px;min-height:1.2em"></div>
+    <p style="font-size:.85rem;color:#7a86a8;margin-top:14px">Tappat bort koden? Mejla <a href="mailto:info@floatingcode.se" style="color:#2FA98F">info@floatingcode.se</a> med ditt kvitto.</p>
+  </div>
+</div>
+
 
 <header>
   <div class="wrap nav">
@@ -210,5 +224,21 @@ footer .flyt{
   Frågor om kursen? Mejla <a href="mailto:info@floatingcode.se" style="color:var(--mint)">info@floatingcode.se</a>
 </footer>
 
+
+<script>
+// ─── Kurskod (byt här om du vill byta kod) ───
+const KURSKOD = "SCRATCH8241";
+(function(){
+  const grind = document.getElementById("kursgrind");
+  if (new URLSearchParams(location.search).get("testa") === "1"){ grind.remove(); return; }
+  function prova(){
+    const v = document.getElementById("kurskodfalt").value.trim().toUpperCase();
+    if (v === KURSKOD.toUpperCase()){ grind.remove(); }
+    else { document.getElementById("kurskodfel").textContent = "Fel kod — kolla bekräftelsemejlet från Floating Code."; }
+  }
+  document.getElementById("kurskodknapp").addEventListener("click", prova);
+  document.getElementById("kurskodfalt").addEventListener("keydown", e => { if(e.key==="Enter") prova(); });
+})();
+</script>
 </body>
 </html>
