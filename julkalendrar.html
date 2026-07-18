@@ -449,7 +449,7 @@
         </details>
         <details>
           <summary>Vad gäller för licensen?</summary>
-          <p class="svar">Skollicensen gäller <b>en skola, en fritidsavdelning eller ett bibliotek</b> — med obegränsat antal barngrupper under hela december. Vill ni bara köra med en enda klass eller grupp finns en <b>klasslicens för 1 995 kr</b> (beställs via faktura). Flera enheter? Välj paketet eller kommunlicensen ovan.</p>
+          <p class="svar">Skollicensen gäller <b>en skola, en fritidsavdelning eller ett bibliotek</b> — med obegränsat antal barngrupper under hela december. Alla klasser och grupper på enheten kan alltså köra kalendern på samma licens. Flera enheter? Välj paketet eller kommunlicensen ovan.</p>
         </details>
         <details>
           <summary>Kan vi betala via faktura eller e-faktura?</summary>
@@ -500,7 +500,6 @@
           <div class="kop-ruta">
             <div class="prisrad"><span class="pris">4 995 kr</span><span class="prisinfo">ex. moms</span></div>
             <p class="licens">Licens för en skola, fritidsavdelning eller ett bibliotek. Obegränsat antal barngrupper under hela december.</p>
-            <p class="licens" style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px">Bara en klass eller grupp? <b style="color:var(--mint)">Klasslicens 1 995 kr</b> — välj "Beställ via faktura" och skriv "klasslicens" i mejlet.</p>
             <a class="kopknapp" href="#" data-kop="jr-kort">Betala med kort</a>
             <a class="kopknapp faktura" href="#" data-kop="jr-faktura">Beställ via faktura</a>
             <p class="kop-steg">Vid kortköp får ni <b>kalenderkoden och länken direkt på skärmen</b> efter betalningen, och samma uppgifter via mejl. Vid fakturaköp mejlar vi koden samma dag.</p>
@@ -558,7 +557,6 @@
           <div class="kop-ruta">
             <div class="prisrad"><span class="pris">4 995 kr</span><span class="prisinfo">ex. moms</span></div>
             <p class="licens">Licens för en skola, fritidsavdelning eller ett bibliotek. Obegränsat antal barngrupper under hela december.</p>
-            <p class="licens" style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px">Bara en klass eller grupp? <b style="color:var(--mint)">Klasslicens 1 995 kr</b> — välj "Beställ via faktura" och skriv "klasslicens" i mejlet.</p>
             <a class="kopknapp" href="#" data-kop="scratch-kort">Betala med kort</a>
             <a class="kopknapp faktura" href="#" data-kop="scratch-faktura">Beställ via faktura</a>
             <p class="kop-steg">Vid kortköp får ni <b>kalenderkoden och länken direkt på skärmen</b> efter betalningen, och samma uppgifter via mejl. Vid fakturaköp mejlar vi koden samma dag.</p>
@@ -616,7 +614,6 @@
           <div class="kop-ruta">
             <div class="prisrad"><span class="pris">4 995 kr</span><span class="prisinfo">ex. moms</span></div>
             <p class="licens">Licens för en skola, fritidsavdelning eller ett bibliotek. Obegränsat antal barngrupper under hela december.</p>
-            <p class="licens" style="border-top:1px solid rgba(255,255,255,.15);padding-top:10px">Bara en klass eller grupp? <b style="color:var(--mint)">Klasslicens 1 995 kr</b> — välj "Beställ via faktura" och skriv "klasslicens" i mejlet.</p>
             <a class="kopknapp" href="#" data-kop="roblox-kort">Betala med kort</a>
             <a class="kopknapp faktura" href="#" data-kop="roblox-faktura">Beställ via faktura</a>
             <p class="kop-steg">Vid kortköp får ni <b>kalenderkoden och länken direkt på skärmen</b> efter betalningen, och samma uppgifter via mejl. Vid fakturaköp mejlar vi koden samma dag.</p>
@@ -710,6 +707,7 @@ function fakturaLank(produktId){
     "Hej Floating Code!\n\n" +
     "Vi vill beställa: " + namn + "\n\n" +
     "Skola/fritids/bibliotek: \n" +
+    "Organisationsnummer (för fakturan): \n" +
     "Fakturaadress (gärna e-faktura/referenskod om kommunen kräver det): \n" +
     "Kontaktperson och e-post (dit kalenderkoden ska skickas): \n\n" +
     "Hälsningar"
