@@ -155,7 +155,7 @@ footer a{color:var(--mint)}
   <div class="wrap">
     <span class="eyebrow">live och digitalt</span>
     <h1>Aktuella kurser 🗓️</h1>
-    <p>Här hittar du mina kommande digitala kodkurser live – lovkurser, helgkurser och andra tillfällen. Platserna är begränsade, så boka i tid!</p>
+    <p>Här hittar du mina kommande digitala kodkurser live – lovkurser, helgkurser och andra tillfällen. Vissa kurser har begränsat antal platser – anmäl dig i tid!</p>
   </div>
 </section>
 
@@ -184,31 +184,35 @@ footer a{color:var(--mint)}
    • datum: kursens (första) dag, ÅÅÅÅ-MM-DD. Passerade datum
      döljs automatiskt.
    • tid: fritext, t.ex. "Kl. 10–12" eller "Mån–fre kl. 9–11"
-   • lank: betallänk/bokningslänk. Lämna "" så blir knappen
-     "Anmäl intresse" via mejl i stället.
+   • lank: betallänk, bokningslänk eller formulärlänk. Lämna ""
+     så blir knappen "Anmäl intresse" via mejl i stället.
+   • knapptext: (valfri) texten på knappen när lank är ifylld,
+     t.ex. "Anmäl intresse". Utelämnas den står det "Boka plats".
    • fullbokad: true/false
 ========================================================= */
 const KURSTILLFALLEN = [
   {
-    datum: "2026-10-26",
-    titel: "Höstlovskurs: Bygg ditt första Roblox-spel",
-    tid: "Mån–ons kl. 10–12 (3 tillfällen, digitalt via Zoom)",
-    alder: "10–13 år",
-    verktyg: "Roblox Studio",
-    beskrivning: "Tre förmiddagar på höstlovet där vi bygger en egen hinderbana från grunden – med checkpoints, fällor och ditt allra första Lua-skript. Max 10 barn per grupp.",
-    pris: "PRIS-HÄR kr",
-    lank: "",
+    datum: "2026-10-31",
+    titel: "Halloweenkurs: Gör ett spökligt Halloween-kort i Scratch 🎃",
+    tid: "Lördag kl. 10.00–12.00 (digitalt via Discord)",
+    alder: "7–9 år",
+    verktyg: "Scratch",
+    beskrivning: "Vi skapar ett eget animerat Halloween-kort med spöken, ljud och överraskningar! Föreläsningsformat: jag visar varje steg live, sedan bygger du själv i din egen takt – och skriver i chatten så fort du fastnar, så hjälper jag dig direkt. Obegränsat antal platser, alla får vara med!",
+    pris: "149 kr",
+    lank: "https://forms.gle/P5vBCbjbBN4KRA2c9",
+    knapptext: "Anmäl intresse",
     fullbokad: false
   },
   {
-    datum: "2026-11-07",
-    titel: "Helgkurs: Skapa ett spel i Scratch",
-    tid: "Lördag kl. 10–12 (digitalt via Zoom)",
-    alder: "7–9 år",
-    verktyg: "Scratch",
-    beskrivning: "En rolig förmiddag där vi bygger ett eget fångarspel med poäng och ljud – perfekt första kurs för nyfikna nybörjare.",
-    pris: "PRIS-HÄR kr",
-    lank: "",
+    datum: "2026-10-31",
+    titel: "Halloweenkurs: Bygg ett spökhus i Roblox Studio 👻",
+    tid: "Lördag kl. 12.30–14.30 (digitalt via Discord)",
+    alder: "10–13 år",
+    verktyg: "Roblox Studio",
+    beskrivning: "Vi bygger ett eget läskigt spökhus från grunden – och avslutar med en kodningsdel som ger huset liv! Föreläsningsformat: jag visar varje steg live, sedan bygger du själv i din egen takt – och skriver i chatten så fort du fastnar, så hjälper jag dig direkt. Obegränsat antal platser, alla får vara med!",
+    pris: "199 kr",
+    lank: "https://forms.gle/P5vBCbjbBN4KRA2c9",
+    knapptext: "Anmäl intresse",
     fullbokad: false
   }
 ];
@@ -238,7 +242,7 @@ if (kommande.length === 0){
     const knapp = k.fullbokad
       ? '<span class="fullbokad">Fullbokad – mejla för väntelista</span>'
       : (k.lank
-          ? '<a class="btn" href="' + k.lank + '">Boka plats</a>'
+          ? '<a class="btn" href="' + k.lank + '">' + (k.knapptext || 'Boka plats') + '</a>'
           : '<a class="btn" href="' + intresse + '">Anmäl intresse</a>');
     const el = document.createElement("div");
     el.className = "kurs";
