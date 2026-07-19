@@ -207,6 +207,33 @@
     border-radius:14px;padding:12px 16px;font-size:.95rem;line-height:1.5;
   }
 
+  .prata-ruta{
+    background:#f3effc;border:2px solid var(--lavender);
+    border-radius:14px;padding:12px 16px;font-size:.95rem;line-height:1.5;
+  }
+  .kod-ruta{margin-top:8px}
+  .kod-ruta .kod-rubrik{
+    font-family:'Fredoka',sans-serif;font-size:.85rem;color:var(--navy);
+    background:var(--gold);display:inline-block;padding:3px 12px;
+    border-radius:999px 999px 0 0;margin:0;
+  }
+  .kod-ruta pre{
+    background:var(--navy-deep);color:#c8f5ec;border-radius:0 12px 12px 12px;
+    padding:14px 16px;overflow-x:auto;font-size:.82rem;line-height:1.55;
+    font-family:'Consolas','Menlo',monospace;margin:0;
+  }
+  .pedagogmaterial{
+    max-width:920px;margin:18px auto 0;padding:0 16px;
+  }
+  .pedagogmaterial-inner{
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+    border-radius:16px;padding:14px 20px;font-size:.9rem;color:#dfe2ff;
+    display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+  }
+  .pedagogmaterial-inner b{color:var(--gold);font-family:'Fredoka',sans-serif;font-weight:600}
+  .pedagogmaterial-inner a{color:var(--mint);text-decoration:none;white-space:nowrap}
+  .pedagogmaterial-inner a:hover{text-decoration:underline}
+
   footer{
     position:relative;z-index:2;text-align:center;
     padding:0 20px 48px;color:#aeb2e0;font-size:.9rem;
@@ -247,6 +274,17 @@
   </div>
 </header>
 
+<div class="pedagogmaterial">
+  <div class="pedagogmaterial-inner">
+    <b>📎 Pedagogens material:</b>
+    <a href="BILAGA-LÄNK-HÄR">Startguide</a>
+    <a href="BILAGA-LÄNK-HÄR">Blockkarta (A3)</a>
+    <a href="BILAGA-LÄNK-HÄR">Luckchecklista</a>
+    <a href="BILAGA-LÄNK-HÄR">Diplom</a>
+    <a href="BILAGA-LÄNK-HÄR">Lapp till vårdnadshavare</a>
+  </div>
+</div>
+
 <main>
   <div class="grid" id="grid"></div>
 </main>
@@ -268,8 +306,11 @@
     <div class="modal-inner">
       <h3>Dagens uppgift</h3>
       <p id="modaluppgift"></p>
+      <div id="modalkod"></div>
       <h3 class="klar">Klart-kollen (för pedagogen)</h3>
       <div class="klart-ruta" id="modalklart"></div>
+      <h3>Prata om (sista fem minuterna)</h3>
+      <div class="prata-ruta" id="modalprata"></div>
     </div>
   </div>
 </div>
@@ -289,50 +330,75 @@ const KALENDERKOD = "JULSAGA7315";
 // vimeo = videons ID (siffrorna i vimeo-länken). Tom sträng = platshållare visas.
 const LUCKOR = [
   {datum:"2026-12-01", vimeo:"", titel:"Möt ScratchJr",
-   uppgift:"Öppna ScratchJr, starta ett nytt projekt och dra ett blått pil-block till programytan. Tryck på gröna flaggan!",
-   klart:"Katten rör sig när barnen trycker på gröna flaggan."},
+   uppgift:"Få katten att gå framåt när ni trycker på den gröna flaggan. Prova sedan: vad gör de andra blå pilarna?",
+   klart:"Paret trycker på gröna flaggan och katten rör sig.",
+   prata:"Vad hände när ni satte flera pilar efter varandra? (Datorn gör exakt som man säger, i ordning.)",
+   kod:[{rubrik:"Dagens block", kod:"🚩 Grön flagga  →  ➡️ Pil höger\n\nDra blocken till programmeringsytan.\nSätt flaggan FÖRE pilen. Tryck på flaggan!"}]},
   {datum:"2026-12-02", vimeo:"", titel:"Tomten kommer",
-   uppgift:"Lägg till en tomtefigur och färglägg den i målarverktyget — mössa, rock och skägg.",
-   klart:"Tomten syns på scenen och har fått egna färger."},
+   uppgift:"Ta bort katten (håll fingret på den tills krysset kommer). Välj en figur som får bli er tomte och ge den något rött i ritverktyget (penseln).",
+   klart:"En tomtefigur finns på scenen — och katten är borta.",
+   prata:"Vem är huvudperson i er saga? Vad heter er tomte?"},
   {datum:"2026-12-03", vimeo:"", titel:"Vinterlandskapet",
-   uppgift:"Måla sagans bakgrund med bakgrundsverktyget: snö, granar och stjärnhimmel.",
-   klart:"Bakgrunden är klar och tomten står i vinterlandskapet."},
-  {datum:"2026-12-03", vimeo:"", titel:"Renen hoppar",
-   uppgift:"Lägg till en ren och få den att hoppa tre gånger med upprepa-blocket.",
-   klart:"Renen hoppar exakt tre gånger — räkna högt tillsammans!"},
-  {datum:"2026-12-04", vimeo:"", titel:"Snön faller",
-   uppgift:"Skapa en snöflinga som faller ner och börjar om — för alltid-blocket gör jobbet.",
-   klart:"Snöflingan faller om och om igen utan att stanna."},
-  {datum:"2026-12-07", vimeo:"", titel:"Tomten pratar! ⭐",
-   uppgift:"Spela in barnens egna röster med mikrofonblocket — vad säger tomten när han kommer fram?",
-   klart:"Tomten pratar med barnets röst i sagan."},
-  {datum:"2026-12-08", vimeo:"", titel:"Ljud i hela sagan",
-   uppgift:"Lägg in fler ljud: renens klockor, ett glatt hej och kanske en julsång ni nynnar själva.",
-   klart:"Minst två figurer har varsitt ljud."},
-  {datum:"2026-12-09", vimeo:"", titel:"Tryck på mig!",
-   uppgift:"Använd tryck-på-blocket så att figurerna reagerar när man rör vid dem.",
-   klart:"Något händer när barnen trycker på en figur."},
-  {datum:"2026-12-10", vimeo:"", titel:"Brev mellan figurerna",
-   uppgift:"Skicka ett brev: när tomten är klar skickar han ett orange kuvert som väcker renen.",
-   klart:"Renen börjar röra sig först när tomten är klar."},
-  {datum:"2026-12-11", vimeo:"", titel:"Sida två",
-   uppgift:"Lägg till en ny sida i sagan — vart går tomten sedan? Måla en ny bakgrund.",
-   klart:"Sagan byter till sida två."},
-  {datum:"2026-12-14", vimeo:"", titel:"Storleksmagi",
-   uppgift:"Använd väx- och krymp-blocken: låt julklappen växa sig juligt stor!",
-   klart:"En figur ändrar storlek i sagan."},
-  {datum:"2026-12-15", vimeo:"", titel:"Fart och väntan",
-   uppgift:"Prova fart-blocket och vänta-blocket så att sagan får både lugna och snabba stunder.",
-   klart:"Barnen kan visa en del som går snabbt och en som väntar."},
-  {datum:"2026-12-15", vimeo:"", titel:"Julklappen dyker upp",
-   uppgift:"Göm julklappen i början av sagan och låt den dyka upp — överraskning! — när tomten kommer fram.",
-   klart:"Julklappen syns inte i början men dyker upp senare."},
-  {datum:"2026-12-16", vimeo:"", titel:"Gör klart sagan",
-   uppgift:"Titta igenom hela sagan från början, fixa det sista och öva på att visa den för ett annat par.",
-   klart:"Paret kan spela upp sagan från start till slut utan hjälp."},
-  {datum:"2026-12-17", vimeo:"", titel:"Sagostund! 🎄",
-   uppgift:"Premiär! Varje par visar sin julsaga för gruppen. Glöm inte diplomen!",
-   klart:"Alla har visat sin saga — applåder och diplom!"}
+   uppgift:"Tryck på bakgrundsknappen och välj en vinterbakgrund. Måla dit minst en egen detalj med penseln (stjärna, gran, hus).",
+   klart:"Tomten står i ett vinterlandskap med något barnen målat själva.",
+   prata:"Var utspelar sig er saga? Vad finns bakom granarna som man inte ser?"},
+  {datum:"2026-12-04", vimeo:"", titel:"Renen hoppar",
+   uppgift:"Lägg till en ren som hoppar flera gånger när gröna flaggan trycks.",
+   klart:"Renen hoppar mer än en gång vid grön flagga.",
+   prata:"Hur många gånger hoppar er ren? Vad skulle hända med talet 100?",
+   kod:[{rubrik:"Dagens block", kod:"🚩 Grön flagga  →  🔁 Upprepa 4 { 🦘 Hopp }\n\nHoppet ska ligga INUTI upprepa-blocket.\nKolla att RENEN är markerad (blå ram) när ni bygger!"}]},
+  {datum:"2026-12-07", vimeo:"", titel:"Snön faller",
+   uppgift:"Lägg till en snöflinga högst upp på scenen och låt den falla hela tiden. Tips: krymp-blocket gör flingan liten och söt!",
+   klart:"Det snöar — och det slutar inte.",
+   prata:"Vad är skillnaden mellan \u201dupprepa 4 gånger\u201d och \u201dför alltid\u201d?",
+   kod:[{rubrik:"Dagens block", kod:"🚩 Grön flagga  →  ⬇️ Pil ner  →  ♾ För alltid\n\nFör alltid-blocket sätts SIST i raden.\nDå börjar allt om, i all evighet!"}]},
+  {datum:"2026-12-08", vimeo:"", titel:"Tomten pratar! ⭐",
+   uppgift:"Spela in något som tomten säger, med er egen röst (mikrofonblocket i den gröna delen). Lägg gärna till en pratbubbla också.",
+   klart:"Tryck på gröna flaggan — tomten pratar med barnets röst.",
+   prata:"Lyssna på några av gruppens tomtar tillsammans. Hur lät det?",
+   kod:[{rubrik:"Dagens block", kod:"🎤 Mikrofonen (gröna delen):\n1. Tryck på mikrofonblocket\n2. Röd knapp = spela in (\u201dGod jul!\u201d)\n3. Stopp → bocken\n4. Dra in det nya ljudblocket i tomtens rad\n\nTips till pedagogen: sprid ut paren i rummet när alla spelar in!"}]},
+  {datum:"2026-12-09", vimeo:"", titel:"Ljud i hela sagan",
+   uppgift:"Ge renen ett eget läte och lägg ett ljud till på valfri figur. En figur kan ha flera inspelningar!",
+   klart:"Minst två figurer låter.",
+   prata:"Blunda medan en saga spelas upp — vad hör ni? Behövs bild för att förstå en saga?"},
+  {datum:"2026-12-10", vimeo:"", titel:"Tryck på mig!",
+   uppgift:"Gör så att en figur i sagan säger eller gör något när man trycker på just den (gula \u201dstarta vid tryck\u201d-blocket).",
+   klart:"Peta på figuren — den reagerar. Gröna flaggan startar den inte.",
+   prata:"Nu kan den som tittar på sagan påverka den — precis som i ett spel!",
+   kod:[{rubrik:"Dagens block", kod:"👆 Starta vid tryck (gult block, fingret)\n\nSätts FÖRST i en egen rad.\nDet som ligger efter händer bara när man petar på figuren."}]},
+  {datum:"2026-12-11", vimeo:"", titel:"Brev mellan figurerna",
+   uppgift:"Låt tomten skicka ett brev till renen: när tomten sagt sitt ska renen börja hoppa. Brevet och brevlådan måste ha SAMMA färg!",
+   klart:"Först pratar tomten — sedan hoppar renen. I den ordningen, varje gång.",
+   prata:"Hur visste renen när den skulle börja? Fira alla som fick det att fungera — detta är kalenderns klurigaste lucka!",
+   kod:[{rubrik:"Dagens block", kod:"Tomten:  ✉️ Skicka ORANGE brev (sist i raden)\nRenen:   📬 Ta emot ORANGE brev (först i ny rad) → 🦘 Hopp\n\nSamma kuvertfärg hos båda — annars kommer brevet aldrig fram!"}]},
+  {datum:"2026-12-14", vimeo:"", titel:"Sida två",
+   uppgift:"Skapa sida två med ny bakgrund (inne i tomtens hus?), och låt sagan hoppa dit när sida ett är klar (röda byt sida-blocket).",
+   klart:"Sagan byter själv till sida två.",
+   prata:"Vad händer i kapitel två av er saga? Hur ska den sluta?",
+   kod:[{rubrik:"Dagens block", kod:"📄 Byt sida (rött block)\n\n1. Plustecknet i sidolistan till höger = ny sida\n2. Välj ny bakgrund och figurer\n3. Tillbaka till sida 1: dra byt sida-blocket SIST i tomtens rad"}]},
+  {datum:"2026-12-15", vimeo:"", titel:"Storleksmagi",
+   uppgift:"Använd krymp eller väx någonstans i sagan där det gör berättelsen roligare (tomten som krymper ner i skorstenen?).",
+   klart:"Någon figur ändrar storlek som en del av sagan.",
+   prata:"Vad mer skulle kunna krympa eller växa i en julsaga? (Julklappshögen? Magen efter julmaten?)",
+   kod:[{rubrik:"Dagens block", kod:"🔍+ Väx   ·   🔍− Krymp   ·   ↩️ Återställ\n\n(lila block — återställ räddar om något blivit tokigt stort!)"}]},
+  {datum:"2026-12-16", vimeo:"", titel:"Fart och väntan",
+   uppgift:"Lägg in en väntan någonstans så att något händer med spänning — och gör en figur snabb eller långsam.",
+   klart:"Sagan har tydligt olika tempo någonstans.",
+   prata:"Spela upp med och utan pausen. Vilket var mest spännande?",
+   kod:[{rubrik:"Dagens block", kod:"🐢/🐇 Fart (orange)  ·  ⏱ Vänta (orange, med siffra)\n\nEn paus FÖRE något spännande gör sagan mer spännande!"}]},
+  {datum:"2026-12-17", vimeo:"", titel:"Julklappen dyker upp",
+   uppgift:"Lägg till en julklapp som dyker upp — eller försvinner — i er saga (göm- och visa-blocken). Kombinera gärna med ett brev från lucka 9!",
+   klart:"Julklappen syns inte hela tiden — den kommer eller går.",
+   prata:"Trolleri! Hur gjorde ni för att bestämma NÄR julklappen skulle dyka upp?",
+   kod:[{rubrik:"Dagens block", kod:"👻 Göm  ·  👀 Visa  (lila block)\n\nPoff — borta! Poff — tillbaka!"}]},
+  {datum:"2026-12-18", vimeo:"", titel:"Gör klart sagan",
+   uppgift:"Spela upp er saga från början till slut och laga det som blivit konstigt. Öva sedan på att visa den för varandra i paret. Checklista: pratar någon? snöar det? finns sida två?",
+   klart:"Sagan går att spela upp från start till slut utan att paret behöver fixa något.",
+   prata:"Vad är ni mest stolta över i er saga?"},
+  {datum:"2026-12-21", vimeo:"", titel:"Sagostund! 🎄",
+   uppgift:"Visa er saga för gruppen (helskärmsknappen + storskärm). Publiken får säga en sak de gillade. Alla får applåder — och diplom!",
+   klart:"Alla par har visat. Alla har fått applåder. Dela ut diplomen!",
+   prata:"Ni har hittat på, byggt, testat och visat upp — precis som riktiga animatörer. Vilken saga vill ni göra härnäst?"}
 ];
 
 /* ================================================================ */
@@ -424,6 +490,24 @@ function visaModal(i, knapp){
   document.getElementById("modaltitel").textContent = lucka.titel;
   document.getElementById("modaluppgift").textContent = lucka.uppgift;
   document.getElementById("modalklart").textContent = lucka.klart;
+  document.getElementById("modalprata").textContent = lucka.prata || "";
+
+  const kodYta = document.getElementById("modalkod");
+  kodYta.innerHTML = "";
+  if (lucka.kod){
+    lucka.kod.forEach(k => {
+      const ruta = document.createElement("div");
+      ruta.className = "kod-ruta";
+      const rubrik = document.createElement("p");
+      rubrik.className = "kod-rubrik";
+      rubrik.textContent = "✍️ " + k.rubrik;
+      const pre = document.createElement("pre");
+      pre.textContent = k.kod;
+      ruta.appendChild(rubrik);
+      ruta.appendChild(pre);
+      kodYta.appendChild(ruta);
+    });
+  }
 
   const yta = document.getElementById("videoyta");
   if (lucka.vimeo){

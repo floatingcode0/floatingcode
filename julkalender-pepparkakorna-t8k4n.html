@@ -207,6 +207,33 @@
     border-radius:14px;padding:12px 16px;font-size:.95rem;line-height:1.5;
   }
 
+  .prata-ruta{
+    background:#f3effc;border:2px solid var(--lavender);
+    border-radius:14px;padding:12px 16px;font-size:.95rem;line-height:1.5;
+  }
+  .kod-ruta{margin-top:8px}
+  .kod-ruta .kod-rubrik{
+    font-family:'Fredoka',sans-serif;font-size:.85rem;color:var(--navy);
+    background:var(--gold);display:inline-block;padding:3px 12px;
+    border-radius:999px 999px 0 0;margin:0;
+  }
+  .kod-ruta pre{
+    background:var(--navy-deep);color:#c8f5ec;border-radius:0 12px 12px 12px;
+    padding:14px 16px;overflow-x:auto;font-size:.82rem;line-height:1.55;
+    font-family:'Consolas','Menlo',monospace;margin:0;
+  }
+  .pedagogmaterial{
+    max-width:920px;margin:18px auto 0;padding:0 16px;
+  }
+  .pedagogmaterial-inner{
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+    border-radius:16px;padding:14px 20px;font-size:.9rem;color:#dfe2ff;
+    display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;
+  }
+  .pedagogmaterial-inner b{color:var(--gold);font-family:'Fredoka',sans-serif;font-weight:600}
+  .pedagogmaterial-inner a{color:var(--mint);text-decoration:none;white-space:nowrap}
+  .pedagogmaterial-inner a:hover{text-decoration:underline}
+
   footer{
     position:relative;z-index:2;text-align:center;
     padding:0 20px 48px;color:#aeb2e0;font-size:.9rem;
@@ -247,6 +274,17 @@
   </div>
 </header>
 
+<div class="pedagogmaterial">
+  <div class="pedagogmaterial-inner">
+    <b>📎 Pedagogens material:</b>
+    <a href="BILAGA-LÄNK-HÄR">Startguide</a>
+    <a href="BILAGA-LÄNK-HÄR">Kodsheets (A3)</a>
+    <a href="BILAGA-LÄNK-HÄR">Luckchecklista</a>
+    <a href="BILAGA-LÄNK-HÄR">Diplom</a>
+    <a href="BILAGA-LÄNK-HÄR">Lärarkontoguide</a>
+  </div>
+</div>
+
 <main>
   <div class="grid" id="grid"></div>
 </main>
@@ -268,8 +306,11 @@
     <div class="modal-inner">
       <h3>Dagens uppgift</h3>
       <p id="modaluppgift"></p>
+      <div id="modalkod"></div>
       <h3 class="klar">Klart-kollen (för pedagogen)</h3>
       <div class="klart-ruta" id="modalklart"></div>
+      <h3>Prata om (sista fem minuterna)</h3>
+      <div class="prata-ruta" id="modalprata"></div>
     </div>
   </div>
 </div>
@@ -289,50 +330,78 @@ const KALENDERKOD = "PEPPAR4926";
 // vimeo = videons ID (siffrorna i vimeo-länken). Tom sträng = platshållare visas.
 const LUCKOR = [
   {datum:"2026-12-01", vimeo:"", titel:"Välkommen till Scratch",
-   uppgift:"Öppna scratch.mit.edu, starta ett projekt och prova blocken: få katten att gå och säga God jul!",
-   klart:"Katten rör sig och pratar när man klickar på gröna flaggan."},
+   uppgift:"Gå till scratch.mit.edu → Skapa. Få katten att röra sig när gröna flaggan klickas. Prova sedan minst tre andra block. Spara och döp projektet: \u201dFånga pepparkakorna + förnamn\u201d.",
+   klart:"Grön flagga → katten gör något. Projektet är sparat med barnets namn.",
+   prata:"Vilka block hittade ni? Vilket var roligast?",
+   kod:[{rubrik:"Dagens block", kod:"[när ⚑ klickas]\n[gå 10 steg]\n\nKom ihåg: block utan gul hatt körs inte —\nallt börjar med [när ⚑ klickas]!"}]},
   {datum:"2026-12-02", vimeo:"", titel:"Styr tomten",
-   uppgift:"Lägg in tomten som sprajt och koda piltangenterna så att hen glider längs marken.",
-   klart:"Tomten följer piltangenterna utan att åka utanför skärmen."},
+   uppgift:"Ta bort katten och välj en tomte i spritebiblioteket. Gör så att tomten går åt höger och vänster med piltangenterna.",
+   klart:"Tomten lyder pilarna åt båda hållen.",
+   prata:"Vad betyder x i Scratch? Vad tror ni y betyder — och vad gör minus där?",
+   kod:[{rubrik:"Dagens block", kod:"[när höger piltangent trycks]\n[ändra x med 10]\n\n[när vänster piltangent trycks]\n[ändra x med -10]\n\nx = i sidled. Minus = åt vänster!"}]},
   {datum:"2026-12-03", vimeo:"", titel:"Vinterbakgrund och speltomten",
-   uppgift:"Välj en vinterbakgrund, städa scenen och placera tomten längst ner — nu ser det ut som ett spel!",
-   klart:"Scenen har bakgrund och tomten står på rätt plats."},
-  {datum:"2026-12-03", vimeo:"", titel:"Pepparkakan faller",
-   uppgift:"Koda pepparkakan: starta högst upp på slumpad plats och falla nedåt, om och om igen.",
-   klart:"Pepparkakan faller från toppen och börjar om när den når botten."},
-  {datum:"2026-12-04", vimeo:"", titel:"Fånga! ⭐",
-   uppgift:"Använd rör vid-blocket: när pepparkakan nuddar tomten fångas den och börjar om uppifrån.",
-   klart:"Pepparkakan startar om uppifrån när tomten fångar den."},
-  {datum:"2026-12-07", vimeo:"", titel:"Poäng ⭐",
-   uppgift:"Skapa variabeln Poäng och lägg till 1 varje gång tomten fångar en pepparkaka.",
-   klart:"Poängen syns på skärmen och räknar upp vid varje fångst."},
-  {datum:"2026-12-08", vimeo:"", titel:"Pling och julmusik",
-   uppgift:"Lägg ett pling vid varje fångst och julmusik som loopar i bakgrunden.",
-   klart:"Det plingar vid fångst och musiken hörs hela tiden."},
-  {datum:"2026-12-09", vimeo:"", titel:"Den brända pepparkakan",
-   uppgift:"Gör en mörk kopia av pepparkakan — den ska man INTE fånga!",
-   klart:"Den brända pepparkakan faller precis som den vanliga."},
-  {datum:"2026-12-10", vimeo:"", titel:"Tre liv",
-   uppgift:"Skapa variabeln Liv som börjar på 3. Fångar man en bränd pepparkaka försvinner ett liv.",
-   klart:"Liven räknas ner — och vid noll stannar spelet."},
-  {datum:"2026-12-11", vimeo:"", titel:"Snabbare och snabbare",
-   uppgift:"Låt pepparkakorna falla lite snabbare för varje poäng — hur länge klarar ni er?",
-   klart:"Spelet blir märkbart svårare ju längre man spelar."},
-  {datum:"2026-12-14", vimeo:"", titel:"Startskärm",
-   uppgift:"Måla en startskärm med spelets namn och koda så att spelet startar när man klickar på den.",
-   klart:"Spelet börjar först när man klickat sig förbi startskärmen."},
-  {datum:"2026-12-15", vimeo:"", titel:"Game over-skärm",
-   uppgift:"Gör en Game over-bakgrund som visar slutpoängen när liven tar slut.",
-   klart:"Game over visas med rätt slutpoäng."},
-  {datum:"2026-12-15", vimeo:"", titel:"Snöfall och stämning",
-   uppgift:"Lägg in fallande snöflingor med kloner och putsa till scenerna.",
-   klart:"Det snöar i spelet."},
-  {datum:"2026-12-16", vimeo:"", titel:"Speltest två och två",
-   uppgift:"Byt dator med en kompis: spela, säg en sak som var bra och en som kan bli bättre — gör sedan en förbättring.",
-   klart:"Barnet kan berätta vad hen förbättrade och varför."},
-  {datum:"2026-12-17", vimeo:"", titel:"Spelmässa! 🎄",
-   uppgift:"Premiär! Ställ ut spelen och låt alla spela varandras. Dela ut diplomen!",
-   klart:"Alla har provat minst två kompisars spel."}
+   uppgift:"Välj en vinterbakgrund, måla dit en egen detalj, och sätt tomten i lagom storlek längst ner på scenen.",
+   klart:"Ser ut som ett spel: tomten nere, vintern bakom.",
+   prata:"Titta på varandras spel — samma uppgift, helt olika resultat. Varför är det bra?",
+   kod:[{rubrik:"Dagens block", kod:"[när ⚑ klickas]\n[ställ storlek till 60 %]\n[gå till x: 0  y: -140]"}]},
+  {datum:"2026-12-04", vimeo:"", titel:"Pepparkakan faller",
+   uppgift:"Lägg till en pepparkake-sprite och få den att falla från slumpad plats högst upp, om och om igen.",
+   klart:"Pepparkakan faller — och dyker upp på ett nytt ställe varje gång.",
+   prata:"Varför slumpar vi var pepparkakan börjar? Hur skulle spelet kännas annars?",
+   kod:[{rubrik:"Dagens block", kod:"[när ⚑ klickas]\n[för alltid]\n   [gå till x: (slumptal -220 till 220)  y: 170]\n   [glid 2 sek till x: (x-position)  y: -170]\n\nGlöm inte [för alltid] — annars faller den bara en gång!"}]},
+  {datum:"2026-12-07", vimeo:"", titel:"Fånga! ⭐",
+   uppgift:"Gör så att pepparkakan \u201dfångas\u201d när den nuddar tomten och genast faller på nytt uppifrån.",
+   klart:"Spring under pepparkakan — den försvinner upp igen när den nuddar tomten.",
+   prata:"Läs koden högt på svenska: \u201dFör alltid: fall. Om du rör tomten — börja om uppifrån.\u201d",
+   kod:[{rubrik:"Dagens block (läggs INUTI fall-loopen)", kod:"[om <rör tomten?> då]\n   [gå till x: (slumptal -220 till 220)  y: 170]"}]},
+  {datum:"2026-12-08", vimeo:"", titel:"Poäng ⭐",
+   uppgift:"Skapa variabeln Poäng. Nollställ den vid start och ge +1 för varje fångad pepparkaka.",
+   klart:"Poängen står på 0 vid start och tickar upp vid varje fångst.",
+   prata:"En variabel är som en låda datorn kommer ihåg saker i. Vilka fler lådor behöver ett spel? (Liv! Rekord!)",
+   kod:[{rubrik:"Dagens block", kod:"Tomten:\n[när ⚑ klickas]\n[sätt Poäng till 0]\n\nPepparkakan (INUTI fångst-om-blocket):\n[ändra Poäng med 1]\n\nVanligaste felet: [ändra Poäng] utanför om-blocket\n→ poäng hela tiden. Placeringen är allt!"}]},
+  {datum:"2026-12-09", vimeo:"", titel:"Pling och julmusik",
+   uppgift:"Lägg in ett pling-ljud vid fångst och julmusik som loopar i bakgrunden.",
+   klart:"Hörlurar på: pling vid fångst, musik hela tiden.",
+   prata:"Spela med ljudet av — hur mycket tråkigare blev det?",
+   kod:[{rubrik:"Dagens block", kod:"I fångst-om-blocket:\n[spela ljudet pling]\n\nPå bakgrunden:\n[när ⚑ klickas]\n[för alltid]\n   [spela ljudet Jingle Bells tills klart]"}]},
+  {datum:"2026-12-10", vimeo:"", titel:"Den brända pepparkakan",
+   uppgift:"Kopiera pepparkakan (högerklick → kopiera), måla kopian mörk, och ändra dess kod: −2 poäng om man fångar den av misstag. Ge den annan fallfart!",
+   klart:"Två saker faller. Den brända straffar.",
+   prata:"Nu måste spelaren välja: fånga eller undvika. Varför blir spel roligare när man kan göra fel?",
+   kod:[{rubrik:"Ändring i kopians fångst-block", kod:"[om <rör tomten?> då]\n   [ändra Poäng med -2]\n   [gå till x: (slumptal -220 till 220)  y: 170]"}]},
+  {datum:"2026-12-11", vimeo:"", titel:"Tre liv",
+   uppgift:"Skapa variabeln Liv (3 vid start). Bränd pepparkaka tar ett liv i stället för minuspoäng. Vid noll liv tar spelet slut.",
+   klart:"Fånga tre brända — spelet stannar.",
+   prata:"Poäng och Liv är två olika lådor. Vad är skillnaden i vad de GÖR i spelet?",
+   kod:[{rubrik:"Dagens block", kod:"Tomten vid start:\n[sätt Liv till 3]\n\nBrända pepparkakan (byt ut minuspoängen):\n[ändra Liv med -1]\n[om <Liv = 0> då]\n   [stoppa alla]"}]},
+  {datum:"2026-12-14", vimeo:"", titel:"Snabbare och snabbare!",
+   uppgift:"Få pepparkakorna att falla snabbare ju fler poäng spelaren har. Justera delningstalet tills det känns lagom.",
+   klart:"Spela till 15+ poäng — det ska märkas tydligt att tempot ökat.",
+   prata:"Var går gränsen mellan \u201dutmanande\u201d och \u201dorättvist\u201d? Vem har det svåraste spelet just nu?",
+   kod:[{rubrik:"Ändring i glid-blocket", kod:"[glid ((2) - ((Poäng) / (20))) sek till ...]\n\nMer poäng = kortare glidtid = snabbare fall.\nProva olika delningstal!"}]},
+  {datum:"2026-12-15", vimeo:"", titel:"Startskärm",
+   uppgift:"Rita en startskärmsbakgrund med spelets namn och \u201dTryck mellanslag!\u201d. Ingenting ska falla förrän spelaren tryckt mellanslag.",
+   klart:"Grön flagga → lugn startskärm. Mellanslag → spelet drar igång.",
+   prata:"Meddelandet är som en startpistol — alla väntar på samma signal. Om någon sprite lever sitt eget liv: vem startar den?",
+   kod:[{rubrik:"Dagens block", kod:"Bakgrunden:\n[när ⚑ klickas] → [byt bakgrund till Startskärm]\n[när mellanslag trycks]\n[byt bakgrund till Spelbakgrund]\n[skicka meddelandet Starta spelet]\n\nPepparkakorna: byt [när ⚑ klickas] mot\n[när jag tar emot Starta spelet]\n(+ [göm] vid flagga, [visa] vid start)"}]},
+  {datum:"2026-12-16", vimeo:"", titel:"Game over-skärmen",
+   uppgift:"Bygg en game over-skärm som visar spelarens poäng när liven tar slut.",
+   klart:"Förlora med flit — snygg slutskärm med poäng, inget fortsätter falla bakom.",
+   prata:"Startskärm → spel → game over. En början, en mitt och ett slut — precis som en berättelse.",
+   kod:[{rubrik:"Dagens block", kod:"Tomten: byt [stoppa alla] mot\n[skicka meddelandet Spelet slut]\n\nBakgrunden:\n[när jag tar emot Spelet slut]\n[byt bakgrund till Game Over]\n\nPepparkakorna:\n[när jag tar emot Spelet slut]\n[göm]  [stoppa mina skript]"}]},
+  {datum:"2026-12-17", vimeo:"", titel:"Snöfall och stämning",
+   uppgift:"Lägg in snöfall med klon-receptet nedan, och minst en egen stämningsdetalj (tomten säger \u201dMums!\u201d vid fångst?).",
+   klart:"Det snöar över spelet — och spelet har fått något personligt.",
+   prata:"Jämför med hur spelet såg ut i lucka 5. Vad har hänt? Vilken detalj gör mest för känslan?",
+   kod:[{rubrik:"Snöfallsreceptet (ny snöflinge-sprite)", kod:"[när ⚑ klickas]\n[göm]\n[för alltid]\n   [skapa klon av mig själv]\n   [vänta 0.3 sek]\n\n[när jag startar som klon]\n[visa]\n[gå till x: (slumptal -240 till 240)  y: 180]\n[ställ storlek till (slumptal 20 till 60) %]\n[glid (slumptal 2 till 5) sek till x: (x-position)  y: -180]\n[ta bort denna klon]"}]},
+  {datum:"2026-12-18", vimeo:"", titel:"Speltest två och två",
+   uppgift:"Byt plats med en kompis och spela varandras spel i tre minuter. Feedbackformeln: EN sak som var bra + EN sak som var svår. Gör sedan minst en förbättring i ditt eget spel.",
+   klart:"Barnet kan berätta vad hen ändrade och varför.",
+   prata:"Hur kändes det att se någon annan spela ditt spel? Gjorde de något du inte väntat dig?"},
+  {datum:"2026-12-21", vimeo:"", titel:"Spelmässa! 🎄",
+   uppgift:"Håll spelmässa: halva gruppen står vid sina spel, andra halvan går runt och spelar — byt efter tio minuter. Spela minst tre kompisars spel och säg något du gillade vid varje. Diplom till alla!",
+   klart:"Alla spel har blivit spelade av någon annan än sin skapare. Dela ut diplomen!",
+   prata:"Ni har designat, programmerat, testat och släppt ett spel — hela kedjan en riktig spelstudio går igenom. Vilket spel härnäst?"}
 ];
 
 /* ================================================================ */
@@ -424,6 +493,24 @@ function visaModal(i, knapp){
   document.getElementById("modaltitel").textContent = lucka.titel;
   document.getElementById("modaluppgift").textContent = lucka.uppgift;
   document.getElementById("modalklart").textContent = lucka.klart;
+  document.getElementById("modalprata").textContent = lucka.prata || "";
+
+  const kodYta = document.getElementById("modalkod");
+  kodYta.innerHTML = "";
+  if (lucka.kod){
+    lucka.kod.forEach(k => {
+      const ruta = document.createElement("div");
+      ruta.className = "kod-ruta";
+      const rubrik = document.createElement("p");
+      rubrik.className = "kod-rubrik";
+      rubrik.textContent = "✍️ " + k.rubrik;
+      const pre = document.createElement("pre");
+      pre.textContent = k.kod;
+      ruta.appendChild(rubrik);
+      ruta.appendChild(pre);
+      kodYta.appendChild(ruta);
+    });
+  }
 
   const yta = document.getElementById("videoyta");
   if (lucka.vimeo){
