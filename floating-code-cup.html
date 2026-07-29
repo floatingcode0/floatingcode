@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<!-- ==========================================================
+  FLOATING CODE CUP – SÅ REDIGERAR DU SIDAN SJÄLV
+
+  • Den här sidan marknadsför Floating Code Cup mot både
+    föräldrar (anmälan) och företag (sponsorer).
+  • All text hittar du längre ner – ändra bara orden mellan
+    taggarna, t.ex. <p>Din text här</p>.
+  • Varje sektion är markerad: SEKTION BÖRJAR ... SEKTION SLUTAR.
+  • EFTER CUPEN (efter 3 oktober): scrolla ner till sektionen
+    "EFTER CUPEN – AKTIVERA SENARE". Där ligger en färdig
+    galleri- och videosektion bortkommenterad. Ta bort
+    kommentarstecknen enligt instruktionen så visas den.
+========================================================== -->
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Floating Code Cup 2026 – Sveriges spelutvecklingstävling i Roblox för barn</title>
+<link rel="icon" type="image/png" href="logga.png">
+<meta property="og:title" content="Floating Code Cup 2026 – Sveriges spelutvecklingstävling i Roblox för barn 8–13 år">
+<meta property="og:description" content="Barn 8–13 år bygger egna spel i Roblox Studio på temat Framtid & teknik och tävlar hemifrån om att vinna Floating Code Cup – med final på Bricks and Games i Göteborg den 3 oktober 2026.">
+<meta property="og:image" content="https://floatingcode.se/logga.png">
+<meta property="og:url" content="https://floatingcode.se/floating-code-cup.html">
+<meta property="og:type" content="website">
+<meta name="description" content="Floating Code Cup är Sveriges spelutvecklingstävling i Roblox för barn 8–13 år, på temat Framtid & teknik. Du tävlar hemifrån – ingen behöver vara på plats. Final på Bricks and Games i Göteborg 3 oktober 2026, i samarbete med At Event. Bli sponsor och synliggör ert varumärke för teknikintresserade familjer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1D2A4D;
+  --navy-deep:#141F3B;
+  --ink:#2A3757;
+  --mint:#4FC3AB;
+  --mint-strong:#2FA98F;
+  --mint-soft:#DFF5EF;
+  --lavender:#9F84DE;
+  --lavender-strong:#7E5FC7;
+  --lavender-soft:#EFE9FB;
+  --gold:#F5C24B;
+  --gold-soft:#FDF3D8;
+  --bg:#F7FBFA;
+  --card:#FFFFFF;
+  --radius:22px;
+  --shadow:0 8px 28px rgba(29,42,77,.09);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.65;
+  font-size:17px;
+}
+h1,h2,h3{font-family:'Fredoka',sans-serif;color:var(--navy);line-height:1.2}
+h1{font-size:clamp(2rem,6vw,3.3rem);font-weight:600}
+h2{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:600;margin-bottom:.5rem}
+h3{font-size:1.2rem;font-weight:600}
+p{margin-bottom:1rem}
+a{color:var(--lavender-strong)}
+img{max-width:100%}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+section{padding:72px 0}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.82rem;
+  color:var(--mint-strong);
+  display:block;
+  margin-bottom:.6rem;
+  letter-spacing:.02em;
+}
+.eyebrow::before{content:"-- ";opacity:.6}
+
+/* NAV */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,251,250,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(29,42,77,.08);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.25rem;
+  color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:.5rem;
+}
+.logo-img{height:40px;width:40px;object-fit:cover;display:inline-block;border-radius:12px}
+.logo-dot{
+  width:14px;height:14px;border-radius:50%;
+  background:linear-gradient(135deg,var(--mint),var(--lavender));
+  display:inline-block;
+}
+.nav-links{display:flex;gap:clamp(.2rem,.8vw,.6rem);list-style:none;flex-wrap:nowrap}
+.nav-links a{
+  text-decoration:none;color:var(--ink);font-weight:700;font-size:.92rem;
+  white-space:nowrap;padding:.45rem .8rem;border-radius:999px;
+  transition:background .25s,color .25s;
+}
+.nav-links a:hover{color:var(--mint-strong)}
+.nav-links a.aktiv{
+  background:var(--navy);color:#fff;
+  box-shadow:0 4px 12px rgba(29,42,77,.25);
+}
+.nav-links a.aktiv:hover{color:#fff}
+.menu-btn{
+  display:none;background:none;border:none;font-size:1.7rem;color:var(--navy);cursor:pointer;
+  line-height:1;
+}
+@media(max-width:1080px){
+  .menu-btn{display:block}
+  .nav-links{
+    display:none;position:absolute;top:64px;left:0;right:0;
+    flex-direction:column;background:#fff;padding:1.2rem 22px 1.6rem;
+    border-bottom:1px solid rgba(29,42,77,.1);gap:1.1rem;
+    box-shadow:0 14px 30px rgba(29,42,77,.12);
+  }
+  .nav-links.open{display:flex}
+}
+
+/* KNAPPAR */
+.btn{
+  display:inline-block;padding:.85rem 1.6rem;border-radius:999px;
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;
+  text-decoration:none;transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--navy);color:#fff;box-shadow:0 6px 18px rgba(29,42,77,.25)}
+.btn-mint{background:var(--mint-strong);color:#fff;box-shadow:0 6px 18px rgba(47,169,143,.35)}
+.btn-gold{background:var(--gold);color:var(--navy);box-shadow:0 6px 18px rgba(245,194,75,.4)}
+.btn-ghost{background:#fff;color:var(--navy);border:2px solid var(--navy);margin-left:.6rem}
+@media(max-width:480px){.btn-ghost{margin-left:0;margin-top:.7rem}}
+
+/* HERO */
+.hero{
+  padding:76px 0 84px;
+  background:
+    radial-gradient(600px 380px at 88% 8%, var(--gold-soft) 0%, transparent 65%),
+    radial-gradient(560px 400px at 4% 90%, var(--mint-soft) 0%, transparent 65%),
+    var(--bg);
+  overflow:hidden;
+  position:relative;
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr}}
+.hero p.lead{font-size:1.13rem;max-width:32rem;margin:1.1rem 0 1.7rem}
+.hero .hl-mint{color:var(--mint-strong)}
+.hero .hl-lav{color:var(--lavender-strong)}
+.hero-badge{
+  font-family:'JetBrains Mono',monospace;font-size:.78rem;
+  background:var(--gold);color:var(--navy);font-weight:700;
+  padding:.3rem .8rem;border-radius:999px;display:inline-block;margin-bottom:1rem;
+}
+.float-shape{position:absolute;border-radius:50%;opacity:.55;pointer-events:none;animation:floaty 7s ease-in-out infinite}
+.fs1{width:70px;height:70px;background:var(--gold-soft);top:14%;left:55%;animation-delay:0s}
+.fs2{width:44px;height:44px;background:var(--lavender-soft);bottom:16%;left:6%;animation-delay:2.2s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+/* Pokal-kort i hero */
+.cup-card{
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);
+  border-radius:18px;
+  box-shadow:0 20px 50px rgba(29,42,77,.3);
+  color:#E8EEF9;
+  padding:2rem 1.8rem;
+  transform:rotate(1.5deg);
+  text-align:center;
+}
+.cup-emoji{font-size:4rem;line-height:1;margin-bottom:.8rem;display:block}
+.cup-card h3{color:#fff;font-size:1.3rem;margin-bottom:.3rem}
+.cup-card .cup-datum{
+  font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--mint);
+  display:block;margin-bottom:1rem;
+}
+.cup-fakta{list-style:none;text-align:left;margin:0}
+.cup-fakta li{
+  padding:.5rem 0 .5rem 1.7rem;position:relative;font-size:.95rem;color:#C6D2EC;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.cup-fakta li:last-child{border-bottom:none}
+.cup-fakta li::before{
+  content:"★";position:absolute;left:0;color:var(--gold);font-weight:700;
+}
+
+/* SÅ FUNKAR DET */
+.steg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.2rem}
+@media(max-width:820px){.steg-grid{grid-template-columns:1fr}}
+.steg-card{
+  background:var(--card);border-radius:var(--radius);padding:1.8rem 1.6rem;
+  box-shadow:var(--shadow);
+  border-top:6px solid var(--mint);
+  position:relative;
+}
+.steg-card.lav{border-top-color:var(--lavender)}
+.steg-card.gold{border-top-color:var(--gold)}
+.steg-num{
+  font-family:'Fredoka',sans-serif;font-size:2rem;font-weight:700;color:var(--mint-strong);
+  line-height:1;margin-bottom:.5rem;
+}
+.steg-card.lav .steg-num{color:var(--lavender-strong)}
+.steg-card.gold .steg-num{color:#D9A32B}
+.steg-card h3{margin-bottom:.5rem}
+.steg-card p{margin:0;font-size:.97rem}
+
+/* DISTANS-RUTA – tydligt att man kan tävla hemifrån */
+.distans-ruta{
+  margin-top:1.8rem;background:var(--mint-soft);border-radius:var(--radius);
+  border:2px dashed var(--mint-strong);
+  padding:1.4rem 1.8rem;
+}
+.distans-ruta p{margin:0;max-width:none;font-size:1rem}
+
+/* SAMARBETE – At Event (mässarrangör, ej sponsor) */
+.partner{padding:52px 0;background:var(--card);border-top:1px solid rgba(29,42,77,.07);border-bottom:1px solid rgba(29,42,77,.07)}
+.partner-inner{
+  display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap;
+  text-align:left;
+}
+.partner-inner img{height:74px;width:auto}
+.partner-inner p{margin:0;max-width:30rem;font-size:.97rem}
+@media(max-width:600px){.partner-inner{flex-direction:column;text-align:center}}
+
+/* TEKNIK & FRAMTID */
+.framtid{background:linear-gradient(180deg,var(--bg) 0%,var(--mint-soft) 100%)}
+.framtid-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+@media(max-width:760px){.framtid-grid{grid-template-columns:1fr}}
+.framtid-quote{
+  font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:500;color:var(--mint-strong);
+  border-left:4px solid var(--mint);padding-left:1rem;margin:1.2rem 0;
+}
+.framtid-list{list-style:none;margin:.4rem 0 1rem}
+.framtid-list li{padding-left:1.6rem;position:relative;margin-bottom:.55rem;font-size:.98rem}
+.framtid-list li::before{
+  content:"~";position:absolute;left:0;font-family:'Fredoka',sans-serif;
+  color:var(--mint-strong);font-weight:600;
+}
+
+/* SPONSORER (mörk, säljig B2B-sektion) */
+.sponsor{background:var(--navy);color:#E8EEF9}
+.sponsor h2,.sponsor h3{color:#fff}
+.sponsor .eyebrow{color:var(--gold)}
+.sponsor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1.8rem}
+@media(max-width:820px){.sponsor-grid{grid-template-columns:1fr}}
+.sponsor-card{
+  background:rgba(255,255,255,.07);border-radius:var(--radius);padding:1.7rem 1.6rem;
+  border:1px solid rgba(255,255,255,.12);
+}
+.sponsor-card p{color:#C6D2EC;margin-bottom:0;font-size:.96rem}
+.sponsor-card .aud-emoji{font-size:1.9rem;margin-bottom:.5rem}
+.sponsor-cta{
+  margin-top:2rem;background:rgba(255,255,255,.07);border-radius:var(--radius);
+  border:1px solid rgba(255,255,255,.12);
+  padding:1.8rem;display:flex;align-items:center;justify-content:space-between;
+  gap:1.4rem;flex-wrap:wrap;
+}
+.sponsor-cta p{margin:0;max-width:34rem;color:#C6D2EC}
+.sponsor-cta strong{color:#fff}
+
+/* SIFFROR */
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1.8rem}
+@media(max-width:820px){.stat-grid{grid-template-columns:1fr}}
+.stat-card{
+  background:var(--card);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow);
+  text-align:center;
+}
+.stat-num{
+  font-family:'Fredoka',sans-serif;font-size:2.2rem;font-weight:700;color:var(--mint-strong);
+  line-height:1;
+}
+.stat-card.lav .stat-num{color:var(--lavender-strong)}
+.stat-card.gold .stat-num{color:#D9A32B}
+.stat-card small{font-weight:800;color:var(--navy);display:block;margin:.4rem 0 0;font-size:.95rem}
+
+/* ANMÄLAN-BANNER */
+.anmalan{
+  background:linear-gradient(120deg,var(--mint-strong) 0%,var(--mint) 60%,var(--gold) 140%);
+  padding:52px 0;
+}
+.anmalan-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:1.6rem;flex-wrap:wrap;
+}
+.anmalan h2{color:#fff;margin-bottom:.3rem}
+.anmalan p{color:#EAFBF6;margin:0;max-width:32rem}
+.anmalan strong{color:#fff}
+.btn-anmalan{
+  background:#fff;color:var(--mint-strong);
+  box-shadow:0 8px 22px rgba(20,31,59,.25);white-space:nowrap;
+}
+
+/* EFTER CUPEN – galleri (bortkommenterad tills cupen är klar) */
+.galleri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem}
+@media(max-width:760px){.galleri-grid{grid-template-columns:1fr 1fr}}
+.galleri-grid img{border-radius:16px;box-shadow:var(--shadow);width:100%;aspect-ratio:4/3;object-fit:cover}
+.video-ram{
+  margin-top:1.8rem;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+  aspect-ratio:16/9;background:var(--navy-deep);
+}
+.video-ram iframe{width:100%;height:100%;border:0}
+
+/* KONTAKT */
+.contact{text-align:center}
+.contact .btn-primary{margin-top:.8rem}
+
+/* FOOTER */
+footer{
+  background:var(--navy-deep);color:#9FB0D6;text-align:center;
+  padding:2.2rem 22px;font-size:.92rem;
+}
+footer .flyt{
+  font-family:'Fredoka',sans-serif;color:var(--mint);font-size:1.15rem;margin-bottom:.4rem;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .float-shape{animation:none}
+  html{scroll-behavior:auto}
+  .btn:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html">
+      <img src="logga.png" alt="Floating Code" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+      <span class="logo-dot" style="display:none"></span>
+      <span>Floating Code</span>
+    </a>
+    <button class="menu-btn" aria-label="Öppna meny" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html#tjanster">Tjänster</a></li>
+      <li><a href="index.html#kurser">Kurser</a></li>
+      <li><a href="aktuella-kurser.html">Aktuella kurser</a></li>
+      <li><a href="index.html#skolan">Skolan</a></li>
+      <li><a href="floating-code-cup.html" class="aktiv">Cupen 🏆</a></li>
+      <li><a href="index.html#om-mig">Om mig</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================= SEKTION BÖRJAR: HERO ================= -->
+<section class="hero">
+  <div class="float-shape fs1"></div>
+  <div class="float-shape fs2"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="hero-badge">🏆 FÖRSTA UPPLAGAN · 2026 · TEMA: FRAMTID &amp; TEKNIK</span>
+      <h1>Floating Code Cup – Sveriges spelutvecklingstävling <span class="hl-mint">för barn</span></h1>
+      <p class="lead">Barn <strong>8–13 år</strong> från hela Sverige bygger sina egna spel i <strong>Roblox Studio</strong> på temat <strong>Framtid &amp; teknik</strong> – och tävlar om att vinna Floating Code Cup. Finalen avgörs live på mässan <strong>Bricks and Games i Göteborg den 3 oktober 2026</strong>. <strong class="hl-mint">Du tävlar hemifrån – och kan inte du vara på plats på finalen går det precis lika bra att vara med ändå!</strong></p>
+      <a class="btn btn-primary" href="https://forms.gle/E4Xu2WkrJZK3aKfK6" target="_blank" rel="noopener">Anmäl ditt barn →</a>
+      <a class="btn btn-ghost" href="#sponsor">För företag &amp; sponsorer</a>
+    </div>
+    <div class="cup-card" aria-hidden="false">
+      <span class="cup-emoji">🏆</span>
+      <h3>Floating Code Cup 2026</h3>
+      <span class="cup-datum">FINAL · 3 OKTOBER · GÖTEBORG</span>
+      <ul class="cup-fakta">
+        <li>För barn 8–13 år i hela Sverige</li>
+        <li>Tema: Framtid &amp; teknik</li>
+        <li>Bygg ditt eget spel i Roblox Studio</li>
+        <li>Tävla hemifrån – ingen måste vara på plats</li>
+        <li>Final på mässan Bricks and Games</li>
+        <li>Livesänds på TikTok @floatingcode</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: HERO ================= -->
+
+<!-- ================= SEKTION BÖRJAR: SÅ FUNKAR DET ================= -->
+<section id="sa-funkar-det">
+  <div class="wrap">
+    <span class="eyebrow">så funkar det</span>
+    <h2>Från idé till final – i tre steg</h2>
+    <p style="max-width:36rem">Att vara med är enkelt – och alla som deltar lär sig något på riktigt. Det behövs inga förkunskaper mer än nyfikenhet och lust att skapa!</p>
+    <div class="steg-grid">
+      <div class="steg-card">
+        <div class="steg-num">1.</div>
+        <h3>Anmäl dig 📝</h3>
+        <p>Fyll i anmälan tillsammans med en vuxen. Det är gratis att delta – tävlingen är öppen för alla barn 8–13 år i Sverige.</p>
+      </div>
+      <div class="steg-card lav">
+        <div class="steg-num">2.</div>
+        <h3>Bygg ditt spel 🎮</h3>
+        <p>Skapa ditt eget spel i Roblox Studio på årets tema <strong>Framtid &amp; teknik</strong> och lämna in ditt bidrag hemifrån. Hur ser framtiden ut i din fantasi? Det är du som bestämmer!</p>
+      </div>
+      <div class="steg-card gold">
+        <div class="steg-num">3.</div>
+        <h3>Finalen 🏆</h3>
+        <p>De bästa bidragen går till final på Bricks and Games i Göteborg den 3 oktober – där vinnaren av Floating Code Cup 2026 koras! Finalen livesänds på TikTok så alla kan följa med.</p>
+      </div>
+    </div>
+    <div class="distans-ruta">
+      <p><strong>📍 Kan ni inte vara på plats i Göteborg? Ingen fara!</strong> Du tävlar med ditt spel hemifrån och behöver inte vara fysiskt på mässan – varken för att delta eller för att gå till final. Följ finalen live på TikTok var du än är i landet!</p>
+    </div>
+    <p style="text-align:center;margin-top:1.8rem"><a class="btn btn-mint" href="https://forms.gle/E4Xu2WkrJZK3aKfK6" target="_blank" rel="noopener">Anmäl ditt barn till Cupen →</a></p>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: SÅ FUNKAR DET ================= -->
+
+<!-- ================= SEKTION BÖRJAR: TEKNIK & FRAMTID ================= -->
+<section class="framtid" id="teknik-och-framtid">
+  <div class="wrap framtid-grid">
+    <div>
+      <span class="eyebrow">årets tema: framtid &amp; teknik</span>
+      <h2>Mer än en tävling – en språngbräda in i framtiden</h2>
+      <p>Årets tema är <strong>Framtid &amp; teknik</strong> – barnen bygger spel om hur framtiden kan se ut, med tekniken som verktyg. För dagens barn är morgondagens spelutvecklare, ingenjörer och kreatörer. Med Floating Code Cup vill jag visa att spelutveckling inte bara är kul – det är <strong>digital kompetens, problemlösning och skaparglädje</strong> på samma gång.</p>
+      <p>När barn bygger egna spel i stället för att bara spela andras tränar de logiskt tänkande, kreativitet och uthållighet – förmågor som bär hela vägen in i framtidens arbetsliv.</p>
+    </div>
+    <div>
+      <p class="framtid-quote">"Barn som skapar med teknik i dag äger sin digitala framtid i morgon."</p>
+      <ul class="framtid-list">
+        <li>Riktig spelutveckling i Roblox Studio – med Lua-kod</li>
+        <li>Barnen tränar problemlösning, design och berättande</li>
+        <li>En scen där unga skapare får synas och firas</li>
+        <li>Första upplagan 2026 – var med från början!</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: TEKNIK & FRAMTID ================= -->
+
+<!-- ================= SEKTION BÖRJAR: SIFFROR ================= -->
+<section id="siffror">
+  <div class="wrap">
+    <span class="eyebrow">räckvidd</span>
+    <h2>En tävling som syns</h2>
+    <p style="max-width:36rem">Floating Code Cup arrangeras av Floating Code, som sedan starten 2024 nått tiotusentals barn med spelutveckling och kodning – och genomförs i samarbete med At Event, arrangören bakom mässan Bricks and Games.</p>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">84 000</div>
+        <small>visningar på Floating Codes YouTube</small>
+      </div>
+      <div class="stat-card lav">
+        <div class="stat-num">8–13 år</div>
+        <small>målgrupp: barn &amp; deras familjer</small>
+      </div>
+      <div class="stat-card gold">
+        <div class="stat-num">3 okt</div>
+        <small>final på Bricks and Games, Göteborg</small>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: SIFFROR ================= -->
+
+<!-- ================= SEKTION BÖRJAR: SAMARBETE MED AT EVENT =================
+     At Event är mässarrangören bakom Bricks and Games – tävlingen
+     genomförs i samarbete med dem. OBS: de är samarbetspartner,
+     inte sponsor, och visas därför separat från sponsorsektionen. -->
+<section class="partner">
+  <div class="wrap partner-inner">
+    <img src="at-event-logo.png" alt="At Event – arrangör av mässan Bricks and Games">
+    <p><strong>Floating Code Cup genomförs i samarbete med At Event</strong> – arrangören bakom mässan Bricks and Games i Göteborg, där finalen avgörs live på stora scenen den 3 oktober 2026.</p>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: SAMARBETE MED AT EVENT ================= -->
+
+<!-- ================= SEKTION BÖRJAR: SPONSORER (B2B) ================= -->
+<section class="sponsor" id="sponsor">
+  <div class="wrap">
+    <span class="eyebrow">för företag &amp; sponsorer</span>
+    <h2>Var med och lyft Sveriges unga spelutvecklare 🚀</h2>
+    <p style="max-width:38rem;color:#C6D2EC">Floating Code Cup arrangeras nu för första gången – och du kan vara med från start. Som sponsor förknippas ert varumärke med teknik, kreativitet och barns framtidstro, inför en engagerad publik av familjer, skolor och teknikintresserade.</p>
+    <div class="sponsor-grid">
+      <div class="sponsor-card">
+        <div class="aud-emoji">📣</div>
+        <h3>Synlighet som räknas</h3>
+        <p>Exponering i Floating Codes kanaler på TikTok, YouTube och Instagram – med över 84 000 videovisningar på YouTube – samt på tävlingssidan och i kommunikationen kring cupen, före, under och efter finalen.</p>
+      </div>
+      <div class="sponsor-card">
+        <div class="aud-emoji">🎪</div>
+        <h3>På plats på mässan</h3>
+        <p>Finalen avgörs live på stora scenen på Bricks and Games i Göteborg – en arena full av barnfamiljer och spelintresserade. Er logotyp syns där det händer.</p>
+      </div>
+      <div class="sponsor-card">
+        <div class="aud-emoji">📱</div>
+        <h3>Live på TikTok</h3>
+        <p>Finalen livesänds på @floatingcode. Sponsorer lyfts fram i sändningen och i innehållet som lever kvar långt efter mässdagen.</p>
+      </div>
+    </div>
+    <div class="sponsor-cta">
+      <p><strong>Vill ert företag stå bakom nästa generations skapare?</strong> Hör av dig så berättar jag mer om sponsorpaketen och hur vi kan skräddarsy ett samarbete som passar er.</p>
+      <a class="btn btn-gold" href="mailto:info@floatingcode.se?subject=Sponsorskap%20Floating%20Code%20Cup%202026">Bli sponsor – mejla mig →</a>
+    </div>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: SPONSORER ================= -->
+
+<!-- ================= SEKTION BÖRJAR: EFTER CUPEN – AKTIVERA SENARE
+     När cupen är genomförd (efter 3 oktober):
+     1. Ta bort raden "AKTIVERA: ta bort denna rad..." nedan
+        och raden "...samt denna rad" längst ner i sektionen.
+     2. Lägg dina bilder i mappen "cup" (skapa mappen) och döp
+        dem cup-1.jpg, cup-2.jpg osv – eller byt filnamnen nedan.
+     3. Byt ut VIMEO-ID i iframe-länken mot ID:t för
+        TikTok-livens inspelning (uppladdad på Vimeo som vanligt).
+     Tips: uppdatera gärna även texten i hero högst upp till
+     "Tack alla som var med 2026 – vi ses nästa år!" -->
+<!-- AKTIVERA: ta bort denna rad för att visa sektionen...
+<section id="efter-cupen">
+  <div class="wrap">
+    <span class="eyebrow">floating code cup 2026</span>
+    <h2>Så var finalen! 🎉</h2>
+    <p style="max-width:36rem">Den 3 oktober 2026 avgjordes första upplagan av Floating Code Cup på Bricks and Games i Göteborg. Här är bilderna och livesändningen från finalen!</p>
+    <div class="galleri-grid">
+      <img src="cup/cup-1.jpg" alt="Floating Code Cup – finalen på Bricks and Games">
+      <img src="cup/cup-2.jpg" alt="Floating Code Cup – deltagare visar sina spel">
+      <img src="cup/cup-3.jpg" alt="Floating Code Cup – prisutdelning">
+    </div>
+    <div class="video-ram">
+      <iframe src="https://player.vimeo.com/video/VIMEO-ID" title="Floating Code Cup 2026 – finalen" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+...samt denna rad -->
+<!-- ================= SEKTION SLUTAR: EFTER CUPEN ================= -->
+
+<!-- ================= SEKTION BÖRJAR: ANMÄLAN-BANNER ================= -->
+<section class="anmalan">
+  <div class="wrap anmalan-inner">
+    <div>
+      <h2>Redo att tävla? 🏆</h2>
+      <p>Anmälan är öppen! Det kostar inget att vara med – och du tävlar hemifrån, oavsett var i Sverige du bor. Årets tema: <strong>Framtid &amp; teknik</strong>. <strong>Bygg. Tävla. Vinn.</strong></p>
+    </div>
+    <a class="btn btn-anmalan" href="https://forms.gle/E4Xu2WkrJZK3aKfK6" target="_blank" rel="noopener">Anmäl ditt barn här!</a>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: ANMÄLAN-BANNER ================= -->
+
+<!-- ================= SEKTION BÖRJAR: KONTAKT ================= -->
+<section class="contact" id="kontakt">
+  <div class="wrap">
+    <span class="eyebrow">frågor?</span>
+    <h2>Undrar du något om cupen?</h2>
+    <p style="max-width:32rem;margin:0 auto 1rem">Oavsett om du är förälder, pedagog eller företag – hör av dig så svarar jag så snart jag kan.</p>
+    <a class="btn btn-primary" href="mailto:info@floatingcode.se?subject=Fr%C3%A5ga%20om%20Floating%20Code%20Cup">Mejla mig: info@floatingcode.se</a>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: KONTAKT ================= -->
+
+</main>
+
+<footer>
+  <div class="flyt">Flyt lugnt! 🌊</div>
+  © 2026 Floating Code AB · Org.nr 559506-5433 · Stockholm<br>
+  <a href="index.html#kurser" style="color:var(--mint)">Kurser</a> · <a href="aktuella-kurser.html" style="color:var(--mint)">Aktuella kurser</a> · <a href="julkalendrar.html" style="color:var(--mint)">Julkalendrar för skolan</a> · <a href="floating-code-cup.html" style="color:var(--mint)">Floating Code Cup</a> · <a href="villkor.html" style="color:var(--mint)">Köpvillkor &amp; integritet</a>
+</footer>
+
+<script>
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open'));
+});
+</script>
+
+</body>
+</html>
