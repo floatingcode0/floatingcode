@@ -84,11 +84,13 @@ header{
   border-bottom:1px solid rgba(29,42,77,.08);
 }
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+header .wrap{max-width:1220px}
 .logo{
   font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.25rem;
   color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:.5rem;
+  white-space:nowrap;flex-shrink:0;
 }
-.logo-img{height:40px;width:40px;object-fit:cover;display:inline-block;border-radius:12px}
+.logo-img{height:44px;width:auto;object-fit:contain;display:inline-block}
 .logo-dot{
   width:14px;height:14px;border-radius:50%;
   background:linear-gradient(135deg,var(--mint),var(--lavender));
@@ -96,8 +98,8 @@ header{
 }
 .nav-links{display:flex;gap:clamp(.2rem,.8vw,.6rem);list-style:none;flex-wrap:nowrap}
 .nav-links a{
-  text-decoration:none;color:var(--ink);font-weight:700;font-size:.92rem;
-  white-space:nowrap;padding:.45rem .8rem;border-radius:999px;
+  text-decoration:none;color:var(--ink);font-weight:700;font-size:.87rem;
+  white-space:nowrap;padding:.45rem .58rem;border-radius:999px;
   transition:background .25s,color .25s;
 }
 .nav-links a:hover{color:var(--mint-strong)}
@@ -110,7 +112,7 @@ header{
   display:none;background:none;border:none;font-size:1.7rem;color:var(--navy);cursor:pointer;
   line-height:1;
 }
-@media(max-width:1080px){
+@media(max-width:1160px){
   .menu-btn{display:block}
   .nav-links{
     display:none;position:absolute;top:64px;left:0;right:0;
@@ -381,7 +383,7 @@ footer .flyt{
          Lägg filen logga.png i samma mapp så visas den automatiskt.
          Finns ingen bild visas en färgprick + namnet i stället. -->
     <a class="logo" href="#top">
-      <img src="logga.png" alt="Floating Code" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
+      <img src="maskot.png" alt="Floating Code" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
       <span class="logo-dot" style="display:none"></span>
       <span>Floating Code</span>
     </a>
