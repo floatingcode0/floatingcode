@@ -288,6 +288,16 @@ header .wrap{max-width:1220px}
 
 /* SKOLAN */
 .skolan{background:var(--mint-soft)}
+.kulan-banner{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:1.7rem 1.8rem;margin:.4rem 0 2.4rem;
+  display:flex;gap:1.1rem;align-items:flex-start;
+  border-left:6px solid var(--mint-strong);
+}
+.kulan-banner h3{margin:.15rem 0 .35rem;font-size:1.15rem}
+.kulan-banner p{margin:.2rem 0 .7rem;max-width:44rem;font-size:.97rem}
+.kulan-banner .kulan-lank{font-size:.97rem}
+@media(max-width:600px){.kulan-banner{flex-direction:column;gap:.4rem}}
 .skola-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:1.8rem}
 @media(max-width:820px){.skola-grid{grid-template-columns:1fr}}
 .skola-card{
@@ -573,6 +583,17 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
 <section id="skolan" class="skolan">
   <div class="wrap">
     <span class="eyebrow">för skola, fritids &amp; bibliotek</span>
+
+    <div class="kulan-banner">
+      <div class="aud-emoji" aria-hidden="true">🏛️</div>
+      <div>
+        <span class="tag-mint">Kulan · Stockholms stad</span>
+        <h3>Vi finns i Kulan – Stockholms stads kulturutbud för skolan</h3>
+        <p>Två av våra kurser är med i Kulan, där Stockholms stads skolor och fritids hittar och bokar kulturaktörer: <strong>Bygg spel i Roblox Studio</strong> (åk 4–9) och <strong>Scratch: Speldesign för nybörjare</strong> (förskoleklass–åk 6). Allt kopplat till Lgr22, inom teknik och bild.</p>
+        <a class="kulan-lank" href="https://kulan.stockholm/kulturaktorer/floating-code/" target="_blank" rel="noopener"><strong>Se Floating Code i Kulan →</strong></a>
+      </div>
+    </div>
+
     <h2>Julkalendrar i programmering 🎄</h2>
     <p style="max-width:38rem">Ge era barngrupper en adventskalender de sent glömmer! Tre digitala julkalendrar där barnen bygger något eget, lucka för lucka – <strong>video, dagens uppgift och pedagogstöd i varje lucka.</strong> Inga förkunskaper krävs av dig som pedagog.</p>
     <div class="skola-grid">
