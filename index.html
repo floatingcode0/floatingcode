@@ -24,11 +24,11 @@
 <title>Floating Code – Kreativt kodande och digital kompetens</title>
 <link rel="icon" type="image/png" href="logga.png">
 <meta property="og:title" content="Floating Code – Kreativt kodande och digital kompetens">
-<meta property="og:description" content="Kurser i Roblox Studio, Scratch och ScratchJr för barn, julkalendrar i programmering för skolan och vardagsteknik för seniorer.">
+<meta property="og:description" content="Kurser i Roblox Studio, Scratch och ScratchJr för barn, julkalendrar i programmering för skolan samt workshops och föreläsningar.">
 <meta property="og:image" content="https://floatingcode.se/logga.png">
 <meta property="og:url" content="https://floatingcode.se">
 <meta property="og:type" content="website">
-<meta name="description" content="Floating Code erbjuder kurser i Roblox Studio (10–15 år), Scratch (7–9 år) och ScratchJr (6–7 år), vardagsteknik för seniorer samt föreläsningar. Fysiska kurser för företag, digitala kurser för föräldrar.">
+<meta name="description" content="Floating Code erbjuder kurser i Roblox Studio (10–15 år), Scratch (7–9 år) och ScratchJr (6–7 år) samt workshops och föreläsningar. Fysiska kurser för företag och skolor, digitala kurser för föräldrar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -340,6 +340,23 @@ header .wrap{max-width:1220px}
 .proj-card small{font-weight:800;color:var(--navy);display:block;margin:.3rem 0 .6rem;font-size:.95rem}
 .proj-card p{font-size:.95rem;margin:0}
 
+/* KALENDER / PÅ GÅNG */
+.kal{background:var(--lavender-soft)}
+.kal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem;margin-top:1.8rem}
+.kal-card{
+  background:var(--card);border-radius:var(--radius);padding:1.4rem 1.5rem;
+  box-shadow:var(--shadow);display:flex;gap:1.1rem;align-items:flex-start;
+}
+.kal-datum{
+  background:var(--navy);color:#fff;border-radius:14px;flex-shrink:0;
+  width:70px;padding:.65rem .3rem;text-align:center;font-family:'Fredoka',sans-serif;
+}
+.kal-datum .dag{font-size:1.45rem;font-weight:700;line-height:1.1}
+.kal-datum .man{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mint)}
+.kal-card h3{font-size:1.05rem;margin-bottom:.25rem}
+.kal-card p{margin:0 0 .45rem;font-size:.92rem}
+.kal-card a{font-weight:800;font-size:.92rem}
+
 /* ABOUT */
 .about{background:linear-gradient(180deg,var(--lavender-soft) 0%,var(--bg) 100%)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
@@ -425,7 +442,7 @@ footer .flyt{
     <div>
       <span class="eyebrow">kreativt kodande och digital kompetens</span>
       <h1>Teknik ska vara <span class="hl-mint">lekfullt</span> – i alla åldrar</h1>
-      <p class="lead"><strong>Barn</strong> får bygga egna spel – i <strong>Roblox Studio</strong> (10–15 år), <strong>Scratch</strong> (7–9 år) och <strong>ScratchJr</strong> (6–7 år).<br><strong>Seniorer</strong> får lugn, trygg hjälp med vardagstekniken – mobilen, BankID och allt däremellan.<br>Alltid med nyfikenhet, värme och mycket skratt.</p>
+      <p class="lead"><strong>Barn</strong> får bygga egna spel – i <strong>Roblox Studio</strong> (10–15 år), <strong>Scratch</strong> (7–9 år) och <strong>ScratchJr</strong> (6–7 år) – hemma, i skolan eller på lov och event.<br>Alltid med nyfikenhet, värme och mycket skratt.</p>
       <a class="btn btn-primary" href="#tjanster">Se vad jag erbjuder</a>
       <a class="btn btn-ghost" href="#kontakt">Kontakta mig</a>
     </div>
@@ -444,7 +461,7 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
 <!-- ================= SEKTION SLUTAR: STARTSIDA/HERO ================= -->
 
 <!-- ================= SEKTION BÖRJAR: TJÄNSTER =================
-     De tre korten (Företag / Föräldrar / Seniorer) kan du
+     De tre korten (Företag / Föräldrar / Skola) kan du
      kopiera för att skapa fler, eller radera ett helt
      <div class="aud-card"> ... </div> för att ta bort ett. -->
 <section id="tjanster">
@@ -481,16 +498,16 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
       </div>
 
       <div class="aud-card navy">
-        <div class="aud-emoji">📱</div>
-        <span class="tag">fysiska kurser</span>
-        <h3>För seniorer</h3>
-        <p>Tekniken i vardagen ska vara en hjälp – inte ett hinder. Jag håller fysiska kurser i vardagsteknik där vi träffas på plats och i lugn takt går igenom det du faktiskt använder.</p>
+        <div class="aud-emoji">🏫</div>
+        <span class="tag">workshops &amp; julkalendrar</span>
+        <h3>För skola &amp; fritids</h3>
+        <p>Jag kommer till er och håller workshops i spelutveckling med klassen – eller så kör ni en av mina digitala julkalendrar. Allt kopplat till Lgr22, inom teknik och bild.</p>
         <ul>
-          <li>Mobilen och surfplattan – steg för steg</li>
-          <li>Praktiska övningar i vardagsteknik</li>
-          <li>Trygghet och självständighet i din digitala vardag</li>
+          <li>Workshops i Scratch &amp; Roblox Studio – bokas via Kulan</li>
+          <li>Julkalendrar i programmering med pedagogstöd 🎄</li>
+          <li>Föreläsningar för elever och pedagoger</li>
         </ul>
-        <a class="aud-link" href="#kontakt">Boka en kurs →</a>
+        <a class="aud-link" href="#skolan">Läs mer för skolan →</a>
       </div>
     </div>
   </div>
@@ -636,14 +653,30 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
       </div>
       <div class="lect-card">
         <div class="aud-emoji">🔒</div>
-        <h3>Säkerhet på nätet för seniorer</h3>
-        <p>En trygg och konkret genomgång av hur man känner igen bedrägerier, skyddar sina konton och surfar säkert – utan krångliga facktermer.</p>
+        <h3>Tryggt på Roblox – för föräldrar &amp; pedagoger</h3>
+        <p>En konkret genomgång av hur Roblox faktiskt fungerar: vad barnen möter, hur chatt, Robux och föräldrakontroller fungerar och hur ni gör spelandet tryggt – utan pekpinnar.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= SEKTION SLUTAR: FÖRELÄSNINGAR ================= -->
+
+<!-- ================= SEKTION BÖRJAR: KALENDER / PÅ GÅNG =================
+     Händelserna fyller du i längst ner på sidan, i listan
+     HANDELSER inne i <script>-delen. Passerade datum döljs
+     automatiskt – och finns inga kommande händelser döljs
+     hela sektionen av sig själv. -->
+<section class="kal" id="kalender">
+  <div class="wrap">
+    <span class="eyebrow">kalender</span>
+    <h2>På gång 🗓️</h2>
+    <p style="max-width:36rem">Här ser du vad som händer framöver – kurser, event och mässor.</p>
+    <div class="kal-grid" id="kal-lista"></div>
+    <p style="margin-top:1.4rem;text-align:center;font-size:.95rem"><a href="aktuella-kurser.html"><strong>Se alla aktuella kurser &amp; boka →</strong></a></p>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: KALENDER ================= -->
 
 <!-- ================= SEKTION BÖRJAR: UPPDRAG & PROJEKT =================
      Uppdatera siffrorna i <div class="proj-num"> när nya
@@ -682,14 +715,14 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
     <div>
       <span class="eyebrow">om mig</span>
       <h2>Hej, jag heter Angelica!</h2>
-      <p>Jag är pedagog med över tio års erfarenhet av utbildning och digitalt skapande. Hösten 2024 startade jag Floating Code med en tydlig vision: att göra digital kompetens tillgänglig för både barn och seniorer.</p>
-      <p>Barn behöver kreativa sätt att utforska programmering – och seniorer behöver stöd för att känna sig trygga i en alltmer digital värld. Floating Code bygger bron däremellan.</p>
+      <p>Jag är pedagog med över tio års erfarenhet av utbildning och digitalt skapande. Hösten 2024 startade jag Floating Code med en tydlig vision: att barn inte bara ska spela spel – de ska skapa egna.</p>
+      <p>Barn behöver kreativa sätt att utforska programmering, där de förstår vad de bygger och känner stoltheten i att skapa något eget. Det är precis det Floating Code finns för.</p>
     </div>
     <div>
       <!-- Din profilbild – byt fil genom att ersätta profil.png i mappen -->
       <img src="profil.png" alt="Angelica, grundare av Floating Code" class="profil-img">
-      <p class="about-quote">"Att inspirera både barn och seniorer att upptäcka och använda teknik är nyckeln till framtiden."</p>
-      <p>Varje deltagare – ung som äldre – ska gå därifrån med starkare självförtroende, mer nyfikenhet och en känsla av att <em>det här klarar jag</em>.</p>
+      <p class="about-quote">"Att inspirera barn att upptäcka och skapa med teknik är nyckeln till framtiden."</p>
+      <p>Varje barn ska gå därifrån med starkare självförtroende, mer nyfikenhet och en känsla av att <em>det här klarar jag</em>.</p>
     </div>
   </div>
 </section>
@@ -721,7 +754,7 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
   <div class="wrap">
     <span class="eyebrow">kontakt</span>
     <h2>Ska vi skapa något tillsammans?</h2>
-    <p style="max-width:32rem;margin:0 auto 1rem">Oavsett om du är företag, förälder, senior eller arrangör – hör av dig så hittar vi ett upplägg som passar.</p>
+    <p style="max-width:32rem;margin:0 auto 1rem">Oavsett om du är företag, förälder, skola eller arrangör – hör av dig så hittar vi ett upplägg som passar.</p>
     <a class="btn btn-primary" href="mailto:info@floatingcode.se">Mejla mig: info@floatingcode.se</a>
     <div class="socials">
       <a href="https://www.instagram.com/floatingcode_/">Instagram</a>
@@ -767,6 +800,68 @@ function markeraAktiv(){
 window.addEventListener('scroll', markeraAktiv, {passive:true});
 window.addEventListener('resize', markeraAktiv);
 markeraAktiv();
+
+/* =========================================================
+   KALENDERN "PÅ GÅNG"! HÄR FYLLER DU I DINA HÄNDELSER.
+   Kopiera ett block { ... }, klistra in och ändra texterna.
+   • datum: ÅÅÅÅ-MM-DD. Passerade datum döljs automatiskt,
+     och finns inga kommande händelser döljs hela sektionen.
+   • emoji: valfri liten symbol som visas efter rubriken
+   • lank + lanktext: (valfria) länk under texten. Lämna
+     lank: "" så visas ingen länk.
+========================================================= */
+const HANDELSER = [
+  {
+    datum: "2026-10-03",
+    titel: "Final i Floating Code Cup",
+    emoji: "🏆",
+    text: "Sveriges spelutvecklingstävling i Roblox för barn 8–13 år avgörs på Bricks and Games-mässan i Göteborg. Kom förbi montern och säg hej!",
+    lank: "floating-code-cup.html",
+    lanktext: "Läs mer om Cupen →"
+  },
+  {
+    datum: "2026-10-31",
+    titel: "Halloweenkurser i Scratch & Roblox Studio",
+    emoji: "🎃",
+    text: "Digitala lovkurser där barnen skapar spökliga spel och kort – häng med hemifrån via Discord.",
+    lank: "aktuella-kurser.html",
+    lanktext: "Boka plats →"
+  },
+  {
+    datum: "2026-12-01",
+    titel: "Julkalendrarna öppnar lucka 1",
+    emoji: "🎄",
+    text: "Tre digitala julkalendrar för skola, fritids och bibliotek – och gratiskalendern Rädda julen! på TikTok.",
+    lank: "julkalendrar.html",
+    lanktext: "Se kalendrarna →"
+  }
+];
+
+/* ---- Nedanför behöver du inte ändra något ---- */
+(function(){
+  const man = ["JAN","FEB","MAR","APR","MAJ","JUN","JUL","AUG","SEP","OKT","NOV","DEC"];
+  const idag = new Date(); idag.setHours(0,0,0,0);
+  const kommande = HANDELSER
+    .filter(h => new Date(h.datum + "T00:00:00") >= idag)
+    .sort((a,b) => a.datum.localeCompare(b.datum));
+  const sektion = document.getElementById("kalender");
+  const lista = document.getElementById("kal-lista");
+  if (!sektion || !lista) return;
+  if (kommande.length === 0){ sektion.style.display = "none"; return; }
+  kommande.forEach(h => {
+    const d = new Date(h.datum + "T00:00:00");
+    const el = document.createElement("div");
+    el.className = "kal-card";
+    el.innerHTML =
+      '<div class="kal-datum"><div class="dag">' + d.getDate() + '</div><div class="man">' + man[d.getMonth()] + '</div></div>' +
+      '<div>' +
+        '<h3>' + h.titel + (h.emoji ? ' ' + h.emoji : '') + '</h3>' +
+        '<p>' + h.text + '</p>' +
+        (h.lank ? '<a href="' + h.lank + '">' + (h.lanktext || 'Läs mer →') + '</a>' : '') +
+      '</div>';
+    lista.appendChild(el);
+  });
+})();
 </script>
 
 </body>
