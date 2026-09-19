@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Fånga pepparkakorna — Floating Code Julkalender</title>
+<title>Fånga julklapparna — Floating Code Julkalender</title>
 <link rel="icon" type="image/png" href="logga.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -255,8 +255,8 @@
 <!-- Lösenordsgrind -->
 <div id="grind">
   <div class="grind-kort" role="dialog" aria-labelledby="grind-titel">
-    <div style="font-size:2.4rem">🍪🎄</div>
-    <h1 id="grind-titel">Fånga pepparkakorna</h1>
+    <div style="font-size:2.4rem">🎁🎄</div>
+    <h1 id="grind-titel">Fånga julklapparna</h1>
     <p>Skriv in kalenderkoden som din skola eller ditt bibliotek fick vid köpet.</p>
     <input type="text" id="kodfalt" placeholder="KALENDERKOD" autocomplete="off" aria-label="Kalenderkod">
     <button id="kodknapp">Öppna kalendern</button>
@@ -266,10 +266,10 @@
 
 <header>
   <span class="marke">Floating Code · Julkalender</span>
-  <h1 class="titel">Fånga <span class="glans">pepparkakorna</span></h1>
-  <p class="undertitel">Programmera ett helt eget spel i Scratch — en lucka i taget. Luckorna öppnas på skoldagar 1–17 december — lagom till skolavslutningen är spelet klart för spelmässan.</p>
+  <h1 class="titel">Fånga <span class="glans">julklapparna</span></h1>
+  <p class="undertitel">Programmera ett helt eget spel i Scratch — en lucka i taget. Luckorna öppnas på skoldagar 1–16 december, så spelet är klart i god tid före jullovet.</p>
   <div class="framsteg">
-    <div class="framsteg-text" id="framstegtext">0 av 15 luckor öppnade</div>
+    <div class="framsteg-text" id="framstegtext">0 av 12 luckor öppnade</div>
     <div class="framsteg-spar"><div class="framsteg-fyll" id="framstegfyll"></div></div>
   </div>
 </header>
@@ -330,78 +330,76 @@ const KALENDERKOD = "PEPPAR4926";
 // vimeo = videons ID (siffrorna i vimeo-länken). Tom sträng = platshållare visas.
 const LUCKOR = [
   {datum:"2026-12-01", vimeo:"", titel:"Välkommen till Scratch",
-   uppgift:"Gå till scratch.mit.edu → Skapa. Få katten att röra sig när gröna flaggan klickas. Prova sedan minst tre andra block. Spara och döp projektet: \u201dFånga pepparkakorna + förnamn\u201d.",
-   klart:"Grön flagga → katten gör något. Projektet är sparat med barnets namn.",
-   prata:"Vilka block hittade ni? Vilket var roligast?",
-   kod:[{rubrik:"Dagens block", kod:"[när ⚑ klickas]\n[gå 10 steg]\n\nKom ihåg: block utan gul hatt körs inte —\nallt börjar med [när ⚑ klickas]!"}]},
-  {datum:"2026-12-02", vimeo:"", titel:"Styr tomten",
-   uppgift:"Ta bort katten och välj en tomte i spritebiblioteket. Gör så att tomten går åt höger och vänster med piltangenterna.",
-   klart:"Tomten lyder pilarna åt båda hållen.",
-   prata:"Vad betyder x i Scratch? Vad tror ni y betyder — och vad gör minus där?",
-   kod:[{rubrik:"Dagens block", kod:"[när höger piltangent trycks]\n[ändra x med 10]\n\n[när vänster piltangent trycks]\n[ändra x med -10]\n\nx = i sidled. Minus = åt vänster!"}]},
-  {datum:"2026-12-03", vimeo:"", titel:"Vinterbakgrund och speltomten",
-   uppgift:"Välj en vinterbakgrund, måla dit en egen detalj, och sätt tomten i lagom storlek längst ner på scenen.",
-   klart:"Ser ut som ett spel: tomten nere, vintern bakom.",
-   prata:"Titta på varandras spel — samma uppgift, helt olika resultat. Varför är det bra?",
-   kod:[{rubrik:"Dagens block", kod:"[när ⚑ klickas]\n[ställ storlek till 60 %]\n[gå till x: 0  y: -140]"}]},
-  {datum:"2026-12-04", vimeo:"", titel:"Pepparkakan faller",
-   uppgift:"Lägg till en pepparkake-sprite och få den att falla från slumpad plats högst upp, om och om igen.",
-   klart:"Pepparkakan faller — och dyker upp på ett nytt ställe varje gång.",
-   prata:"Varför slumpar vi var pepparkakan börjar? Hur skulle spelet kännas annars?",
-   kod:[{rubrik:"Dagens block", kod:"[när ⚑ klickas]\n[för alltid]\n   [gå till x: (slumptal -220 till 220)  y: 170]\n   [glid 2 sek till x: (x-position)  y: -170]\n\nGlöm inte [för alltid] — annars faller den bara en gång!"}]},
-  {datum:"2026-12-05", vimeo:"", titel:"Fånga! ⭐",
-   uppgift:"Gör så att pepparkakan \u201dfångas\u201d när den nuddar tomten och genast faller på nytt uppifrån.",
-   klart:"Spring under pepparkakan — den försvinner upp igen när den nuddar tomten.",
-   prata:"Läs koden högt på svenska: \u201dFör alltid: fall. Om du rör tomten — börja om uppifrån.\u201d",
-   kod:[{rubrik:"Dagens block (läggs INUTI fall-loopen)", kod:"[om <rör tomten?> då]\n   [gå till x: (slumptal -220 till 220)  y: 170]"}]},
-  {datum:"2026-12-05", vimeo:"", titel:"Poäng ⭐",
-   uppgift:"Skapa variabeln Poäng. Nollställ den vid start och ge +1 för varje fångad pepparkaka.",
-   klart:"Poängen står på 0 vid start och tickar upp vid varje fångst.",
-   prata:"En variabel är som en låda datorn kommer ihåg saker i. Vilka fler lådor behöver ett spel? (Liv! Rekord!)",
-   kod:[{rubrik:"Dagens block", kod:"Tomten:\n[när ⚑ klickas]\n[sätt Poäng till 0]\n\nPepparkakan (INUTI fångst-om-blocket):\n[ändra Poäng med 1]\n\nVanligaste felet: [ändra Poäng] utanför om-blocket\n→ poäng hela tiden. Placeringen är allt!"}]},
-  {datum:"2026-12-05", vimeo:"", titel:"Pling och julmusik",
-   uppgift:"Lägg in ett pling-ljud vid fångst och julmusik som loopar i bakgrunden.",
-   klart:"Hörlurar på: pling vid fångst, musik hela tiden.",
-   prata:"Spela med ljudet av — hur mycket tråkigare blev det?",
-   kod:[{rubrik:"Dagens block", kod:"I fångst-om-blocket:\n[spela ljudet pling]\n\nPå bakgrunden:\n[när ⚑ klickas]\n[för alltid]\n   [spela ljudet Jingle Bells tills klart]"}]},
-  {datum:"2026-12-05", vimeo:"", titel:"Den brända pepparkakan",
-   uppgift:"Kopiera pepparkakan (högerklick → kopiera), måla kopian mörk, och ändra dess kod: −2 poäng om man fångar den av misstag. Ge den annan fallfart!",
-   klart:"Två saker faller. Den brända straffar.",
-   prata:"Nu måste spelaren välja: fånga eller undvika. Varför blir spel roligare när man kan göra fel?",
-   kod:[{rubrik:"Ändring i kopians fångst-block", kod:"[om <rör tomten?> då]\n   [ändra Poäng med -2]\n   [gå till x: (slumptal -220 till 220)  y: 170]"}]},
-  {datum:"2026-12-05", vimeo:"", titel:"Tre liv",
-   uppgift:"Skapa variabeln Liv (3 vid start). Bränd pepparkaka tar ett liv i stället för minuspoäng. Vid noll liv tar spelet slut.",
-   klart:"Fånga tre brända — spelet stannar.",
-   prata:"Poäng och Liv är två olika lådor. Vad är skillnaden i vad de GÖR i spelet?",
-   kod:[{rubrik:"Dagens block", kod:"Tomten vid start:\n[sätt Liv till 3]\n\nBrända pepparkakan (byt ut minuspoängen):\n[ändra Liv med -1]\n[om <Liv = 0> då]\n   [stoppa alla]"}]},
-  {datum:"2026-12-05", vimeo:"", titel:"Snabbare och snabbare!",
-   uppgift:"Få pepparkakorna att falla snabbare ju fler poäng spelaren har. Justera delningstalet tills det känns lagom.",
-   klart:"Spela till 15+ poäng — det ska märkas tydligt att tempot ökat.",
-   prata:"Var går gränsen mellan \u201dutmanande\u201d och \u201dorättvist\u201d? Vem har det svåraste spelet just nu?",
-   kod:[{rubrik:"Ändring i glid-blocket", kod:"[glid ((2) - ((Poäng) / (20))) sek till ...]\n\nMer poäng = kortare glidtid = snabbare fall.\nProva olika delningstal!"}]},
-  {datum:"2026-12-05", vimeo:"", titel:"Startskärm",
-   uppgift:"Rita en startskärmsbakgrund med spelets namn och \u201dTryck mellanslag!\u201d. Ingenting ska falla förrän spelaren tryckt mellanslag.",
-   klart:"Grön flagga → lugn startskärm. Mellanslag → spelet drar igång.",
-   prata:"Meddelandet är som en startpistol — alla väntar på samma signal. Om någon sprite lever sitt eget liv: vem startar den?",
-   kod:[{rubrik:"Dagens block", kod:"Bakgrunden:\n[när ⚑ klickas] → [byt bakgrund till Startskärm]\n[när mellanslag trycks]\n[byt bakgrund till Spelbakgrund]\n[skicka meddelandet Starta spelet]\n\nPepparkakorna: byt [när ⚑ klickas] mot\n[när jag tar emot Starta spelet]\n(+ [göm] vid flagga, [visa] vid start)"}]},
-  {datum:"2026-12-05", vimeo:"", titel:"Game over-skärmen",
-   uppgift:"Bygg en game over-skärm som visar spelarens poäng när liven tar slut.",
-   klart:"Förlora med flit — snygg slutskärm med poäng, inget fortsätter falla bakom.",
-   prata:"Startskärm → spel → game over. En början, en mitt och ett slut — precis som en berättelse.",
-   kod:[{rubrik:"Dagens block", kod:"Tomten: byt [stoppa alla] mot\n[skicka meddelandet Spelet slut]\n\nBakgrunden:\n[när jag tar emot Spelet slut]\n[byt bakgrund till Game Over]\n\nPepparkakorna:\n[när jag tar emot Spelet slut]\n[göm]  [stoppa mina skript]"}]},
-  {datum:"2026-12-05", vimeo:"", titel:"Snöfall och stämning",
-   uppgift:"Lägg in snöfall med klon-receptet nedan, och minst en egen stämningsdetalj (tomten säger \u201dMums!\u201d vid fångst?).",
-   klart:"Det snöar över spelet — och spelet har fått något personligt.",
-   prata:"Jämför med hur spelet såg ut i lucka 5. Vad har hänt? Vilken detalj gör mest för känslan?",
-   kod:[{rubrik:"Snöfallsreceptet (ny snöflinge-sprite)", kod:"[när ⚑ klickas]\n[göm]\n[för alltid]\n   [skapa klon av mig själv]\n   [vänta 0.3 sek]\n\n[när jag startar som klon]\n[visa]\n[gå till x: (slumptal -240 till 240)  y: 180]\n[ställ storlek till (slumptal 20 till 60) %]\n[glid (slumptal 2 till 5) sek till x: (x-position)  y: -180]\n[ta bort denna klon]"}]},
-  {datum:"2026-12-05", vimeo:"", titel:"Speltest två och två",
-   uppgift:"Byt plats med en kompis och spela varandras spel i tre minuter. Feedbackformeln: EN sak som var bra + EN sak som var svår. Gör sedan minst en förbättring i ditt eget spel.",
-   klart:"Barnet kan berätta vad hen ändrade och varför.",
-   prata:"Hur kändes det att se någon annan spela ditt spel? Gjorde de något du inte väntat dig?"},
-  {datum:"2026-12-05", vimeo:"", titel:"Spelmässa! 🎄",
-   uppgift:"Håll spelmässa: halva gruppen står vid sina spel, andra halvan går runt och spelar — byt efter tio minuter. Spela minst tre kompisars spel och säg något du gillade vid varje. Diplom till alla!",
-   klart:"Alla spel har blivit spelade av någon annan än sin skapare. Dela ut diplomen!",
-   prata:"Ni har designat, programmerat, testat och släppt ett spel — hela kedjan en riktig spelstudio går igenom. Vilket spel härnäst?"}
+   uppgift:"Gå till scratch.mit.edu → Skapa. Titta runt: scenen, blocken och sprajtlistan. Ta sedan bort katten och välj en pingvin ur sprajtbiblioteket. Spara och döp projektet: ”Mitt julspel + förnamn”.",
+   klart:"Katten är borta, en pingvin står på scenen och projektet är sparat med barnets namn.",
+   prata:"Vad är en sprajt? Vad är skillnaden mellan scenen och sprajtlistan?",
+   kod:[{rubrik:"Dagens verktyg", kod:"Sprajtlistan (nere till höger)\n  ✖ på katten = ta bort\n  🐱-knappen = välj ny sprajt\n\nHitta: Djur → Penguin\n\nIngen kod idag — idag lär vi känna verktyget."}]},
+
+  {datum:"2026-12-02", vimeo:"", titel:"Styr pingvinen ⭐",
+   uppgift:"Få pingvinen att gå åt alla fyra håll med piltangenterna. Bygg ett [för alltid]-block med fyra [om]-block inuti — ett för varje pil.",
+   klart:"Pingvinen lyder alla fyra pilarna, och fortsätter göra det så länge spelet är igång.",
+   prata:"x är i sidled, y är upp och ner. Vad gör minustecknet? Varför måste allt ligga inuti [för alltid]?",
+   kod:[{rubrik:"Dagens block", kod:"[när ⚑ klickas]\n[för alltid]\n   [om <tangent högerpil nedtryckt?> då]\n      [ändra x med 10]\n   [om <tangent vänsterpil nedtryckt?> då]\n      [ändra x med -10]\n   [om <tangent uppåtpil nedtryckt?> då]\n      [ändra y med 10]\n   [om <tangent nedåtpil nedtryckt?> då]\n      [ändra y med -10]\n\nVanligaste felet: om-blocken hamnar UTANFÖR\n[för alltid] — då funkar pilarna bara en gång."}]},
+
+  {datum:"2026-12-03", vimeo:"", titel:"Poängen Klappar ⭐",
+   uppgift:"Gå till Variabler → Skapa en variabel. Döp den till Klappar. Se till att den syns på scenen och att den nollställs varje gång gröna flaggan klickas.",
+   klart:"Rutan ”Klappar 0” syns uppe på scenen, och den står på 0 varje gång man startar om.",
+   prata:"En variabel är en låda som datorn kommer ihåg saker i. Varför måste den nollställas vid start — vad händer annars andra gången man spelar?",
+   kod:[{rubrik:"Dagens block", kod:"[när ⚑ klickas]\n[sätt Klappar till 0]\n\nLägg det HÖGST UPP i pingvinens skript,\nföre [för alltid]."}]},
+
+  {datum:"2026-12-04", vimeo:"", titel:"Julklappen flyttar sig",
+   uppgift:"Lägg till en julklapp ur sprajtbiblioteket. Bygg två block som hör ihop: ge en poäng och flytta julklappen till en slumpmässig position. Klicka på blocken för att testa — klappen ska hoppa och poängen ticka.",
+   klart:"Ett klick på blockhögen flyttar julklappen och ökar Klappar med 1.",
+   prata:"Varför slumpmässig position i stället för samma ställe varje gång? Hur skulle spelet kännas annars?",
+   kod:[{rubrik:"Dagens block (på julklappen)", kod:"[ändra Klappar med 1]\n[gå till slumpmässig position]\n\nIdag klickar vi på blocken själva för att testa.\nI morgon får spelet göra det åt oss!"}]},
+
+  {datum:"2026-12-07", vimeo:"", titel:"Träff! ⭐",
+   uppgift:"Nu ska julklappen reagera själv. Lägg gårdagens två block inuti ett [om rör vid pingvinen]-block, och lägg hela högen inuti [för alltid] under en grön flagga.",
+   klart:"Spring på julklappen med pingvinen — den hoppar iväg och poängen ökar. Utan att man rör den händer ingenting.",
+   prata:"Läs koden högt på svenska: ”För alltid: om du rör pingvinen — ge en poäng och hoppa till ett nytt ställe.” Vad betyder ”för alltid” egentligen?",
+   kod:[{rubrik:"Dagens block (på julklappen)", kod:"[när ⚑ klickas]\n[för alltid]\n   [om <rör vid pingvinen?> då]\n      [ändra Klappar med 1]\n      [gå till slumpmässig position]\n\nViktigt: poängen räknas bara HÄR, på julklappen.\nLägger man samma block på pingvinen också\nräknas varje träff två gånger."}]},
+
+  {datum:"2026-12-08", vimeo:"", titel:"Din egen röst",
+   uppgift:"Gå till fliken Ljud och spela in ett eget ljud med mikrofonen — ett ”Jippi!”, ett pling eller vad ni vill. Lägg sedan in ljudet så att det hörs varje gång pingvinen fångar en julklapp.",
+   klart:"Hörlurar på: barnets egen röst hörs vid varje fångst.",
+   prata:"Vad gör ljudet med känslan i spelet? Prova att spela utan ljud — hur mycket tråkigare blev det?",
+   kod:[{rubrik:"Dagens block (i om-blocket på julklappen)", kod:"[om <rör vid pingvinen?> då]\n   [ändra Klappar med 1]\n   [starta ljudet Mitt ljud]\n   [gå till slumpmässig position]\n\n[starta ljudet] låter spelet fortsätta direkt.\n[spela ljudet ... tills färdigt] pausar allt —\nprova båda och hör skillnaden!"}]},
+
+  {datum:"2026-12-09", vimeo:"", titel:"Pingvinen pratar",
+   uppgift:"Få pingvinen att säga något när den fångar en julklapp — ”Bra!”, ”Mums!” eller något eget. Texten ska försvinna av sig själv efter en sekund.",
+   klart:"En pratbubbla dyker upp vid fångst och försvinner sedan.",
+   prata:"Vad är skillnaden mellan [säg ”Hej”] och [säg ”Hej” i 1 sekunder]? Prova båda.",
+   kod:[{rubrik:"Dagens block (på pingvinen)", kod:"[när ⚑ klickas]\n[för alltid]\n   [om <rör vid julklappen?> då]\n      [säg ”Bra!” i 1 sekunder]\n\nHär ger vi INGEN poäng — det sköter julklappen.\nPingvinen bara reagerar."}]},
+
+  {datum:"2026-12-10", vimeo:"", titel:"Vinterbakgrunden",
+   uppgift:"Klicka på Scen längst ner till höger och välj en vinterbakgrund ur bakgrundsbiblioteket. Testa spelet — helt plötsligt ser det ut som ett riktigt spel.",
+   klart:"Spelet utspelar sig i ett vinterlandskap i stället för på vit bakgrund.",
+   prata:"Samma kod, helt ny känsla. Varför spelar bakgrunden så stor roll?",
+   kod:[{rubrik:"Dagens verktyg", kod:"Scen (längst ner till höger)\n  → Välj en bakgrund\n  → Vinter / Winter\n\nIngen ny kod idag — idag bygger vi världen."}]},
+
+  {datum:"2026-12-11", vimeo:"", titel:"Moln och detaljer",
+   uppgift:"Lägg till minst två sprajter som bara är utsmyckning — moln, granar, snögubbe. Placera dem så att de inte ligger i vägen för pingvinen, och testa att de inte påverkar spelet.",
+   klart:"Scenen har fått liv, och spelet fungerar precis som förut.",
+   prata:"Vissa sprajter har kod, andra bara syns. Vad är skillnaden på en sprajt som gör något och en som bara är fin?",
+   kod:[{rubrik:"Dagens verktyg", kod:"🐱-knappen → välj Clouds, Trees eller egna\n\nDra dem på plats med musen.\nIngen kod — men tänk efter:\nhamnar de bakom eller framför pingvinen?"}]},
+
+  {datum:"2026-12-14", vimeo:"", titel:"Rensa scenen",
+   uppgift:"Nu ska vinstbakgrunden förberedas. Gå till Bakgrunder på Scen, ta bort den tomma vita bakgrunden, och skapa en andra bakgrund som ser ut som en vinst — måla den eller välj en ur biblioteket.",
+   klart:"Scen har exakt två bakgrunder: spelbakgrunden och vinstbakgrunden. Ingen vit tom kvar.",
+   prata:"Varför är det bra att städa bort saker man inte använder? Vad skulle hända om den vita låg kvar?",
+   kod:[{rubrik:"Dagens verktyg", kod:"Scen → fliken Bakgrunder\n  Högerklicka på den vita → ta bort\n  Döp bakgrunderna: ”bakgrund” och ”vinst”\n\nNamnen behöver vi i morgon — skriv upp dem!"}]},
+
+  {datum:"2026-12-15", vimeo:"", titel:"Byt bakgrund med kod ⭐",
+   uppgift:"Få spelet att byta till vinstbakgrunden när man samlat tillräckligt många klappar. Sätt gränsen till 3 och testa — höj den sedan om det går för fort.",
+   klart:"Samla tre klappar → bakgrunden byts till vinstbakgrunden alldeles av sig själv.",
+   prata:"Nu jämför datorn ett tal med ett annat. Vad betyder [Klappar > 2]? Varför inte [Klappar = 3]?",
+   kod:[{rubrik:"Dagens block (på pingvinen, inuti för alltid)", kod:"[om <(Klappar) > (2)> då]\n   [växla bakgrund till vinst]\n   [säg ”Grattis, du klarade det!” i 2 sekunder]\n\nAnvänd STÖRRE ÄN, inte lika med.\nOm två klappar fångas i samma ögonblick\nhoppar poängen förbi — och då missas vinsten."}]},
+
+  {datum:"2026-12-16", vimeo:"", titel:"Klart! Spara och visa 🎄",
+   uppgift:"Sista finslipningen: se till att spelbakgrunden kommer tillbaka när gröna flaggan klickas, att julklappen göms vid vinst, och att spelet stannar när man vunnit. Spara projektet och visa det för någon annan.",
+   klart:"Spelet går att spela om och om igen utan att man behöver ladda om sidan — och det tar slut när man vunnit. Dela ut diplomen!",
+   prata:"Ni har byggt ett spel från tom skärm till färdig vinst. Vilken lucka var svårast? Vad vill ni bygga härnäst?",
+   kod:[{rubrik:"Dagens block", kod:"Scen vid start:\n[när ⚑ klickas]\n[växla bakgrund till bakgrund]\n\nJulklappen:\n[när bakgrunden växlar till vinst] → [göm]\n[när bakgrunden växlar till bakgrund] → [visa]\n\nPingvinen, sist i vinst-blocket:\n[stoppa alla]\n\nUtan [stoppa alla] startar vinsten om\nen gång i sekunden — för alltid!"}]}
 ];
 
 /* ================================================================ */
