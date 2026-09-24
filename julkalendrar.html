@@ -224,24 +224,12 @@
   .kop-steg{font-size:.82rem;color:#b9bde8;line-height:1.6;margin-top:12px;border-top:1px solid rgba(255,255,255,.15);padding-top:12px}
   .kop-steg b{color:var(--mint)}
 
-  /* ---------- Provlucka, läroplan, röster & FAQ ---------- */
+  /* ---------- Läroplan, röster & FAQ ---------- */
   .extra{margin:0 0 44px}
   .extra h2{
     font-size:clamp(1.4rem,3.5vw,1.9rem);text-align:center;margin-bottom:6px;
   }
   .extra .underrubrik{text-align:center;color:#cfd3f5;max-width:560px;margin:0 auto 24px;line-height:1.55}
-
-  .prova{
-    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
-    border-radius:var(--r);padding:26px;max-width:680px;margin:0 auto;text-align:center;
-  }
-  .prova .video-ram{
-    position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;
-    background:var(--navy-deep);margin-bottom:16px;
-  }
-  .prova .video-ram iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-  .prova p{color:#dfe2ff;font-size:.95rem;line-height:1.55}
-  .prova .paket-knapp{margin-top:12px}
 
   .lgr{
     max-width:680px;margin:0 auto;
@@ -371,22 +359,6 @@
       <span>Inga förkunskaper krävs av pedagoger</span>
       <span>Licens per skola/avdelning/bibliotek</span>
     </div>
-
-    <!-- ============ SEKTION: TESTA EN LUCKA GRATIS ============
-         Klistra in Vimeo-ID:t för provluckan i inställningarna
-         längst ner i filen (GRATISLUCKA). Tomt värde = knappen
-         "Mejla mig provluckan" visas i stället för videon. -->
-    <section class="extra" id="prova">
-      <h2>Testa en lucka gratis med klassen 🎁</h2>
-      <p class="underrubrik">Osäker på om det passar er grupp? Öppna lucka 1 ur Tomtens verkstad tillsammans med barnen — helt gratis. Då ser ni exakt hur en lucka fungerar innan ni bestämmer er.</p>
-      <div class="prova">
-        <div class="video-ram" id="prova-video" hidden>
-          <!-- Videon fylls i automatiskt från inställningarna nedan -->
-        </div>
-        <p id="prova-text">Varje lucka består av en kort video där jag visar dagens steg, en tydlig uppgift och en "klart-koll" för dig som pedagog. Barnen bygger — du behöver bara trycka på play.</p>
-        <a class="paket-knapp" id="prova-knapp" href="#">Mejla mig provluckan</a>
-      </div>
-    </section>
 
     <!-- ============ SEKTION: KOPPLING TILL LÄROPLANEN ============ -->
     <section class="extra" id="laroplan">
@@ -630,11 +602,6 @@
 // Mejlet som alla beställningar går till.
 const FAKTURAMEJL = "info@floatingcode.se";
 
-// Gratis provlucka: klistra in Vimeo-ID:t för lucka 1 (bara siffrorna,
-// t.ex. "123456789"). Tomt värde = en "Mejla mig provluckan"-knapp
-// visas i stället för videon.
-const GRATISLUCKA = "";
-
 // Kalendrarna, i den ordning de ska stå i beställningsmejlet.
 // Ändrar du ett pris här ändras det i mejlmallen — men kom ihåg att
 // priset ALSO står i HTML:en ovanför (kal-pris och prisrad).
@@ -648,23 +615,6 @@ const KALENDRAR = [
 const KOMMUNPRIS = "från 39 995 kr";
 
 /* ================================================================ */
-
-/* ---------- Gratis provlucka ---------- */
-const provaVideo = document.getElementById("prova-video");
-const provaKnapp = document.getElementById("prova-knapp");
-if (GRATISLUCKA){
-  provaVideo.hidden = false;
-  provaVideo.innerHTML = '<iframe src="https://player.vimeo.com/video/' + GRATISLUCKA +
-    '" allow="fullscreen; picture-in-picture" allowfullscreen title="Provlucka: Tomtens verkstad, lucka 1"></iframe>';
-  provaKnapp.style.display = "none";
-} else {
-  provaKnapp.href = "mailto:" + FAKTURAMEJL +
-    "?subject=" + encodeURIComponent("Skicka mig provluckan!") +
-    "&body=" + encodeURIComponent(
-      "Hej Floating Code!\n\nJag vill gärna testa lucka 1 ur Tomtens verkstad med min grupp.\n\n" +
-      "Skola/fritids/bibliotek: \nMin roll: \n\nHälsningar"
-    );
-}
 
 /* ---------- Vyväxling ---------- */
 function visaVy(id){
