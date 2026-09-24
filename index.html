@@ -811,6 +811,16 @@ markeraAktiv();
 ========================================================= */
 const HANDELSER = [
   {
+    datum: "2026-09-25",
+    titel: "Träffa oss på Bokmässan!",
+    emoji: "📚",
+    text: "I samarbete med Dataspelscentrum finns vi i Dataspelsbranschens monter A02:52 på fredag kl 12–13. Kom och testa spel som barn har byggt i Roblox Studio!",
+    lank: "https://bokmassan.se/programs/testa-spel-skapade-av-barn/",
+    lanktext: "Om vår programpunkt →",
+    lank2: "https://bokmassan.se/exhibitors/dataspelsbranschen-swedish-games-industry/?view=programs",
+    lanktext2: "Hela programmet i montern →"
+  },
+  {
     datum: "2026-10-03",
     titel: "Final i Floating Code Cup",
     emoji: "🏆",
@@ -857,6 +867,7 @@ const HANDELSER = [
         '<h3>' + h.titel + (h.emoji ? ' ' + h.emoji : '') + '</h3>' +
         '<p>' + h.text + '</p>' +
         (h.lank ? '<a href="' + h.lank + '">' + (h.lanktext || 'Läs mer →') + '</a>' : '') +
+        (h.lank2 ? '<br><a href="' + h.lank2 + '">' + (h.lanktext2 || 'Läs mer →') + '</a>' : '') +
       '</div>';
     lista.appendChild(el);
   });
