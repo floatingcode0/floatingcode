@@ -16,14 +16,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Floating Code Cup 2026 – Sveriges spelutvecklingstävling i Roblox för barn</title>
+<title>Floating Code Cup 2027 – Sveriges spelutvecklingstävling i Roblox för barn</title>
 <link rel="icon" type="image/png" href="logga.png">
-<meta property="og:title" content="Floating Code Cup 2026 – Sveriges spelutvecklingstävling i Roblox för barn 8–13 år">
-<meta property="og:description" content="Barn 8–13 år bygger egna spel i Roblox Studio på temat Framtid & teknik och tävlar hemifrån om att vinna Floating Code Cup – med final på Bricks and Games i Göteborg den 3 oktober 2026.">
+<meta property="og:title" content="Floating Code Cup 2027 – Sveriges spelutvecklingstävling i Roblox för barn 8–15 år">
+<meta property="og:description" content="Barn 8–15 år bygger egna spel i Roblox Studio och tävlar hemifrån om att vinna Floating Code Cup. Anmälan till 2027 är öppen – gratis att delta, oavsett var i Sverige du bor.">
 <meta property="og:image" content="https://floatingcode.se/logga.png">
 <meta property="og:url" content="https://floatingcode.se/floating-code-cup.html">
 <meta property="og:type" content="website">
-<meta name="description" content="Floating Code Cup är Sveriges spelutvecklingstävling i Roblox för barn 8–13 år, på temat Framtid & teknik. Du tävlar hemifrån – ingen behöver vara på plats. Final på Bricks and Games i Göteborg 3 oktober 2026, i samarbete med At Event. Bli sponsor och synliggör ert varumärke för teknikintresserade familjer.">
+<meta name="description" content="Floating Code Cup är Sveriges spelutvecklingstävling i Roblox för barn 8–15 år. Du tävlar hemifrån – ingen behöver vara på plats. Första upplagan 2026 samlade över 100 deltagare, med final på Bricks and Games i Göteborg. Anmälan till 2027 är öppen. Bli sponsor och synliggör ert varumärke för teknikintresserade familjer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -300,10 +300,38 @@ header .wrap{max-width:1220px}
   box-shadow:0 8px 22px rgba(20,31,59,.25);white-space:nowrap;
 }
 
-/* EFTER CUPEN – galleri (bortkommenterad tills cupen är klar) */
-.galleri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem}
-@media(max-width:760px){.galleri-grid{grid-template-columns:1fr 1fr}}
-.galleri-grid img{border-radius:16px;box-shadow:var(--shadow);width:100%;aspect-ratio:4/3;object-fit:cover}
+/* SÅ BLEV 2026 – vinnare + galleri */
+.efter{background:linear-gradient(180deg,var(--bg) 0%,var(--lavender-soft) 100%)}
+.vinnare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
+@media(max-width:760px){.vinnare-grid{grid-template-columns:1fr}}
+.vinnare-card{
+  background:var(--card);border-radius:var(--radius);padding:1.5rem 1.4rem;
+  box-shadow:var(--shadow);border-top:6px solid var(--gold);text-align:center;
+}
+.vinnare-card.silver{border-top-color:#B9C3D6}
+.vinnare-card.brons{border-top-color:#D8A277}
+.vinnare-plats{
+  font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--mint-strong);
+  display:block;margin-bottom:.5rem;font-weight:500;
+}
+.vinnare-card h3{margin-bottom:.15rem}
+.vinnare-card p{margin:0;font-size:.95rem;color:var(--ink);opacity:.8}
+.vinnare-card{display:flex;flex-direction:column;justify-content:center}
+.galleri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.2rem}
+@media(max-width:760px){.galleri-grid{grid-template-columns:1fr 1fr;gap:.7rem}}
+.galleri-grid figure{margin:0}
+.galleri-grid img{
+  border-radius:16px;box-shadow:var(--shadow);width:100%;
+  aspect-ratio:3/4;object-fit:cover;display:block;
+}
+/* bild i sponsorsektionen */
+.sponsor-bild{
+  margin-top:1.8rem;border-radius:var(--radius);overflow:hidden;
+  display:grid;grid-template-columns:.9fr 1.1fr;gap:1.6rem;align-items:center;
+}
+@media(max-width:760px){.sponsor-bild{grid-template-columns:1fr}}
+.sponsor-bild img{border-radius:18px;width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.sponsor-bild p{color:#C6D2EC;margin:0;font-size:.97rem}
 .video-ram{
   margin-top:1.8rem;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
   aspect-ratio:16/9;background:var(--navy-deep);
@@ -360,24 +388,24 @@ footer .flyt{
   <div class="float-shape fs2"></div>
   <div class="wrap hero-grid">
     <div>
-      <span class="hero-badge">🏆 FÖRSTA UPPLAGAN · 2026 · TEMA: FRAMTID &amp; TEKNIK</span>
+      <span class="hero-badge">🏆 ANMÄLAN ÖPPEN · CUP 2027 · 8–15 ÅR</span>
       <h1>Floating Code Cup – Sveriges spelutvecklingstävling <span class="hl-mint">för barn</span></h1>
-      <p class="lead">Barn <strong>8–13 år</strong> från hela Sverige bygger sina egna spel i <strong>Roblox Studio</strong> på temat <strong>Framtid &amp; teknik</strong> – och tävlar om att vinna Floating Code Cup. Finalen avgörs live på mässan <strong>Bricks and Games i Göteborg den 3 oktober 2026</strong>. <strong class="hl-mint">Du tävlar hemifrån – och kan inte du vara på plats på finalen går det precis lika bra att vara med ändå!</strong></p>
-      <p class="oppen-notis"><strong>🎉 Anmälan till Floating Code Cup 2027 är öppen!</strong> Nu för barn <strong>8–15 år</strong> i hela Sverige. Anmälan till 2026 års cup är stängd – finalen avgörs den 3 oktober och livesänds på TikTok @floatingcode.</p>
+      <p class="lead">Barn <strong>8–15 år</strong> från hela Sverige bygger sina egna spel i <strong>Roblox Studio</strong> – och tävlar om att vinna Floating Code Cup. <strong class="hl-mint">Du tävlar hemifrån, var du än bor i landet, och det kostar ingenting att vara med.</strong> Årets tema släpps i januari 2027.</p>
+      <p class="oppen-notis"><strong>🎉 Anmälan till Floating Code Cup 2027 är öppen!</strong> Första upplagan 2026 samlade över 100 barn från hela Sverige – <a href="#efter-cupen" style="color:var(--navy);font-weight:700">se hur det blev ↓</a></p>
       <a class="btn btn-primary" href="https://forms.gle/tF7uAgk39r8CFeTx8" target="_blank" rel="noopener">Anmäl ditt barn till 2027 →</a>
       <a class="btn btn-ghost" href="#sponsor">För företag &amp; sponsorer</a>
     </div>
     <div class="cup-card" aria-hidden="false">
       <span class="cup-emoji">🏆</span>
-      <h3>Floating Code Cup 2026</h3>
-      <span class="cup-datum">FINAL · 3 OKTOBER · GÖTEBORG</span>
+      <h3>Floating Code Cup 2027</h3>
+      <span class="cup-datum">ANMÄLAN ÖPPEN · GRATIS ATT DELTA</span>
       <ul class="cup-fakta">
-        <li>För barn 8–13 år i hela Sverige</li>
-        <li>Tema: Framtid &amp; teknik</li>
+        <li>För barn 8–15 år i hela Sverige</li>
         <li>Bygg ditt eget spel i Roblox Studio</li>
+        <li>Tema släpps i januari 2027</li>
         <li>Tävla hemifrån – ingen måste vara på plats</li>
-        <li>Final på mässan Bricks and Games</li>
-        <li>Livesänds på TikTok @floatingcode</li>
+        <li>Final live på scen framför publik</li>
+        <li>Följ allt på TikTok @floatingcode</li>
       </ul>
     </div>
   </div>
@@ -404,11 +432,11 @@ footer .flyt{
       <div class="steg-card gold">
         <div class="steg-num">3.</div>
         <h3>Finalen 🏆</h3>
-        <p>De bästa bidragen går till final på Bricks and Games i Göteborg den 3 oktober – där vinnaren av Floating Code Cup 2026 koras! Finalen livesänds på TikTok så alla kan följa med.</p>
+        <p>De bästa bidragen går till final, där vinnaren av Floating Code Cup koras live på scen – precis som 2026, då finalen avgjordes på Bricks and Games i Göteborg. Finalen livesänds på TikTok så alla kan följa med.</p>
       </div>
     </div>
     <div class="distans-ruta">
-      <p><strong>📍 Kan ni inte vara på plats i Göteborg? Ingen fara!</strong> Du tävlar med ditt spel hemifrån och behöver inte vara fysiskt på mässan – varken för att delta eller för att gå till final. Följ finalen live på TikTok var du än är i landet!</p>
+      <p><strong>📍 Kan ni inte vara på plats på finalen? Ingen fara!</strong> Du tävlar med ditt spel hemifrån och behöver inte vara fysiskt på plats – varken för att delta eller för att gå till final. Följ finalen live på TikTok var du än är i landet!</p>
     </div>
     <p style="text-align:center;margin-top:1.8rem"><a class="btn btn-mint" href="https://forms.gle/tF7uAgk39r8CFeTx8" target="_blank" rel="noopener">Anmäl ditt barn till Cupen 2027 →</a></p>
   </div>
@@ -445,16 +473,16 @@ footer .flyt{
     <p style="max-width:36rem">Floating Code Cup arrangeras av Floating Code, som sedan starten 2024 nått tiotusentals barn med spelutveckling och kodning – och genomförs i samarbete med At Event, arrangören bakom mässan Bricks and Games.</p>
     <div class="stat-grid">
       <div class="stat-card">
-        <div class="stat-num">84 000</div>
-        <small>visningar på Floating Codes YouTube</small>
+        <div class="stat-num">100+</div>
+        <small>barn tävlade i första upplagan 2026</small>
       </div>
       <div class="stat-card lav">
-        <div class="stat-num">8–13 år</div>
+        <div class="stat-num">8–15 år</div>
         <small>målgrupp: barn &amp; deras familjer</small>
       </div>
       <div class="stat-card gold">
-        <div class="stat-num">3 okt</div>
-        <small>final på Bricks and Games, Göteborg</small>
+        <div class="stat-num">84 000</div>
+        <small>visningar på Floating Codes YouTube</small>
       </div>
     </div>
   </div>
@@ -478,7 +506,7 @@ footer .flyt{
   <div class="wrap">
     <span class="eyebrow">för företag &amp; sponsorer</span>
     <h2>Var med och lyft Sveriges unga spelutvecklare 🚀</h2>
-    <p style="max-width:38rem;color:#C6D2EC">Floating Code Cup arrangeras nu för första gången – och du kan vara med från start. Som sponsor förknippas ert varumärke med teknik, kreativitet och barns framtidstro, inför en engagerad publik av familjer, skolor och teknikintresserade.</p>
+    <p style="max-width:38rem;color:#C6D2EC">Första upplagan är genomförd: över 100 barn tävlade och finalen avgjordes live på stora scenen på Bricks and Games i Göteborg. Nu växer cupen – och inför 2027 söker jag partner som vill vara med från start. Som sponsor förknippas ert varumärke med teknik, kreativitet och barns framtidstro, inför en engagerad publik av familjer, skolor och teknikintresserade.</p>
     <div class="sponsor-grid">
       <div class="sponsor-card">
         <div class="aud-emoji">📣</div>
@@ -496,6 +524,10 @@ footer .flyt{
         <p>Finalen livesänds på @floatingcode. Sponsorer lyfts fram i sändningen och i innehållet som lever kvar långt efter mässdagen.</p>
       </div>
     </div>
+    <div class="sponsor-bild">
+      <img src="cup/cup-sponsor.jpg" alt="Barn testar finalisternas spel i Floating Codes monter, med partnerskylten på väggen" loading="lazy">
+      <p><strong style="color:#fff">Så syns ni.</strong> I montern på Bricks and Games spelade besökarna finalisternas spel på datorer som våra utrustningspartner lånade ut – med deras logotyper på väggen bredvid. Samma sak gäller scenen, sändningen och allt material kring cupen: era varumärken finns där barnen och familjerna är.</p>
+    </div>
     <div class="sponsor-cta">
       <p><strong>Vill ert företag stå bakom nästa generations skapare inför 2027?</strong> Nu planeras Floating Code Cup 2027 – hör av dig så berättar jag mer om sponsorpaketen och hur vi kan skräddarsy ett samarbete som passar er.</p>
       <a class="btn btn-gold" href="mailto:info@floatingcode.se?subject=Sponsorskap%20Floating%20Code%20Cup%202027">Bli sponsor 2027 – mejla mig →</a>
@@ -504,34 +536,57 @@ footer .flyt{
 </section>
 <!-- ================= SEKTION SLUTAR: SPONSORER ================= -->
 
-<!-- ================= SEKTION BÖRJAR: EFTER CUPEN – AKTIVERA SENARE
-     När cupen är genomförd (efter 3 oktober):
-     1. Ta bort raden "AKTIVERA: ta bort denna rad..." nedan
-        och raden "...samt denna rad" längst ner i sektionen.
-     2. Lägg dina bilder i mappen "cup" (skapa mappen) och döp
-        dem cup-1.jpg, cup-2.jpg osv – eller byt filnamnen nedan.
-     3. Byt ut VIMEO-ID i iframe-länken mot ID:t för
-        TikTok-livens inspelning (uppladdad på Vimeo som vanligt).
-     Tips: uppdatera gärna även texten i hero högst upp till
-     "Tack alla som var med 2026 – vi ses nästa år!" -->
-<!-- AKTIVERA: ta bort denna rad för att visa sektionen...
-<section id="efter-cupen">
+<!-- ================= SEKTION BÖRJAR: SÅ BLEV 2026 =================
+     Bilderna ligger i mappen "cup" (cup-1.jpg … cup-6.jpg).
+     Byt bild: byt filnamn i src nedan. Ta bort en bild: radera
+     hela dess <figure>-block. Vill du lägga till video från
+     finalen: avkommentera video-blocket längst ner i sektionen
+     och byt VIMEO-ID mot ditt eget.
+     OBS vinnarnas förnamn står i korten nedan – ta bort dem om
+     du hellre bara vill visa spelens namn.
+================================================================= -->
+<section id="efter-cupen" class="efter">
   <div class="wrap">
     <span class="eyebrow">floating code cup 2026</span>
-    <h2>Så var finalen! 🎉</h2>
-    <p style="max-width:36rem">Den 3 oktober 2026 avgjordes första upplagan av Floating Code Cup på Bricks and Games i Göteborg. Här är bilderna och livesändningen från finalen!</p>
-    <div class="galleri-grid">
-      <img src="cup/cup-1.jpg" alt="Floating Code Cup – finalen på Bricks and Games">
-      <img src="cup/cup-2.jpg" alt="Floating Code Cup – deltagare visar sina spel">
-      <img src="cup/cup-3.jpg" alt="Floating Code Cup – prisutdelning">
+    <h2>Så blev första Floating Code Cup 🎉</h2>
+    <p style="max-width:38rem">Över 100 barn från hela Sverige byggde egna spel på temat <strong>Framtid &amp; teknik</strong>. Den 3 oktober 2026 avgjordes finalen live på stora scenen på Bricks and Games i Göteborg – och i montern fick besökarna spela finalisternas spel själva.</p>
+
+    <div class="vinnare-grid">
+      <div class="vinnare-card guld">
+        <div class="vinnare-plats">🥇 Första plats</div>
+        <h3>Mayday</h3>
+        <p>av Bob</p>
+      </div>
+      <div class="vinnare-card silver">
+        <div class="vinnare-plats">🥈 Andra plats</div>
+        <h3>Kai Cenats rum</h3>
+        <p>av Amir</p>
+      </div>
+      <div class="vinnare-card brons">
+        <div class="vinnare-plats">🥉 Tredje plats</div>
+        <h3>I fix it</h3>
+      </div>
     </div>
+
+    <div class="galleri-grid">
+      <figure><img src="cup/cup-1.jpg" alt="Full aktivitet i Floating Codes monter på Bricks and Games" loading="lazy"></figure>
+      <figure><img src="cup/cup-2.jpg" alt="Vinnarna i Floating Code Cup 2026 med sina pokaler" loading="lazy"></figure>
+      <figure><img src="cup/cup-3.jpg" alt="Floating Codes monter på Bricks and Games i Göteborg" loading="lazy"></figure>
+      <figure><img src="cup/cup-4.jpg" alt="Barn spelar finalisternas spel i montern" loading="lazy"></figure>
+      <figure><img src="cup/cup-5.jpg" alt="Hjälp på plats med Roblox Studio i montern" loading="lazy"></figure>
+      <figure><img src="cup/cup-6.jpg" alt="Floating Code på plats på mässan Bricks and Games" loading="lazy"></figure>
+    </div>
+
+    <!-- VIDEO – ta bort kommentarstecknen och byt VIMEO-ID för att visa filmen
     <div class="video-ram">
       <iframe src="https://player.vimeo.com/video/VIMEO-ID" title="Floating Code Cup 2026 – finalen" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
+    -->
+
+    <p style="text-align:center;margin-top:2.2rem"><a class="btn btn-mint" href="https://forms.gle/tF7uAgk39r8CFeTx8" target="_blank" rel="noopener">Var med 2027 – anmäl ditt barn →</a></p>
   </div>
 </section>
-...samt denna rad -->
-<!-- ================= SEKTION SLUTAR: EFTER CUPEN ================= -->
+<!-- ================= SEKTION SLUTAR: SÅ BLEV 2026 ================= -->
 
 <!-- ================= SEKTION BÖRJAR: ANMÄLAN-BANNER ================= -->
 <section class="anmalan">
