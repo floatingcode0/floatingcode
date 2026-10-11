@@ -24,7 +24,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Kurs: Introduktion till Roblox Studio – Floating Code</title>
+<title>Kurs: Introduktion till Roblox Studio | Floating Code</title>
 <link rel="icon" type="image/png" href="logga.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,7 +115,7 @@ footer .flyt{
   <div style="background:#fff;border-radius:22px;box-shadow:0 8px 28px rgba(29,42,77,.3);padding:36px 30px;max-width:420px;width:100%;text-align:center">
     <div style="font-size:2.4rem">🎮</div>
     <h1 style="font-family:'Fredoka',sans-serif;color:#1D2A4D;font-size:1.4rem;margin:10px 0 8px">Introduktion till Roblox Studio</h1>
-    <p style="font-size:.97rem;color:#2A3757;margin-bottom:16px">Skriv in kurskoden du fick vid köpet — den står på bekräftelsesidan och i ditt mejl.</p>
+    <p style="font-size:.97rem;color:#2A3757;margin-bottom:16px">Skriv in kurskoden du fick vid köpet. Den står på bekräftelsesidan och i ditt mejl.</p>
     <input type="text" id="kurskodfalt" placeholder="KURSKOD" autocomplete="off" aria-label="Kurskod" style="width:100%;padding:12px 14px;border:2px solid #DFF5EF;border-radius:12px;font-size:1.05rem;text-align:center;font-family:'JetBrains Mono',monospace;text-transform:uppercase">
     <button id="kurskodknapp" style="margin-top:12px;width:100%;padding:13px;border:none;border-radius:12px;background:#2FA98F;color:#fff;font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;cursor:pointer">Öppna kursen</button>
     <div id="kurskodfel" aria-live="polite" style="color:#c0392b;font-size:.9rem;margin-top:10px;min-height:1.2em"></div>
@@ -138,7 +138,7 @@ footer .flyt{
   <div class="wrap">
     <span class="eyebrow">din kurs</span>
     <h1>Introduktion till Roblox Studio 🎉</h1>
-    <p>Välkommen! Spara den här sidan som bokmärke – du kan komma tillbaka och se filmerna hur många gånger du vill. Bygg i din egen takt och ha kul!</p>
+    <p>Välkommen! Spara den här sidan som bokmärke, så kan du komma tillbaka och se filmerna hur många gånger du vill. Bygg i din egen takt och ha kul!</p>
   </div>
 </section>
 
@@ -194,7 +194,7 @@ const KURSKOD = "ROBLOX5173";
   function prova(){
     const v = document.getElementById("kurskodfalt").value.trim().toUpperCase();
     if (v === KURSKOD.toUpperCase()){ grind.remove(); }
-    else { document.getElementById("kurskodfel").textContent = "Fel kod — kolla bekräftelsemejlet från Floating Code."; }
+    else { document.getElementById("kurskodfel").textContent = "Fel kod. Kolla bekräftelsemejlet från Floating Code."; }
   }
   document.getElementById("kurskodknapp").addEventListener("click", prova);
   document.getElementById("kurskodfalt").addEventListener("keydown", e => { if(e.key==="Enter") prova(); });

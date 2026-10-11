@@ -21,14 +21,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Floating Code – Kreativt kodande och digital kompetens</title>
+<title>Floating Code | Kreativt kodande och digital kompetens</title>
 <link rel="icon" type="image/png" href="logga.png">
-<meta property="og:title" content="Floating Code – Kreativt kodande och digital kompetens">
+<meta property="og:title" content="Floating Code | Kreativt kodande och digital kompetens">
 <meta property="og:description" content="Kurser i Roblox Studio, Scratch och ScratchJr för barn, julkalendrar i programmering för skolan samt workshops och föreläsningar.">
 <meta property="og:image" content="https://floatingcode.se/logga.png">
 <meta property="og:url" content="https://floatingcode.se">
 <meta property="og:type" content="website">
-<meta name="description" content="Floating Code erbjuder kurser i Roblox Studio (10–15 år), Scratch (7–9 år) och ScratchJr (6–7 år) samt workshops och föreläsningar. Fysiska kurser för företag och skolor, digitala kurser för föräldrar.">
+<meta name="description" content="Floating Code erbjuder kurser i Roblox Studio (10–15 år), Scratch (7–9 år) och ScratchJr (6–7 år) samt julkalendrar för skolan, workshops, föreläsningar och tävlingen Floating Code Cup. Fysiska kurser för företag och skolor, digitala kurser för föräldrar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -184,6 +184,86 @@ header .wrap{max-width:1220px}
   .btn:hover{transform:none}
 }
 
+/* SÄSONGSBANNER (julkalendrar) */
+.sasong{
+  background:linear-gradient(90deg,var(--navy) 0%,var(--navy-deep) 100%);
+  color:#fff;text-align:center;font-size:.95rem;font-weight:700;
+  padding:.6rem 22px;
+}
+.sasong a{color:var(--mint);font-weight:800;text-decoration:none;white-space:nowrap}
+.sasong a:hover{text-decoration:underline}
+
+/* HERO-BILD */
+.hero-bild{position:relative;transform:rotate(1.5deg)}
+.hero-bild img{
+  width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center 72%;
+  border-radius:22px;box-shadow:0 20px 50px rgba(29,42,77,.3);display:block;
+}
+.hero-bild figcaption{
+  position:absolute;left:14px;bottom:14px;right:14px;
+  background:rgba(20,31,59,.82);color:#fff;border-radius:14px;
+  padding:.55rem .9rem;font-size:.85rem;font-weight:700;backdrop-filter:blur(6px);
+}
+.hero-bild figcaption span{color:var(--mint)}
+.hero-bild .codewin{
+  position:absolute;top:-22px;left:-34px;width:min(270px,70%);font-size:.72rem;
+  transform:rotate(-4deg);
+}
+.hero-bild .codewin pre{padding:.8rem .9rem 1rem}
+@media(max-width:820px){
+  .hero-bild{max-width:420px;margin:1.4rem auto 0}
+  .hero-bild img{aspect-ratio:1/1;object-position:center 75%}
+  .hero-bild .codewin{display:none}
+}
+.hero-bevis{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;margin-top:1.8rem;
+  font-size:.9rem;color:#56627F;
+}
+.hero-bevis strong{color:var(--navy);font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem}
+
+/* ÅLDERSGUIDE */
+.alder{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:1.4rem 1.6rem;margin-top:1.8rem;
+}
+.alder h3{font-size:1.05rem;margin-bottom:.9rem}
+.alder-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem}
+@media(max-width:820px){.alder-grid{grid-template-columns:1fr 1fr}}
+.alder-grid a{
+  display:block;text-decoration:none;color:var(--ink);border-radius:16px;
+  padding:.85rem 1rem;background:var(--bg);border:2px solid transparent;
+  transition:border-color .2s;
+}
+.alder-grid a:hover{border-color:var(--mint)}
+.alder-grid b{display:block;font-family:'Fredoka',sans-serif;font-size:1.25rem;color:var(--navy);font-weight:600}
+.alder-grid span{font-size:.88rem}
+
+/* SAMARBETEN */
+.samarbeten{padding:34px 0;background:#fff;border-top:1px solid rgba(29,42,77,.06);border-bottom:1px solid rgba(29,42,77,.06)}
+.samarbeten p.rubrik{
+  text-align:center;font-family:'JetBrains Mono',monospace;font-size:.78rem;
+  color:#6B7695;margin-bottom:.9rem;letter-spacing:.04em;
+}
+.samarbeten ul{
+  list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem 1.8rem;
+}
+.samarbeten li{font-family:'Fredoka',sans-serif;font-weight:600;color:var(--navy);font-size:1.05rem}
+
+/* CUP-KORT PÅ STARTSIDAN */
+.cup-start{
+  margin-top:2.4rem;border-radius:var(--radius);overflow:hidden;
+  background:linear-gradient(135deg,var(--lavender-strong) 0%,var(--navy) 100%);
+  color:#EFE9FB;display:grid;grid-template-columns:1.2fr .8fr;
+  box-shadow:0 14px 40px rgba(29,42,77,.3);
+}
+@media(max-width:760px){.cup-start{grid-template-columns:1fr}}
+.cup-start-text{padding:2rem 1.9rem}
+.cup-start h3{color:#fff;font-size:1.45rem;margin-bottom:.6rem}
+.cup-start p{color:#E2DAF7}
+.cup-start .btn-primary{background:var(--mint-strong);box-shadow:0 6px 18px rgba(47,169,143,.35)}
+.cup-start .btn-ghost{background:transparent;color:#fff;border-color:#fff}
+.cup-start img{width:100%;height:100%;min-height:240px;object-fit:cover;display:block}
+
 /* AUDIENCE CARDS */
 .aud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.2rem}
 @media(max-width:820px){.aud-grid{grid-template-columns:1fr}}
@@ -191,11 +271,22 @@ header .wrap{max-width:1220px}
   background:var(--card);border-radius:var(--radius);padding:1.8rem 1.6rem;
   box-shadow:var(--shadow);
   border-top:6px solid var(--mint);
-  display:flex;flex-direction:column;
+  display:flex;flex-direction:column;overflow:hidden;
 }
 .aud-card.lav{border-top-color:var(--lavender)}
 .aud-card.navy{border-top-color:var(--navy)}
 .aud-emoji{font-size:1.9rem;margin-bottom:.6rem}
+.aud-bild{
+  margin:-1.8rem -1.6rem 1.2rem;width:calc(100% + 3.2rem);max-width:none;
+  height:190px;object-fit:cover;display:block;
+}
+.lect-bild{margin:1.8rem 0 0;position:relative}
+.lect-bild img{width:100%;height:auto;aspect-ratio:16/8;object-fit:cover;border-radius:var(--radius);display:block}
+.lect-bild figcaption{
+  position:absolute;left:14px;bottom:14px;background:rgba(20,31,59,.82);color:#fff;
+  border-radius:12px;padding:.45rem .85rem;font-size:.85rem;font-weight:700;
+}
+@media(max-width:600px){.lect-bild img{aspect-ratio:4/3}}
 .aud-card h3{margin-bottom:.5rem}
 .aud-card ul{list-style:none;margin:.4rem 0 1rem}
 .aud-card li{
@@ -404,6 +495,13 @@ footer .flyt{
 </head>
 <body>
 
+<!-- SÄSONGSBANNER: syns automatiskt fram till datumet i
+     data-till (ÅÅÅÅ-MM-DD) och försvinner sedan av sig själv.
+     Byt text/länk/datum inför nästa säsong. -->
+<div class="sasong" id="sasong" data-till="2026-12-10">
+  🎄 Julkalendrar i programmering 2026. Licensen gäller hela skolan eller fritids. <a href="julkalendrar.html">Se kalendrarna &amp; priser →</a>
+</div>
+
 <header>
   <div class="wrap nav">
     <!-- Logotypen: syns alltid högst upp eftersom menyn är "fastklistrad".
@@ -441,11 +539,21 @@ footer .flyt{
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow">kreativt kodande och digital kompetens</span>
-      <h1>Teknik ska vara <span class="hl-mint">lekfullt</span> – i alla åldrar</h1>
-      <p class="lead"><strong>Barn</strong> får bygga egna spel – i <strong>Roblox Studio</strong> (10–15 år), <strong>Scratch</strong> (7–9 år) och <strong>ScratchJr</strong> (6–7 år) – hemma, i skolan eller på lov och event.<br>Alltid med nyfikenhet, värme och mycket skratt.</p>
+      <h1>Teknik ska vara <span class="hl-mint">lekfullt</span> för alla barn</h1>
+      <p class="lead"><strong>Barn</strong> får bygga egna spel i <strong>Roblox Studio</strong> (10–15 år), <strong>Scratch</strong> (7–9 år) och <strong>ScratchJr</strong> (6–7 år), hemma, i skolan eller på lov och event.<br>Alltid med nyfikenhet, värme och mycket skratt.</p>
       <a class="btn btn-primary" href="#tjanster">Se vad jag erbjuder</a>
       <a class="btn btn-ghost" href="#kontakt">Kontakta mig</a>
+      <!-- Siffrorna under knapparna – uppdatera när nya milstolpar dyker upp -->
+      <div class="hero-bevis">
+        <div><strong>100+</strong> barn tävlade i Cupen 2026</div>
+        <div><strong>475 000+</strong> visningar på YouTube &amp; TikTok</div>
+        <div><strong>Kulan</strong> · Stockholms stad</div>
+      </div>
     </div>
+    <!-- HERO-BILDEN: byt bild genom att ändra src nedan -->
+    <figure class="hero-bild">
+      <img src="cup/cup-3.jpg" alt="Angelica vinkar i Floating Codes monter på Bricks and Games i Göteborg" width="1400" height="1866">
+      <figcaption>Floating Code på <span>Bricks and Games</span>, Göteborg 2026</figcaption>
     <div class="codewin" aria-hidden="true">
       <div class="codewin-bar"><span></span><span></span><span></span></div>
       <pre><span class="c-comment">-- Mitt första Roblox-skript!</span>
@@ -455,8 +563,29 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
   <span class="c-fn">print</span>(<span class="c-str">"Hej! Nu kodar vi! 🌊"</span>)
 <span class="c-key">end</span>)<span class="cursor"></span></pre>
     </div>
+    </figure>
   </div>
 </section>
+
+<!-- ================= SEKTION BÖRJAR: SAMARBETEN =================
+     Namnen på uppdragsgivare och samarbetspartner. Lägg till
+     en ny <li>Namn</li> eller radera en rad. -->
+<section class="samarbeten" aria-label="Uppdrag och samarbeten">
+  <div class="wrap">
+    <p class="rubrik">uppdrag och samarbeten</p>
+    <ul>
+      <li>Stockholms stad · Alviks bibliotek</li>
+      <li>Kulan</li>
+      <li>Stockholmshem</li>
+      <li>Skill · Code Summer Camp</li>
+      <li>At Event · Bricks and Games</li>
+      <li>Dataspelscentrum</li>
+      <li>Code4Value</li>
+      <li>Frippo</li>
+    </ul>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: SAMARBETEN ================= -->
 
 <!-- ================= SEKTION SLUTAR: STARTSIDA/HERO ================= -->
 
@@ -468,24 +597,24 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
   <div class="wrap">
     <span class="eyebrow">tjänster</span>
     <h2>Vem är du?</h2>
-    <p style="max-width:36rem">Jag erbjuder olika format beroende på vem du är – välj det som passar dig, så berättar jag mer.</p>
+    <p style="max-width:36rem">Jag erbjuder olika format beroende på vem du är. Välj det som passar dig, så berättar jag mer.</p>
 
     <div class="aud-grid">
       <div class="aud-card">
-        <div class="aud-emoji">🏢</div>
+        <img class="aud-bild" src="foto/angelica-monter.jpg" alt="Angelica berättar om Floating Code i montern på Bricks and Games" loading="lazy" style="object-position:center 28%">
         <span class="tag">fysiska kurser</span>
         <h3>För företag</h3>
-        <p>Ge medarbetarnas barn en förmån utöver det vanliga! Jag håller fysiska kurser i Roblox Studio (10–15 år) och Scratch (7–9 år) – på plats hos er eller i anslutning till arbetsplatsen.</p>
+        <p>Ge medarbetarnas barn en förmån utöver det vanliga! Jag håller fysiska kurser i Roblox Studio (10–15 år) och Scratch (7–9 år), på plats hos er eller i anslutning till arbetsplatsen.</p>
         <ul>
           <li>Fysiska kurser i spelutveckling för barn</li>
-          <li>Lovkurser – aktiviteter som gör skollovet kreativt</li>
+          <li>Lovkurser som gör skollovet kreativt</li>
           <li>Uppskattad familjeförmån inom employer branding</li>
         </ul>
         <a class="aud-link" href="#kontakt">Hör av dig för upplägg och offert →</a>
       </div>
 
       <div class="aud-card lav">
-        <div class="aud-emoji">👨‍👩‍👧</div>
+        <img class="aud-bild" src="foto/roblox-studio.jpg" alt="Ett barn bygger ett eget spel i Roblox Studio" loading="lazy">
         <span class="tag">digitala kurser</span>
         <h3>För föräldrar</h3>
         <p>Har du ett barn som älskar spel? Här får hen skapa egna i stället för att bara spela andras. Digitala kurser som passar hemifrån, i barnets egen takt.</p>
@@ -498,12 +627,12 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
       </div>
 
       <div class="aud-card navy">
-        <div class="aud-emoji">🏫</div>
+        <img class="aud-bild" src="foto/scratchjr.jpg" alt="Två barn programmerar tillsammans i ScratchJr på surfplatta" loading="lazy">
         <span class="tag">workshops &amp; julkalendrar</span>
         <h3>För skola &amp; fritids</h3>
-        <p>Jag kommer till er och håller workshops i spelutveckling med klassen – eller så kör ni en av mina digitala julkalendrar. Allt kopplat till Lgr22, inom teknik och bild.</p>
+        <p>Jag kommer till er och håller workshops i spelutveckling med klassen, eller så kör ni en av mina digitala julkalendrar. Allt kopplat till Lgr22, inom teknik och bild.</p>
         <ul>
-          <li>Workshops i Scratch &amp; Roblox Studio – bokas via Kulan</li>
+          <li>Workshops i Scratch &amp; Roblox Studio, bokas via Kulan</li>
           <li>Julkalendrar i programmering med pedagogstöd 🎄</li>
           <li>Föreläsningar för elever och pedagoger</li>
         </ul>
@@ -524,8 +653,19 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
 <section id="kurser" class="kurser">
   <div class="wrap">
     <span class="eyebrow">digitala kurser</span>
-    <h2>Köp kurs – börja skapa direkt</h2>
+    <h2>Köp kurs och börja skapa direkt</h2>
     <p style="max-width:36rem">Du betalar tryggt med kort och får direkt tillgång till kursens filmer. Filmerna streamas på min kurssida och går inte att ladda ner. Vill du hellre gå en kurs live med mig? <a href="aktuella-kurser.html"><strong>Se aktuella kurstillfällen →</strong></a></p>
+
+    <!-- ÅLDERSGUIDE: "Vilken kurs passar mitt barn?" -->
+    <div class="alder">
+      <h3>Vilken passar mitt barn? 👇</h3>
+      <div class="alder-grid">
+        <a href="julkalendrar.html"><b>5–7 år</b><span>ScratchJr på surfplatta, t.ex. julkalendern Tomtens julsaga</span></a>
+        <a href="#kurser"><b>7–9 år</b><span>Scratch med färgglada kodblock och de första egna spelen</span></a>
+        <a href="#kurser"><b>10–15 år</b><span>Roblox Studio: riktig spelutveckling med Lua-kod</span></a>
+        <a href="floating-code-cup.html"><b>8–15 år</b><span>Floating Code Cup: tävla hemifrån, gratis</span></a>
+      </div>
+    </div>
 
     <div class="kurs-grid">
 
@@ -535,7 +675,7 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
         <div class="kurs-body">
           <span class="tag-mint">3 filmer · nybörjare · 10–15 år</span>
           <h3>Introduktion till Roblox Studio</h3>
-          <p>Kurspaketet där ditt barn kommer igång med riktig spelutveckling! I tre korta filmer bygger vi tillsammans – steg för steg.</p>
+          <p>Kurspaketet där ditt barn kommer igång med riktig spelutveckling! I tre korta filmer bygger vi tillsammans, steg för steg.</p>
           <ul class="kurs-list">
             <li>Kom igång med Roblox Studio och verktygen</li>
             <li>Bygg din första bana med delar och färger</li>
@@ -553,11 +693,11 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
         <div class="kurs-body">
           <span class="tag-lav">3 filmer · nybörjare · 7–9 år</span>
           <h3>Introduktion till Scratch</h3>
-          <p>Den perfekta starten för de yngre! Med färgglada kodblock bygger ditt barn sina första spel och animationer – inga förkunskaper behövs.</p>
+          <p>Den perfekta starten för de yngre! Med färgglada kodblock bygger ditt barn sina första spel och animationer. Inga förkunskaper behövs.</p>
           <ul class="kurs-list">
             <li>Lär känna Scratch och kodblocken</li>
             <li>Skapa en figur som rör sig och pratar</li>
-            <li>Ljud, effekter – och visa upp för familjen!</li>
+            <li>Ljud, effekter och visa upp för familjen!</li>
           </ul>
           <!-- Pris och Stripe-länk ifyllda -->
           <div class="kurs-pris">495 kr <small>inkl. moms · tillgång direkt</small></div>
@@ -572,10 +712,10 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
     <div class="jul-card">
       <div class="jul-info">
         <span class="tag-jul">🎄 gratis · en lucka om dagen</span>
-        <h3>Rädda julen! – gratis kodkalender på TikTok</h3>
-        <p>Varje dag 1–24 december släpper jag en ny lucka med dagens koduppdrag – helt gratis, direkt i flödet. Häng med tiotusentals andra barn och rädda julen med kod!</p>
+        <h3>Rädda julen! Gratis kodkalender på TikTok</h3>
+        <p>Varje dag 1–24 december släpper jag en ny lucka med dagens koduppdrag. Helt gratis, direkt i flödet. Häng med tiotusentals andra barn och rädda julen med kod!</p>
         <ul class="kurs-list jul-list">
-          <li>En ny utmaning varje dag – följ med från lucka 1</li>
+          <li>En ny utmaning varje dag, följ med från lucka 1</li>
           <li>Lagom stora uppdrag, perfekta vid frukosten</li>
           <li>Vill klassen koda i december? Tipsa din lärare om <a href="julkalendrar.html" style="color:var(--mint);font-weight:800">skolkalendrarna</a>!</li>
         </ul>
@@ -596,6 +736,24 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
 </section>
 <!-- ================= SEKTION SLUTAR: KURSER ================= -->
 
+<!-- ================= SEKTION BÖRJAR: CUPEN =================
+     Kort om Floating Code Cup med länk till cupsidan. -->
+<section id="cupen" style="padding-top:0;background:var(--mint-soft)">
+  <div class="wrap">
+    <div class="cup-start" style="margin-top:0">
+      <div class="cup-start-text">
+        <span class="tag-jul">🏆 anmälan öppen · cup 2027 · 8–15 år</span>
+        <h3>Floating Code Cup: Sveriges spelutvecklingstävling för barn</h3>
+        <p>Över 100 barn byggde egna spel i Roblox Studio i första upplagan 2026, och finalen avgjordes live på Bricks and Games i Göteborg. Nu är anmälan till 2027 öppen. Det är gratis, och man tävlar hemifrån var man än bor i Sverige.</p>
+        <a class="btn btn-primary" href="https://forms.gle/tF7uAgk39r8CFeTx8">Anmäl ditt barn →</a>
+        <a class="btn btn-ghost" href="floating-code-cup.html#efter-cupen">Se vinnarna 2026</a>
+      </div>
+      <img src="cup/cup-6.jpg" alt="Floating Code på plats på mässan Bricks and Games" loading="lazy" style="object-position:center 40%">
+    </div>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: CUPEN ================= -->
+
 <!-- ================= SEKTION BÖRJAR: SKOLAN ================= -->
 <section id="skolan" class="skolan">
   <div class="wrap">
@@ -605,33 +763,33 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
       <div class="aud-emoji" aria-hidden="true">🏛️</div>
       <div>
         <span class="tag-mint">Kulan · Stockholms stad</span>
-        <h3>Vi finns i Kulan – Stockholms stads kulturutbud för skolan</h3>
+        <h3>Vi finns i Kulan, Stockholms stads kulturutbud för skolan</h3>
         <p>Två av våra kurser är med i Kulan, där Stockholms stads skolor och fritids hittar och bokar kulturaktörer: <strong>Bygg spel i Roblox Studio</strong> (åk 4–9) och <strong>Scratch: Speldesign för nybörjare</strong> (förskoleklass–åk 6). Allt kopplat till Lgr22, inom teknik och bild.</p>
         <a class="kulan-lank" href="https://kulan.stockholm/kulturaktorer/floating-code/" target="_blank" rel="noopener"><strong>Se Floating Code i Kulan →</strong></a>
       </div>
     </div>
 
     <h2>Julkalendrar i programmering 🎄</h2>
-    <p style="max-width:38rem">Ge era barngrupper en adventskalender de sent glömmer! Tre digitala julkalendrar där barnen bygger något eget, lucka för lucka – <strong>video, dagens uppgift och pedagogstöd i varje lucka.</strong> Inga förkunskaper krävs av dig som pedagog.</p>
+    <p style="max-width:38rem">Ge era barngrupper en adventskalender de sent glömmer! Tre digitala julkalendrar där barnen bygger något eget, lucka för lucka. <strong>Video, dagens uppgift och pedagogstöd finns i varje lucka.</strong> Inga förkunskaper krävs av dig som pedagog.</p>
     <div class="skola-grid">
       <div class="skola-card">
         <div class="aud-emoji">🎮</div>
         <h3>Tomtens verkstad · 10–13 år</h3>
-        <p>Barnen bygger och kodar ett vinterspel i riktiga Roblox Studio – med Lua-skript, leaderboard och snöfall – och publicerar det på Roblox i sista luckan.</p>
+        <p>Barnen bygger och kodar ett vinterspel i riktiga Roblox Studio med Lua-skript, leaderboard och snöfall, och publicerar det på Roblox i sista luckan.</p>
       </div>
       <div class="skola-card">
         <div class="aud-emoji">🍪</div>
         <h3>Fånga julklapparna · 8–9 år</h3>
-        <p>Barnen programmerar ett komplett eget spel i Scratch – poäng, liv, ökande fart och julmusik. Funkar direkt i webbläsaren. Avslutas med spelmässa.</p>
+        <p>Barnen programmerar ett komplett eget spel i Scratch med poäng, liv, ökande fart och julmusik. Funkar direkt i webbläsaren. Avslutas med spelmässa.</p>
       </div>
       <div class="skola-card">
         <div class="aud-emoji">📖</div>
         <h3>Tomtens julsaga · 5–7 år</h3>
-        <p>Barnen skapar en animerad julsaga i ScratchJr med egna inspelade röster – tomten pratar, renen hoppar, snön faller. Surfplatta, inga konton behövs. Avslutas med sagostund.</p>
+        <p>Barnen skapar en animerad julsaga i ScratchJr med egna inspelade röster. Tomten pratar, renen hoppar och snön faller. Surfplatta, inga konton behövs. Avslutas med sagostund.</p>
       </div>
     </div>
     <div class="skola-cta">
-      <p><strong>Lucka 1–4 öppnas en om dagen — från 5 december är hela kalendern öppen så klassen jobbar i egen takt.</strong> Till varje lucka finns "klart-kollen" och en diskussionsfråga för dig som pedagog. Kalendrarna stödjer arbetet med <strong>programmering och digital kompetens enligt Lgr22</strong>. Licens per skola, fritidsavdelning eller bibliotek – paketpris och kommunlicens finns också.</p>
+      <p><strong>Lucka 1–4 öppnas en om dagen. Från 5 december är hela kalendern öppen så klassen jobbar i egen takt.</strong> Till varje lucka finns "klart-kollen" och en diskussionsfråga för dig som pedagog. Kalendrarna stödjer arbetet med <strong>programmering och digital kompetens enligt Lgr22</strong>. Licens per skola, fritidsavdelning eller bibliotek. Paketpris och kommunlicens finns också.</p>
       <a class="btn btn-primary" href="julkalendrar.html">Se kalendrarna &amp; priser →</a>
     </div>
   </div>
@@ -643,17 +801,21 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
   <div class="wrap">
     <span class="eyebrow">föreläsningar</span>
     <h2>Föreläsningar som väcker nyfikenhet</h2>
-    <p style="max-width:36rem;color:#C6D2EC">Jag föreläser för både stora och små – bokas av företag, arrangörer och föreningar.</p>
+    <p style="max-width:36rem;color:#C6D2EC">Jag föreläser för både stora och små och bokas av företag, arrangörer och föreningar.</p>
+    <figure class="lect-bild">
+      <img src="foto/forelasning.jpg" alt="Angelica föreläser om Teknik och framtid i en hörsal full av barn som räcker upp handen" loading="lazy">
+      <figcaption>Teknik &amp; framtid · Code Summer Camp med 90 barn</figcaption>
+    </figure>
     <div class="lect-grid">
       <div class="lect-card">
         <div class="aud-emoji">🎮</div>
         <h3>Roblox Studio för barn</h3>
-        <p>En inspirerande föreläsning där barnen får se hur ett spel byggs på riktigt – med livekodning i Lua och massor av aha-upplevelser. Passar allt från klassrum till stora salar med 100 barn.</p>
+        <p>En inspirerande föreläsning där barnen får se hur ett spel byggs på riktigt, med livekodning i Lua och massor av aha-upplevelser. Passar allt från klassrum till stora salar med 100 barn.</p>
       </div>
       <div class="lect-card">
         <div class="aud-emoji">🔒</div>
-        <h3>Tryggt på Roblox – för föräldrar &amp; pedagoger</h3>
-        <p>En konkret genomgång av hur Roblox faktiskt fungerar: vad barnen möter, hur chatt, Robux och föräldrakontroller fungerar och hur ni gör spelandet tryggt – utan pekpinnar.</p>
+        <h3>Tryggt på Roblox för föräldrar &amp; pedagoger</h3>
+        <p>En konkret genomgång av hur Roblox faktiskt fungerar: vad barnen möter, hur chatt, Robux och föräldrakontroller fungerar och hur ni gör spelandet tryggt, utan pekpinnar.</p>
       </div>
     </div>
   </div>
@@ -670,7 +832,7 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
   <div class="wrap">
     <span class="eyebrow">kalender</span>
     <h2>På gång 🗓️</h2>
-    <p style="max-width:36rem">Här ser du vad som händer framöver – kurser, event och mässor.</p>
+    <p style="max-width:36rem">Här ser du vad som händer framöver: kurser, event och mässor.</p>
     <div class="kal-grid" id="kal-lista"></div>
     <p style="margin-top:1.4rem;text-align:center;font-size:.95rem"><a href="aktuella-kurser.html"><strong>Se alla aktuella kurser &amp; boka →</strong></a></p>
   </div>
@@ -688,18 +850,19 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
       <div class="proj-card">
         <div class="proj-num">90</div>
         <small>barn på Code Summer Camp</small>
-        <p>Workshopen "Teknik &amp; Framtid" med livekodning i Roblox Studio – i samarbete med Skill.</p>
+        <p>Workshopen "Teknik &amp; Framtid" med livekodning i Roblox Studio, i samarbete med Skill.</p>
       </div>
       <div class="proj-card lav">
-        <div class="proj-num">2026</div>
-        <small>Floating Code Cup</small>
-        <p>Sveriges spelutvecklingstävling i Roblox för barn 8–13 år, med final på Bricks and Games i Göteborg den 3 oktober.</p>
-        <p style="margin-top:.6rem"><a href="floating-code-cup.html" style="font-weight:800;color:var(--navy)">Läs mer &amp; anmäl ditt barn →</a></p>
+        <div class="proj-num">100+</div>
+        <small>barn i Floating Code Cup 2026</small>
+        <p>Första upplagan av Sveriges spelutvecklingstävling i Roblox för barn, med final på Bricks and Games i Göteborg, i samarbete med At Event.</p>
+        <p style="margin-top:.6rem"><a href="floating-code-cup.html" style="font-weight:800;color:var(--navy)">Se vinnarna &amp; anmäl till 2027 →</a></p>
       </div>
       <div class="proj-card">
-        <div class="proj-num">84 000</div>
-        <small>deltagare online</small>
-        <p>Barn som följt mina digitala genomgångar och skapande på YouTube och TikTok.</p>
+        <!-- Siffror från YouTube Analytics (alltid) och TikTok (senaste 365 dagarna), 11 okt 2026 -->
+        <div class="proj-num">475 000+</div>
+        <small>visningar på YouTube &amp; TikTok</small>
+        <p>Över 365 000 visningar på TikTok det senaste året och 111 000 på YouTube. Barn som följer med när jag bygger spel i Roblox Studio och Scratch.</p>
       </div>
     </div>
       <p style="text-align:center;margin-top:1.6rem;font-size:.98rem">Jag har även arrangerat sportlovskurs i spelskapande i samarbete med <strong>Stockholmshem</strong> och hållit utbildning i vardagsteknik för seniorer på uppdrag av <strong>Stockholms stad</strong>, på Alviks bibliotek.</p>
@@ -708,13 +871,30 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
 
 <!-- ================= SEKTION SLUTAR: UPPDRAG & PROJEKT ================= -->
 
+<!-- ================= SEKTION BÖRJAR: OMDÖMEN (AVSTÄNGD) =================
+     Sektionen är dold tills du fyllt i riktiga citat från
+     föräldrar, pedagoger eller uppdragsgivare (fråga om lov först!).
+     Visa den: ta bort ordet  hidden  i <section ...>-taggen nedan. -->
+<section id="omdomen" hidden>
+  <div class="wrap">
+    <span class="eyebrow">omdömen</span>
+    <h2>Det här säger andra</h2>
+    <div class="proj-grid">
+      <div class="proj-card"><p>"Skriv citatet här."</p><small style="margin-top:.8rem">Namn, förälder</small></div>
+      <div class="proj-card lav"><p>"Skriv citatet här."</p><small style="margin-top:.8rem">Namn, lärare på X-skolan</small></div>
+      <div class="proj-card"><p>"Skriv citatet här."</p><small style="margin-top:.8rem">Namn, uppdragsgivare</small></div>
+    </div>
+  </div>
+</section>
+<!-- ================= SEKTION SLUTAR: OMDÖMEN ================= -->
+
 <!-- ================= SEKTION BÖRJAR: OM MIG ================= -->
 <section class="about" id="om-mig">
   <div class="wrap about-grid">
     <div>
       <span class="eyebrow">om mig</span>
       <h2>Hej, jag heter Angelica!</h2>
-      <p>Jag är pedagog med över tio års erfarenhet av utbildning och digitalt skapande. Hösten 2024 startade jag Floating Code med en tydlig vision: att barn inte bara ska spela spel – de ska skapa egna.</p>
+      <p>Jag är pedagog med över tio års erfarenhet av utbildning och digitalt skapande. Hösten 2024 startade jag Floating Code med en tydlig vision: att barn inte bara ska spela spel. De ska skapa egna.</p>
       <p>Barn behöver kreativa sätt att utforska programmering, där de förstår vad de bygger och känner stoltheten i att skapa något eget. Det är precis det Floating Code finns för.</p>
     </div>
     <div>
@@ -741,7 +921,7 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
   <div class="wrap nb-inner">
     <div>
       <h2>Vill du få mitt nyhetsbrev? 💌</h2>
-      <p>Kodtips, nya kurser och roliga utmaningar för barnen – direkt i din inkorg. Lagom ofta, aldrig spam. <strong>Som tack får du en gratis introduktion till Scratch &amp; Roblox Studio (ca 3 min)!</strong> 🎁</p>
+      <p>Kodtips, nya kurser och roliga utmaningar för barnen, direkt i din inkorg. Lagom ofta, aldrig spam. <strong>Som tack får du en gratis introduktion till Scratch &amp; Roblox Studio (ca 3 min)!</strong> 🎁</p>
     </div>
     <a class="btn btn-nb" href="https://forms.gle/MNNCKcmaanFLvzPh9">Skriv upp dig här!</a>
   </div>
@@ -753,7 +933,7 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
   <div class="wrap">
     <span class="eyebrow">kontakt</span>
     <h2>Ska vi skapa något tillsammans?</h2>
-    <p style="max-width:32rem;margin:0 auto 1rem">Oavsett om du är företag, förälder, skola eller arrangör – hör av dig så hittar vi ett upplägg som passar.</p>
+    <p style="max-width:32rem;margin:0 auto 1rem">Oavsett om du är företag, förälder, skola eller arrangör, hör av dig så hittar vi ett upplägg som passar.</p>
     <a class="btn btn-primary" href="mailto:info@floatingcode.se">Mejla mig: info@floatingcode.se</a>
     <div class="socials">
       <a href="https://www.instagram.com/floatingcode_/">Instagram</a>
@@ -811,28 +991,10 @@ markeraAktiv();
 ========================================================= */
 const HANDELSER = [
   {
-    datum: "2026-09-25",
-    titel: "Träffa oss på Bokmässan!",
-    emoji: "📚",
-    text: "I samarbete med Dataspelscentrum finns vi i Dataspelsbranschens monter A02:52 på fredag kl 12–13. Kom och testa spel som barn har byggt i Roblox Studio!",
-    lank: "https://bokmassan.se/programs/testa-spel-skapade-av-barn/",
-    lanktext: "Om vår programpunkt →",
-    lank2: "https://bokmassan.se/exhibitors/dataspelsbranschen-swedish-games-industry/?view=programs",
-    lanktext2: "Hela programmet i montern →"
-  },
-  {
-    datum: "2026-10-03",
-    titel: "Final i Floating Code Cup",
-    emoji: "🏆",
-    text: "Sveriges spelutvecklingstävling i Roblox för barn 8–13 år avgörs på Bricks and Games-mässan i Göteborg. Kom förbi montern och säg hej!",
-    lank: "floating-code-cup.html",
-    lanktext: "Läs mer om Cupen →"
-  },
-  {
     datum: "2026-10-31",
     titel: "Halloweenkurser i Scratch & Roblox Studio",
     emoji: "🎃",
-    text: "Digitala lovkurser där barnen skapar spökliga spel och kort – häng med hemifrån via Discord.",
+    text: "Digitala lovkurser där barnen skapar spökliga spel och kort. Häng med hemifrån via Discord.",
     lank: "aktuella-kurser.html",
     lanktext: "Boka plats →"
   },
@@ -840,13 +1002,20 @@ const HANDELSER = [
     datum: "2026-12-01",
     titel: "Julkalendrarna öppnar lucka 1",
     emoji: "🎄",
-    text: "Tre digitala julkalendrar för skola, fritids och bibliotek – och gratiskalendern Rädda julen! på TikTok.",
+    text: "Tre digitala julkalendrar för skola, fritids och bibliotek, och gratiskalendern Rädda julen! på TikTok.",
     lank: "julkalendrar.html",
     lanktext: "Se kalendrarna →"
   }
 ];
 
 /* ---- Nedanför behöver du inte ändra något ---- */
+(function(){
+  const b = document.getElementById("sasong");
+  if (!b) return;
+  const till = new Date(b.dataset.till + "T23:59:59");
+  if (new Date() > till) b.style.display = "none";
+})();
+
 (function(){
   const man = ["JAN","FEB","MAR","APR","MAJ","JUN","JUL","AUG","SEP","OKT","NOV","DEC"];
   const idag = new Date(); idag.setHours(0,0,0,0);

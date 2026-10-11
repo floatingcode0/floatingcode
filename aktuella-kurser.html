@@ -18,12 +18,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aktuella kurser – Floating Code</title>
-<meta property="og:title" content="Aktuella kurser – Floating Code">
-<meta property="og:description" content="Kommande digitala kodkurser live – lovkurser och helgkurser i Scratch och Roblox Studio för barn.">
+<title>Aktuella kurser | Floating Code</title>
+<meta property="og:title" content="Aktuella kurser | Floating Code">
+<meta property="og:description" content="Kommande digitala kodkurser live: lovkurser och helgkurser i Scratch och Roblox Studio för barn.">
 <meta property="og:image" content="https://floatingcode.se/logga.png">
 <meta property="og:type" content="website">
-<meta name="description" content="Kommande digitala kodkurser live med Floating Code – lovkurser och kurstillfällen i Scratch och Roblox Studio för barn.">
+<meta name="description" content="Kommande digitala kodkurser live med Floating Code: lovkurser och kurstillfällen i Scratch och Roblox Studio för barn.">
 <link rel="icon" type="image/png" href="logga.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,7 +155,7 @@ footer a{color:var(--mint)}
   <div class="wrap">
     <span class="eyebrow">live och digitalt</span>
     <h1>Aktuella kurser 🗓️</h1>
-    <p>Här hittar du mina kommande digitala kodkurser live – lovkurser, helgkurser och andra tillfällen. Vissa kurser har begränsat antal platser – anmäl dig i tid!</p>
+    <p>Här hittar du mina kommande digitala kodkurser live: lovkurser, helgkurser och andra tillfällen. Vissa kurser har begränsat antal platser, så anmäl dig i tid!</p>
   </div>
 </section>
 
@@ -197,7 +197,7 @@ const KURSTILLFALLEN = [
     tid: "Lördag kl. 10.00–12.00 (digitalt via Discord)",
     alder: "7–9 år",
     verktyg: "Scratch",
-    beskrivning: "Vi skapar ett eget animerat Halloween-kort med spöken, ljud och överraskningar! Föreläsningsformat: jag visar varje steg live, sedan bygger du själv i din egen takt – och skriver i chatten så fort du fastnar, så hjälper jag dig direkt. Obegränsat antal platser, alla får vara med! Kursen genomförs vid minst 15 anmälda.",
+    beskrivning: "Vi skapar ett eget animerat Halloween-kort med spöken, ljud och överraskningar! Föreläsningsformat: jag visar varje steg live, sedan bygger du själv i din egen takt och skriver i chatten så fort du fastnar, så hjälper jag dig direkt. Obegränsat antal platser, alla får vara med! Kursen genomförs vid minst 15 anmälda.",
     pris: "249 kr",
     lank: "https://buy.stripe.com/3cI9AT0oY1SbgxIane8ww09",
     knapptext: "Boka plats",
@@ -209,7 +209,7 @@ const KURSTILLFALLEN = [
     tid: "Lördag kl. 12.30–14.30 (digitalt via Discord)",
     alder: "10–15 år",
     verktyg: "Roblox Studio",
-    beskrivning: "Vi bygger ett eget läskigt spökhus från grunden – och avslutar med en kodningsdel som ger huset liv! Föreläsningsformat: jag visar varje steg live, sedan bygger du själv i din egen takt – och skriver i chatten så fort du fastnar, så hjälper jag dig direkt. Obegränsat antal platser, alla får vara med! Kursen genomförs vid minst 15 anmälda.",
+    beskrivning: "Vi bygger ett eget läskigt spökhus från grunden och avslutar med en kodningsdel som ger huset liv! Föreläsningsformat: jag visar varje steg live, sedan bygger du själv i din egen takt och skriver i chatten så fort du fastnar, så hjälper jag dig direkt. Obegränsat antal platser, alla får vara med! Kursen genomförs vid minst 15 anmälda.",
     pris: "299 kr",
     lank: "https://buy.stripe.com/28E28r3Ba1Sbchs66Y8ww0a",
     knapptext: "Boka plats",
@@ -232,7 +232,7 @@ if (kommande.length === 0){
   lista.innerHTML =
     '<div class="tom"><div class="stor">🌊</div>' +
     '<h3>Inga inplanerade kurstillfällen just nu</h3>' +
-    '<p>Nya kurser släpps inför loven och helgerna. Skriv upp dig på nyhetsbrevet nedan så får du veta först – eller kika på mina <a href="index.html#kurser">digitala kurspaket</a> som du kan börja med direkt!</p></div>';
+    '<p>Nya kurser släpps inför loven och helgerna. Skriv upp dig på nyhetsbrevet nedan så får du veta först. Eller kika på mina <a href="index.html#kurser">digitala kurspaket</a> som du kan börja med direkt!</p></div>';
 } else {
   kommande.forEach(k => {
     const d = new Date(k.datum + "T00:00:00");
@@ -240,7 +240,7 @@ if (kommande.length === 0){
       "?subject=" + encodeURIComponent("Anmälan/intresse: " + k.titel + " (" + k.datum + ")") +
       "&body=" + encodeURIComponent("Hej!\n\nVi vill anmäla oss till kursen \"" + k.titel + "\" den " + k.datum + ".\n\nBarnets förnamn och ålder: \nVårdnadshavarens namn: \n\nHälsningar");
     const knapp = k.fullbokad
-      ? '<span class="fullbokad">Fullbokad – mejla för väntelista</span>'
+      ? '<span class="fullbokad">Fullbokad, mejla för väntelista</span>'
       : (k.lank
           ? '<a class="btn" href="' + k.lank + '">' + (k.knapptext || 'Boka plats') + '</a>'
           : '<a class="btn" href="' + intresse + '">Anmäl intresse</a>');

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Tomtens julsaga — Floating Code Julkalender</title>
+<title>Tomtens julsaga | Floating Code Julkalender</title>
 <link rel="icon" type="image/png" href="logga.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -267,7 +267,7 @@
 <header>
   <span class="marke">Floating Code · Julkalender</span>
   <h1 class="titel">Tomtens <span class="glans">julsaga</span></h1>
-  <p class="undertitel">Skapa er egen animerade julsaga i ScratchJr — en lucka i taget, två barn per platta. Luckorna öppnas på skoldagarna 1–4 december, så sagan är klar i god tid före jullovet.</p>
+  <p class="undertitel">Skapa er egen animerade julsaga i ScratchJr, en lucka i taget och två barn per platta. Luckorna öppnas på skoldagarna 1–4 december, så sagan är klar i god tid före jullovet.</p>
   <div class="framsteg">
     <div class="framsteg-text" id="framstegtext">0 av 4 luckor öppnade</div>
     <div class="framsteg-spar"><div class="framsteg-fyll" id="framstegfyll"></div></div>
@@ -329,10 +329,10 @@ const KALENDERKOD = "JULSAGA7315";
 // Luckorna. datum = dagen luckan låses upp (ÅÅÅÅ-MM-DD).
 // vimeo = videons ID (siffrorna i vimeo-länken). Tom sträng = platshållare visas.
 const LUCKOR = [
-  {"datum": "2026-12-01", "vimeo": "", "titel": "Möt ScratchJr och din tomte", "uppgift": "Få katten att gå framåt när ni trycker på gröna flaggan, och prova de andra blå pilarna. Ta sedan bort katten (håll fingret på den tills krysset kommer) och välj en figur som får bli er tomte. Ge den något rött med penseln.", "klart": "Katten är borta, en egen tomte står på scenen och rör sig när man trycker på gröna flaggan.", "prata": "Vad hände när ni satte flera pilar efter varandra? Vem är huvudperson i er saga — vad heter er tomte?", "kod": [{"rubrik": "Dagens block", "kod": "🚩 Grön flagga  →  ➡️ Pil höger\n\nDra blocken till programmeringsytan.\nSätt flaggan FÖRE pilen. Tryck på flaggan!"}]},
+  {"datum": "2026-12-01", "vimeo": "", "titel": "Möt ScratchJr och din tomte", "uppgift": "Få katten att gå framåt när ni trycker på gröna flaggan, och prova de andra blå pilarna. Ta sedan bort katten (håll fingret på den tills krysset kommer) och välj en figur som får bli er tomte. Ge den något rött med penseln.", "klart": "Katten är borta, en egen tomte står på scenen och rör sig när man trycker på gröna flaggan.", "prata": "Vad hände när ni satte flera pilar efter varandra? Vem är huvudperson i er saga? Vad heter er tomte?", "kod": [{"rubrik": "Dagens block", "kod": "🚩 Grön flagga  →  ➡️ Pil höger\n\nDra blocken till programmeringsytan.\nSätt flaggan FÖRE pilen. Tryck på flaggan!"}]},
   {"datum": "2026-12-02", "vimeo": "", "titel": "Vinterlandskapet och renen", "uppgift": "Välj en vinterbakgrund och måla dit minst en egen detalj med penseln. Lägg sedan till en ren som hoppar flera gånger när gröna flaggan trycks.", "klart": "Tomten står i ett vinterlandskap med något barnen målat själva, och renen hoppar mer än en gång.", "prata": "Hur många gånger hoppar er ren? Vad skulle hända med talet 100?", "kod": [{"rubrik": "Dagens block", "kod": "🚩 Grön flagga  →  🔁 Upprepa 4 { 🦘 Hopp }\n\nHoppet ska ligga INUTI upprepa-blocket.\nKolla att RENEN är markerad (blå ram) när ni bygger!"}]},
-  {"datum": "2026-12-03", "vimeo": "", "titel": "Tomten pratar! ⭐", "uppgift": "Spela in något som tomten säger med er egen röst (mikrofonblocket i den gröna delen). Lägg gärna till en pratbubbla. Ge sedan renen ett eget läte.", "klart": "Tryck på gröna flaggan — tomten pratar med barnets röst, och minst två figurer låter.", "prata": "Lyssna på några av gruppens tomtar tillsammans. Blunda medan en saga spelas upp — behövs bild för att förstå en saga?", "kod": [{"rubrik": "Dagens block", "kod": "🎤 Mikrofonen (gröna delen):\n1. Tryck på mikrofonblocket\n2. Röd knapp = spela in (”God jul!”)\n3. Stopp → bocken\n4. Dra in det nya ljudblocket i tomtens rad\n\nTips till pedagogen: sprid ut paren i rummet när alla spelar in!"}]},
-  {"datum": "2026-12-04", "vimeo": "", "titel": "Sagostund! 🎄", "uppgift": "Lägg till en julklapp som dyker upp eller försvinner med göm- och visa-blocken. Spela sedan upp sagan från början till slut och laga det som blivit konstigt. Visa den för gruppen på storskärm — publiken får säga en sak de gillade.", "klart": "Sagan går att spela upp från start till slut utan att paret behöver fixa något. Alla par har visat. Dela ut diplomen!", "prata": "Vad är ni mest stolta över i er saga? Ni har hittat på, byggt, testat och visat upp — precis som riktiga animatörer.", "kod": [{"rubrik": "Dagens block", "kod": "👻 Göm  ·  👀 Visa  (lila block)\n\nPoff — borta! Poff — tillbaka!"}]}
+  {"datum": "2026-12-03", "vimeo": "", "titel": "Tomten pratar! ⭐", "uppgift": "Spela in något som tomten säger med er egen röst (mikrofonblocket i den gröna delen). Lägg gärna till en pratbubbla. Ge sedan renen ett eget läte.", "klart": "Tryck på gröna flaggan. Tomten pratar med barnets röst, och minst två figurer låter.", "prata": "Lyssna på några av gruppens tomtar tillsammans. Blunda medan en saga spelas upp. Behövs bild för att förstå en saga?", "kod": [{"rubrik": "Dagens block", "kod": "🎤 Mikrofonen (gröna delen):\n1. Tryck på mikrofonblocket\n2. Röd knapp = spela in (”God jul!”)\n3. Stopp → bocken\n4. Dra in det nya ljudblocket i tomtens rad\n\nTips till pedagogen: sprid ut paren i rummet när alla spelar in!"}]},
+  {"datum": "2026-12-04", "vimeo": "", "titel": "Sagostund! 🎄", "uppgift": "Lägg till en julklapp som dyker upp eller försvinner med göm- och visa-blocken. Spela sedan upp sagan från början till slut och laga det som blivit konstigt. Visa den för gruppen på storskärm. Publiken får säga en sak de gillade.", "klart": "Sagan går att spela upp från start till slut utan att paret behöver fixa något. Alla par har visat. Dela ut diplomen!", "prata": "Vad är ni mest stolta över i er saga? Ni har hittat på, byggt, testat och visat upp, precis som riktiga animatörer.", "kod": [{"rubrik": "Dagens block", "kod": "👻 Göm  ·  👀 Visa  (lila block)\n\nPoff, borta! Poff, tillbaka!"}]}
 ];
 
 /* ================================================================ */
@@ -367,7 +367,7 @@ function provaKod(){
   if (v === KALENDERKOD.toUpperCase()){
     grind.style.display = "none";
   } else {
-    document.getElementById("grindfel").textContent = "Fel kod — kolla mejlet från Floating Code.";
+    document.getElementById("grindfel").textContent = "Fel kod. Kolla mejlet från Floating Code.";
   }
 }
 
