@@ -91,7 +91,7 @@ main{padding:40px 0 70px}
   width:42px;height:42px;border-radius:50%;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
 }
-.lektion:nth-child(even) .lektion-num{background:var(--lavender-soft);color:var(--lavender-strong)}
+.lektion:nth-of-type(even) .lektion-num{background:var(--lavender-soft);color:var(--lavender-strong)}
 .lektion h3{font-size:1.15rem}
 .video-ram{
   position:relative;padding-top:56.25%;background:var(--navy-deep);
@@ -106,6 +106,38 @@ main{padding:40px 0 70px}
 .installera li{margin-bottom:.7rem;font-size:.98rem}
 .installera .knapp{display:inline-block;margin:.2rem 0 .1rem;padding:.6rem 1.2rem;border-radius:999px;background:var(--navy);color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;text-decoration:none}
 .installera .tips{background:var(--lavender-soft);border-radius:14px;padding:.9rem 1.1rem;font-size:.93rem;margin-top:.6rem}
+.omkursen{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.6rem;margin-bottom:2.2rem;border-top:6px solid var(--lavender)}
+.omkursen h2{font-size:1.35rem;margin-bottom:.4rem}
+.omkursen .bygger{padding-left:1.3rem;margin:.6rem 0 1rem;columns:2;font-weight:700}
+@media(max-width:520px){.omkursen .bygger{columns:1}}
+.ordlista,.forklaring{background:var(--bg);border-radius:14px;padding:.8rem 1rem;margin:.8rem 0}
+.ordlista summary,.forklaring summary{cursor:pointer;font-family:'Fredoka',sans-serif;font-weight:600;color:var(--navy)}
+.ordlista dl,.forklaring dl{margin-top:.7rem}
+.ordlista dt{font-weight:800;color:var(--navy)}
+.ordlista dd{margin:0 0 .5rem}
+.forklaring dt{margin-top:.6rem}
+.forklaring dt code{white-space:pre-wrap;font-family:'JetBrains Mono',Consolas,monospace;font-size:.85rem;background:#2E2E2E;color:#ddd;padding:.15rem .45rem;border-radius:6px;display:inline-block}
+.forklaring dd{margin:.25rem 0 0;font-size:.95rem}
+.namntips{background:var(--lavender-soft);border-radius:14px;padding:.9rem 1.1rem;font-size:.95rem}
+code{font-family:'JetBrains Mono',Consolas,monospace;font-size:.9em}
+.stod{padding:1.4rem 1.4rem 1.6rem;display:grid;gap:1.2rem}
+.stod h4{font-family:'Fredoka',sans-serif;color:var(--navy);font-size:1.08rem;margin-bottom:.45rem}
+.stod ul,.stod ol{padding-left:1.3rem}
+.stod li{margin-bottom:.4rem;font-size:.97rem}
+.stod .pausa{font-size:.9rem;color:#56627F;margin-top:.4rem}
+.stod .tips{background:var(--mint-soft);border-radius:16px;padding:1rem 1.2rem}
+.stod .uppdrag{background:var(--navy);color:#fff;border-radius:16px;padding:1rem 1.2rem}
+.stod .uppdrag h4{color:var(--mint)}
+.kodruta .var{font-size:.93rem;margin-bottom:.5rem}
+.kodruta .skriv-tips{font-size:.88rem;color:#56627F;margin-top:.4rem}
+.studio{background:#2E2E2E;border-radius:14px;overflow:hidden}
+.studio-topp{display:flex;justify-content:space-between;align-items:center;gap:.6rem;background:#252526;color:#ddd;font-size:.85rem;padding:.55rem .9rem;font-family:'Fredoka',sans-serif}
+.kopiera{background:var(--mint);border:0;border-radius:999px;padding:.38rem .95rem;font-weight:700;color:var(--navy-deep);cursor:pointer;font-family:'Fredoka',sans-serif;font-size:.85rem}
+.studio pre{margin:0;padding:.8rem 0;overflow-x:auto;counter-reset:rad;font:15px/1.55 Consolas,'JetBrains Mono',monospace;color:#CCCCCC}
+@media(max-width:520px){.studio pre{font-size:13px}}
+.studio .rad{display:block;padding-right:1rem;white-space:pre}
+.studio .rad::before{counter-increment:rad;content:counter(rad);display:inline-block;width:2.4rem;padding-right:.9rem;text-align:right;color:#858585}
+.studio .k{color:#F86D7C;font-weight:700}.studio .b{color:#84D6F7}.studio .p{color:#61A1F1}.studio .s{color:#ADF195}.studio .n{color:#FFC600}
 footer{
   background:var(--navy-deep);color:#9FB0D6;text-align:center;
   padding:2.2rem 22px;font-size:.92rem;
@@ -166,74 +198,213 @@ footer .flyt{
       <p class="tips">💡 Ladda bara ner Roblox Studio från roblox.com, aldrig från andra sidor. Fastnar ni? Mejla <a href="mailto:info@floatingcode.se">info@floatingcode.se</a> så hjälper jag er.</p>
     </section>
 
-    <!-- LEKTIONER – siffran i src är filmens Vimeo-ID -->
-    <div class="lektion">
+    <!-- ============ OM KURSEN ============ -->
+    <section class="omkursen">
+      <h2>🏁 Fällor, mål och hinder: bygg en obby</h2>
+      <p>En obby är en bana med hinder. Man ska ta sig från start till mål utan att bli uffad. I sju filmer bygger du:</p>
+      <ol class="bygger"><li>Start-platta</li><li>Plattformar att hoppa på</li><li>Lava som uffar</li><li>Plattor som försvinner</li><li>En snabbplatta</li><li>Mål med konfetti</li></ol>
+      <details class="ordlista"><summary>📖 Ord som är bra att kunna</summary>
+        <dl>
+          <dt>Part</dt><dd>En kloss som man bygger med.</dd>
+          <dt>Explorer</dt><dd>Listan över allt som finns i spelet.</dd>
+          <dt>Properties</dt><dd>Inställningarna för det man har markerat.</dd>
+          <dt>Anchored</dt><dd>Fastsatt. Klossen ramlar inte.</dd>
+          <dt>Script</dt><dd>Kod som säger åt datorn vad den ska göra.</dd>
+          <dt>Humanoid</dt><dd>Det som gör en figur till en spelare. Den har hälsa (Health).</dd>
+          <dt>Loop</dt><dd>Kod som upprepas om och om igen.</dd>
+          <dt>Output</dt><dd>Rutan där datorn skriver meddelanden och fel.</dd>
+        </dl>
+      </details>
+      <p class="namntips">💡 Ord som vi själva hittar på i koden, som <code>lava</code>, <code>platta</code> och <code>mal</code>, skriver vi på svenska men utan å, ä och ö. Ord som Roblox redan kan, som <code>Touched</code> och <code>Health</code>, är på engelska. Då ser man skillnad!</p>
+    </section>
+
+    <!-- LEKTIONER – siffran i src är filmens Vimeo-ID. Kod och stöd skrivs i build-skriptet/manuset. -->
+    <div class="lektion" id="film-1">
       <div class="lektion-head">
         <div class="lektion-num">1</div>
-        <h3>Obby kurs – del 1</h3>
+        <h3>Film 1: Kom igång i Roblox Studio</h3>
       </div>
       <div class="video-ram">
-        <iframe src="https://player.vimeo.com/video/1239058604?dnt=1" allow="fullscreen" allowfullscreen title="Obby kurs – del 1"></iframe>
+        <iframe src="https://player.vimeo.com/video/1239058604?dnt=1" allow="fullscreen" allowfullscreen title="Film 1: Kom igång i Roblox Studio"></iframe>
+      </div>
+      <div class="stod">
+        <div class="lar"><h4>⭐ Efter filmen kan du</h4><ul><li>Öppna Roblox Studio och välja mallen Baseplate</li><li>Flyga runt med kameran</li><li>Använda Select, Move, Scale och Rotate</li><li>Hitta Explorer och Properties</li><li>Spara ditt spel och ångra med Ctrl + Z</li></ul></div>
+        <div class="steg"><h4>🧭 Steg för steg</h4><ol><li>Öppna Roblox Studio och logga in.</li><li>Välj mallen <b>Baseplate</b>, en tom grå platta.</li><li>Flyg runt: håll inne <b>höger musknapp</b> och tryck <b>W, A, S, D</b>. Rulla mushjulet för att zooma.</li><li>På fliken <b>Home</b> finns <b>Select</b> (välj), <b>Move</b> (flytta), <b>Scale</b> (större/mindre) och <b>Rotate</b> (vrid).</li><li>Till höger finns <b>Explorer</b> (allt i spelet) och <b>Properties</b> (inställningar).</li><li>Spara: <b>File → Save to Roblox</b>. Döp spelet till exempel till <i>Min första obby</i>.</li></ol><p class="pausa">⏸️ Pausa filmen när du vill och gör samma sak själv.</p></div>
+        
+        <div class="tips"><h4>💡 Tips och om något inte funkar</h4><ul><li>Gjorde du fel? Tryck <b>Ctrl + Z</b> för att ångra.</li><li>Spara ofta med <b>Ctrl + S</b>.</li><li>Ser du inte Explorer eller Properties? Gå till fliken <b>View</b> och klicka på dem.</li><li>Har kameran flugit iväg? Klicka på något i Explorer och tryck <b>F</b>.</li></ul></div>
+        <div class="uppdrag"><h4>🎯 Ditt uppdrag</h4><p>Flytta, förstora och vrid start-plattan. Ångra sedan allt med Ctrl + Z. Spara spelet.</p></div>
       </div>
     </div>
-
-    <div class="lektion">
+    <div class="lektion" id="film-2">
       <div class="lektion-head">
         <div class="lektion-num">2</div>
-        <h3>Obby kurs – del 2</h3>
+        <h3>Film 2: Objekt, färg och material</h3>
       </div>
       <div class="video-ram">
-        <iframe src="https://player.vimeo.com/video/1239059901?dnt=1" allow="fullscreen" allowfullscreen title="Obby kurs – del 2"></iframe>
+        <iframe src="https://player.vimeo.com/video/1239059901?dnt=1" allow="fullscreen" allowfullscreen title="Film 2: Objekt, färg och material"></iframe>
+      </div>
+      <div class="stod">
+        <div class="lar"><h4>⭐ Efter filmen kan du</h4><ul><li>Lägga till en Part (kloss) och välja form</li><li>Ändra färg och material</li><li>Förstå Anchored</li><li>Döpa och kopiera en kloss</li></ul></div>
+        <div class="steg"><h4>🧭 Steg för steg</h4><ol><li>Öppna spelet från film 1.</li><li>Fliken <b>Home → Part</b>. Under pilen finns formerna Block, Sphere (kula), Wedge (kil, bra som ramp) och Cylinder.</li><li>Markera klossen och välj <b>Color</b> i Properties.</li><li>Välj <b>Material</b>: Wood (trä), Ice (halt) eller Neon (lyser, perfekt för lava!).</li><li>Kryssa i <b>Anchored</b> så att klossen sitter fast.</li><li>Döp klossen: klicka på den i Explorer, tryck <b>F2</b> och skriv <i>Plattform</i>.</li><li>Kopiera med <b>Ctrl + D</b>.</li></ol><p class="pausa">⏸️ Pausa filmen när du vill och gör samma sak själv.</p></div>
+        
+        <div class="tips"><h4>💡 Tips och om något inte funkar</h4><ul><li>Kryssa <b>alltid</b> i Anchored på allt du bygger. Annars ramlar det!</li><li>Kan du inte ändra klossen? Kolla att rätt kloss är markerad. Den har en blå ram.</li><li>Syns inte kopian? Den ligger på samma ställe som originalet. Flytta den med Move.</li></ul></div>
+        <div class="uppdrag"><h4>🎯 Ditt uppdrag</h4><p>Bygg en liten trappa av tre klossar i olika färger och material. Glöm inte Anchored!</p></div>
       </div>
     </div>
-
-    <div class="lektion">
+    <div class="lektion" id="film-3">
       <div class="lektion-head">
         <div class="lektion-num">3</div>
-        <h3>Obby kurs – del 3</h3>
+        <h3>Film 3: Din första kod: bli uffad!</h3>
       </div>
       <div class="video-ram">
-        <iframe src="https://player.vimeo.com/video/1239060130?dnt=1" allow="fullscreen" allowfullscreen title="Obby kurs – del 3"></iframe>
+        <iframe src="https://player.vimeo.com/video/1239060130?dnt=1" allow="fullscreen" allowfullscreen title="Film 3: Din första kod: bli uffad!"></iframe>
+      </div>
+      <div class="stod">
+        <div class="lar"><h4>⭐ Efter filmen kan du</h4><ul><li>Veta vad ett script är</li><li>Skriva en kodrad och se svaret i Output</li><li>Göra en lavakloss som uffar spelaren</li></ul></div>
+        <div class="steg"><h4>🧭 Steg för steg</h4><ol><li>Öppna <b>Output</b>: fliken <b>View → Output</b>.</li><li>I Explorer: håll musen över <b>ServerScriptService</b>, klicka på plusset och välj <b>Script</b>.</li><li>Ändra texten inom citattecknen så att det blir <b>Kod A</b>. Tryck Play och titta i Output!</li><li>Lägg till ett Block, döp det till <b>Lava</b>, gör det rött, välj Neon och kryssa i Anchored.</li><li>Håll musen över <b>Lava</b> i Explorer, klicka på plusset och välj <b>Script</b>.</li><li>Ta bort raden som redan står där och skriv <b>Kod B</b>. Testa med Play!</li></ol><p class="pausa">⏸️ Pausa filmen när du vill och gör samma sak själv.</p></div>
+        <div class="kodruta">
+          <h4>💻 Kod A: din första kodrad</h4>
+          <p class="var">Ligger i <b>ServerScriptService</b>.</p>
+          <div class="studio">
+            <div class="studio-topp"><span>📜 Script</span><button class="kopiera" type="button">Kopiera koden</button></div>
+            <pre><code><span class="rad"><span class="b">print</span>(<span class="s">&quot;Hej från mitt spel!&quot;</span>)</span></code></pre>
+            <textarea class="kodtext" hidden>print(&quot;Hej från mitt spel!&quot;)</textarea>
+          </div>
+          <p class="skriv-tips">Skriv exakt likadant. Stora och små bokstäver spelar roll!</p>
+        </div><div class="kodruta">
+          <h4>💻 Kod B: lava</h4>
+          <p class="var">Ligger <b>inuti Lava-klossen</b>.</p>
+          <div class="studio">
+            <div class="studio-topp"><span>📜 Script</span><button class="kopiera" type="button">Kopiera koden</button></div>
+            <pre><code><span class="rad"><span class="k">local</span> lava = <span class="b">script</span>.<span class="p">Parent</span></span><span class="rad"> </span><span class="rad">lava.<span class="p">Touched</span>:<span class="p">Connect</span>(<span class="k">function</span>(hit)</span><span class="rad">    <span class="k">local</span> humanoid = hit.<span class="p">Parent</span>:<span class="p">FindFirstChild</span>(<span class="s">&quot;Humanoid&quot;</span>)</span><span class="rad">    <span class="k">if</span> humanoid <span class="k">then</span></span><span class="rad">        humanoid.<span class="p">Health</span> = <span class="n">0</span></span><span class="rad">    <span class="k">end</span></span><span class="rad"><span class="k">end</span>)</span></code></pre>
+            <textarea class="kodtext" hidden>local lava = script.Parent
+
+lava.Touched:Connect(function(hit)
+	local humanoid = hit.Parent:FindFirstChild(&quot;Humanoid&quot;)
+	if humanoid then
+		humanoid.Health = 0
+	end
+end)</textarea>
+          </div>
+          <p class="skriv-tips">Skriv exakt likadant. Stora och små bokstäver spelar roll!</p>
+        </div><details class="forklaring"><summary>Vad betyder koden? Rad för rad</summary><dl><dt><code>local lava = script.Parent</code></dt><dd>Vi ger klossen namnet lava i koden. <code>script.Parent</code> betyder ”klossen som scriptet ligger i”.</dd><dt><code>lava.Touched:Connect(function(hit)</code></dt><dd>När något nuddar lavan ska datorn göra det här. <code>hit</code> är den del som nuddade, till exempel en fot.</dd><dt><code>local humanoid = hit.Parent:FindFirstChild(&quot;Humanoid&quot;)</code></dt><dd>Vi kollar om foten hör till en spelare. Alla spelare har något som heter Humanoid.</dd><dt><code>if humanoid then</code></dt><dd>Om det är en spelare …</dd><dt><code>humanoid.Health = 0</code></dt><dd>… sätt spelarens hälsa till noll. Uff!</dd><dt><code>end  end)</code></dt><dd>end betyder slut. Allt som börjar måste sluta.</dd></dl></details>
+        <div class="tips"><h4>💡 Tips och om något inte funkar</h4><ul><li>Händer ingenting? Kolla att scriptet ligger <b>inuti Lava</b> i Explorer, och att det är ett <b>Script</b> (inte LocalScript).</li><li>Röd text i Output? Något är felstavat. Jämför din kod med Kod B, bokstav för bokstav.</li><li>Rött under en rad? Kolla att du har alla parenteser ( ) och citattecken " ".</li></ul></div>
+        <div class="uppdrag"><h4>🎯 Ditt uppdrag</h4><p>Gör en lavakloss till med en annan form. Tips: Ctrl + D kopierar klossen, och scriptet följer med!</p></div>
       </div>
     </div>
-
-    <div class="lektion">
+    <div class="lektion" id="film-4">
       <div class="lektion-head">
         <div class="lektion-num">4</div>
-        <h3>Obby kurs – del 4</h3>
+        <h3>Film 4: Bygg din obby</h3>
       </div>
       <div class="video-ram">
-        <iframe src="https://player.vimeo.com/video/1239060305?dnt=1" allow="fullscreen" allowfullscreen title="Obby kurs – del 4"></iframe>
+        <iframe src="https://player.vimeo.com/video/1239060305?dnt=1" allow="fullscreen" allowfullscreen title="Film 4: Bygg din obby"></iframe>
+      </div>
+      <div class="stod">
+        <div class="lar"><h4>⭐ Efter filmen kan du</h4><ul><li>Bygga en bana med plattformar</li><li>Testa att hoppen går att klara</li><li>Lägga lava under och på banan</li><li>Hålla ordning med mappar</li></ul></div>
+        <div class="steg"><h4>🧭 Steg för steg</h4><ol><li>Rita gärna din bana på ett papper först.</li><li>Flytta <b>SpawnLocation</b> (start-plattan) dit banan ska börja.</li><li>Lägg till en Plattform, kopiera med <b>Ctrl + D</b> och flytta kopian lite framåt. Bygg flera!</li><li>Testa direkt med Play. Är hoppet för långt? Flytta plattformen närmare.</li><li>Kopiera lavan, gör den jättestor med Scale och lägg den <b>under</b> hela banan.</li><li>Lägg smala lavaränder på några plattformar, och en <b>Wedge</b> som ramp.</li><li>Gör mappar: håll musen över <b>Workspace</b>, klicka på plusset och välj <b>Folder</b>. Gör en som heter <i>Bana</i> och en som heter <i>Lava</i>.</li></ol><p class="pausa">⏸️ Pausa filmen när du vill och gör samma sak själv.</p></div>
+        
+        <div class="tips"><h4>💡 Tips och om något inte funkar</h4><ul><li>Börja lätt. Banan får bli svårare mot slutet.</li><li>Kan du inte hoppa så långt? Flytta plattformarna närmare varandra.</li><li>Blir du uffad direkt när du startar? Lavan ligger för nära start-plattan.</li><li>Ramlar du men blir inte uffad? Kolla att det stora lavagolvet har sitt script kvar i Explorer.</li></ul></div>
+        <div class="uppdrag"><h4>🎯 Ditt uppdrag</h4><p>Bygg tre plattformar till som är lite svårare, till exempel smalare eller högre upp.</p></div>
       </div>
     </div>
-
-    <div class="lektion">
+    <div class="lektion" id="film-5">
       <div class="lektion-head">
         <div class="lektion-num">5</div>
-        <h3>Obby kurs – del 5</h3>
+        <h3>Film 5: Fällor: plattor som försvinner</h3>
       </div>
       <div class="video-ram">
-        <iframe src="https://player.vimeo.com/video/1239060303?dnt=1" allow="fullscreen" allowfullscreen title="Obby kurs – del 5"></iframe>
+        <iframe src="https://player.vimeo.com/video/1239060303?dnt=1" allow="fullscreen" allowfullscreen title="Film 5: Fällor: plattor som försvinner"></iframe>
+      </div>
+      <div class="stod">
+        <div class="lar"><h4>⭐ Efter filmen kan du</h4><ul><li>Förstå att en loop upprepar kod</li><li>Göra en platta som försvinner och kommer tillbaka</li><li>Ändra siffror i koden för att göra fällan svårare</li></ul></div>
+        <div class="steg"><h4>🧭 Steg för steg</h4><ol><li>Lägg till en Plattform i banan och döp den till <b>Platta</b>. Ge den en egen färg.</li><li>Lägg till ett <b>Script inuti Platta</b>. Ta bort raden som står där.</li><li>Skriv <b>Kod C</b> och testa med Play!</li><li>Vill du ha en svårare fälla? Ändra <b>2</b> till <b>1</b>.</li></ol><p class="pausa">⏸️ Pausa filmen när du vill och gör samma sak själv.</p></div>
+        <div class="kodruta">
+          <h4>💻 Kod C: platta som försvinner</h4>
+          <p class="var">Ligger <b>inuti Platta</b>.</p>
+          <div class="studio">
+            <div class="studio-topp"><span>📜 Script</span><button class="kopiera" type="button">Kopiera koden</button></div>
+            <pre><code><span class="rad"><span class="k">local</span> platta = <span class="b">script</span>.<span class="p">Parent</span></span><span class="rad"> </span><span class="rad"><span class="k">while</span> <span class="k">true</span> <span class="k">do</span></span><span class="rad">    <span class="b">task</span>.<span class="p">wait</span>(<span class="n">2</span>)</span><span class="rad">    platta.<span class="p">Transparency</span> = <span class="n">0.8</span></span><span class="rad">    platta.<span class="p">CanCollide</span> = <span class="k">false</span></span><span class="rad">    <span class="b">task</span>.<span class="p">wait</span>(<span class="n">2</span>)</span><span class="rad">    platta.<span class="p">Transparency</span> = <span class="n">0</span></span><span class="rad">    platta.<span class="p">CanCollide</span> = <span class="k">true</span></span><span class="rad"><span class="k">end</span></span></code></pre>
+            <textarea class="kodtext" hidden>local platta = script.Parent
+
+while true do
+	task.wait(2)
+	platta.Transparency = 0.8
+	platta.CanCollide = false
+	task.wait(2)
+	platta.Transparency = 0
+	platta.CanCollide = true
+end</textarea>
+          </div>
+          <p class="skriv-tips">Skriv exakt likadant. Stora och små bokstäver spelar roll!</p>
+        </div><details class="forklaring"><summary>Vad betyder koden? Rad för rad</summary><dl><dt><code>while true do</code></dt><dd>Gör allt fram till end om och om igen, för alltid. Det kallas en <b>loop</b>.</dd><dt><code>task.wait(2)</code></dt><dd>Vänta i 2 sekunder.</dd><dt><code>platta.Transparency = 0.8</code></dt><dd>Gör plattan nästan genomskinlig. 0 syns helt, 1 är osynlig.</dd><dt><code>platta.CanCollide = false</code></dt><dd>Nu går det inte att stå på plattan. Man ramlar igenom!</dd><dt><code>platta.Transparency = 0
+platta.CanCollide = true</code></dt><dd>Plattan syns igen och man kan stå på den.</dd></dl></details>
+        <div class="tips"><h4>💡 Tips och om något inte funkar</h4><ul><li><b>Viktigt!</b> En loop måste alltid ha en <code>task.wait</code>. Annars springer datorn så fort att Studio fryser.</li><li>Fryser Studio? Du har glömt task.wait i loopen. Stäng Studio och lägg till den.</li><li>Försvinner inte plattan? Kolla att scriptet ligger inuti plattan och att Transparency och CanCollide är rätt stavade.</li></ul></div>
+        <div class="uppdrag"><h4>🎯 Ditt uppdrag</h4><p>Gör tre plattor som försvinner i olika takt: en med 1, en med 2 och en med 3 sekunder.</p></div>
       </div>
     </div>
-
-    <div class="lektion">
+    <div class="lektion" id="film-6">
       <div class="lektion-head">
         <div class="lektion-num">6</div>
-        <h3>Obby kurs – del 6</h3>
+        <h3>Film 6: Mål och snabbplatta</h3>
       </div>
       <div class="video-ram">
-        <iframe src="https://player.vimeo.com/video/1239060306?dnt=1" allow="fullscreen" allowfullscreen title="Obby kurs – del 6"></iframe>
+        <iframe src="https://player.vimeo.com/video/1239060306?dnt=1" allow="fullscreen" allowfullscreen title="Film 6: Mål och snabbplatta"></iframe>
+      </div>
+      <div class="stod">
+        <div class="lar"><h4>⭐ Efter filmen kan du</h4><ul><li>Känna igen nudd-mönstret från lavakoden</li><li>Bygga en målplatta med konfetti</li><li>Bygga en snabbplatta som gör spelaren snabbare</li></ul></div>
+        <div class="steg"><h4>🧭 Steg för steg</h4><ol><li>Bygg en stor platta i slutet av banan. Gör den guldig, välj Neon och kryssa i Anchored.</li><li>Döp den till <b>Mal</b> (utan å, ä och ö).</li><li>Klicka på plusset vid Mal och välj <b>ParticleEmitter</b>. Ta bort krysset vid <b>Enabled</b> i Properties.</li><li>Lägg till ett <b>Script inuti Mal</b> och skriv <b>Kod D</b>. Testa!</li><li>Bygg en blå platta och döp den till <b>Snabb</b>.</li><li>Lägg till ett <b>Script inuti Snabb</b> och skriv <b>Kod E</b>. Testa!</li></ol><p class="pausa">⏸️ Pausa filmen när du vill och gör samma sak själv.</p></div>
+        <div class="kodruta">
+          <h4>💻 Kod D: målet</h4>
+          <p class="var">Ligger <b>inuti Mal</b> (målplattan).</p>
+          <div class="studio">
+            <div class="studio-topp"><span>📜 Script</span><button class="kopiera" type="button">Kopiera koden</button></div>
+            <pre><code><span class="rad"><span class="k">local</span> mal = <span class="b">script</span>.<span class="p">Parent</span></span><span class="rad"> </span><span class="rad">mal.<span class="p">Touched</span>:<span class="p">Connect</span>(<span class="k">function</span>(hit)</span><span class="rad">    <span class="k">local</span> humanoid = hit.<span class="p">Parent</span>:<span class="p">FindFirstChild</span>(<span class="s">&quot;Humanoid&quot;</span>)</span><span class="rad">    <span class="k">if</span> humanoid <span class="k">then</span></span><span class="rad">        mal.<span class="p">ParticleEmitter</span>.<span class="p">Enabled</span> = <span class="k">true</span></span><span class="rad">    <span class="k">end</span></span><span class="rad"><span class="k">end</span>)</span></code></pre>
+            <textarea class="kodtext" hidden>local mal = script.Parent
+
+mal.Touched:Connect(function(hit)
+	local humanoid = hit.Parent:FindFirstChild(&quot;Humanoid&quot;)
+	if humanoid then
+		mal.ParticleEmitter.Enabled = true
+	end
+end)</textarea>
+          </div>
+          <p class="skriv-tips">Skriv exakt likadant. Stora och små bokstäver spelar roll!</p>
+        </div><div class="kodruta">
+          <h4>💻 Kod E: snabbplatta</h4>
+          <p class="var">Ligger <b>inuti Snabb</b>.</p>
+          <div class="studio">
+            <div class="studio-topp"><span>📜 Script</span><button class="kopiera" type="button">Kopiera koden</button></div>
+            <pre><code><span class="rad"><span class="k">local</span> snabb = <span class="b">script</span>.<span class="p">Parent</span></span><span class="rad"> </span><span class="rad">snabb.<span class="p">Touched</span>:<span class="p">Connect</span>(<span class="k">function</span>(hit)</span><span class="rad">    <span class="k">local</span> humanoid = hit.<span class="p">Parent</span>:<span class="p">FindFirstChild</span>(<span class="s">&quot;Humanoid&quot;</span>)</span><span class="rad">    <span class="k">if</span> humanoid <span class="k">then</span></span><span class="rad">        humanoid.<span class="p">WalkSpeed</span> = <span class="n">40</span></span><span class="rad">    <span class="k">end</span></span><span class="rad"><span class="k">end</span>)</span></code></pre>
+            <textarea class="kodtext" hidden>local snabb = script.Parent
+
+snabb.Touched:Connect(function(hit)
+	local humanoid = hit.Parent:FindFirstChild(&quot;Humanoid&quot;)
+	if humanoid then
+		humanoid.WalkSpeed = 40
+	end
+end)</textarea>
+          </div>
+          <p class="skriv-tips">Skriv exakt likadant. Stora och små bokstäver spelar roll!</p>
+        </div><details class="forklaring"><summary>Vad betyder koden? Rad för rad</summary><dl><dt><code>Allt utom sista raden</code></dt><dd>Exakt samma som lavan: ”När en spelare nuddar klossen …”</dd><dt><code>mal.ParticleEmitter.Enabled = true</code></dt><dd>(Kod D) … sätt på konfettin.</dd><dt><code>humanoid.WalkSpeed = 40</code></dt><dd>(Kod E) … gör spelaren snabbare. Vanlig fart är 16.</dd></dl></details>
+        <div class="tips"><h4>💡 Tips och om något inte funkar</h4><ul><li>Samma kod kan göra helt olika saker. Bara den sista raden är ny!</li><li>Sprutar konfettin hela tiden? Ta bort krysset vid Enabled i ParticleEmitter.</li><li>Kommer ingen konfetti? Kolla att både ParticleEmitter och scriptet ligger inuti Mal.</li><li>Blir du inte snabbare? Kolla att det står <b>WalkSpeed</b> med stort W och stort S.</li></ul></div>
+        <div class="uppdrag"><h4>🎯 Ditt uppdrag</h4><p>Bygg en röd platta som gör dig långsam igen. Tips: kopiera snabbplattan och ändra 40 till 16.</p></div>
       </div>
     </div>
-
-    <div class="lektion">
+    <div class="lektion" id="film-7">
       <div class="lektion-head">
         <div class="lektion-num">7</div>
-        <h3>Obby kurs – del 7</h3>
+        <h3>Film 7: Testa, laga fel och publicera</h3>
       </div>
       <div class="video-ram">
-        <iframe src="https://player.vimeo.com/video/1239060304?dnt=1" allow="fullscreen" allowfullscreen title="Obby kurs – del 7"></iframe>
+        <iframe src="https://player.vimeo.com/video/1239060304?dnt=1" allow="fullscreen" allowfullscreen title="Film 7: Testa, laga fel och publicera"></iframe>
+      </div>
+      <div class="stod">
+        <div class="lar"><h4>⭐ Efter filmen kan du</h4><ul><li>Testa hela banan som en spelare</li><li>Läsa felmeddelanden i Output och laga fel</li><li>Publicera spelet</li></ul></div>
+        <div class="steg"><h4>🧭 Steg för steg</h4><ol><li>Spela igenom hela banan som om du vore en ny spelare. Ändra tills det känns bra.</li><li>Tryck Play och titta i <b>Output</b>. Röd text betyder fel. Klicka på den röda texten, så hoppar Studio till raden med felet.</li><li>Publicera: <b>File → Publish to Roblox</b>. Skriv ett namn och en kort beskrivning.</li><li>För att andra ska kunna spela måste spelet vara <b>offentligt</b>. Det ställer du in i <b>Game Settings</b>.</li></ol><p class="pausa">⏸️ Pausa filmen när du vill och gör samma sak själv.</p></div>
+        
+        <div class="tips"><h4>💡 Tips och om något inte funkar</h4><ul><li>De vanligaste felen: fel stor eller liten bokstav, ett <code>end</code> som saknas och en parentes som saknas. Jämför alltid med koden här på sidan.</li><li>Hittar du inte felet? Klicka på den röda texten i Output och läs raden ovanför också.</li><li>Hittar kompisarna inte spelet? Kolla att det är offentligt i Game Settings.</li><li>Ändrade du något? Publicera igen. Det som inte är publicerat syns inte.</li><li><b>Är du under 13 år?</b> Publicera tillsammans med en vuxen.</li></ul></div>
+        <div class="uppdrag"><h4>🎯 Ditt uppdrag</h4><p>Låt en kompis eller någon i familjen spela din obby. Fråga vad de tyckte och gör en förbättring.</p></div>
       </div>
     </div>
 
@@ -260,6 +431,22 @@ const KURSKOD = "ROBLOX5173";
   document.getElementById("kurskodknapp").addEventListener("click", prova);
   document.getElementById("kurskodfalt").addEventListener("keydown", e => { if(e.key==="Enter") prova(); });
 })();
+</script>
+<script>
+/* Kopiera-knapparna: kopierar koden exakt, med rätt indrag */
+document.querySelectorAll(".kopiera").forEach(function(knapp){
+  knapp.addEventListener("click", function(){
+    var text = knapp.closest(".studio").querySelector(".kodtext").value;
+    function klart(){ knapp.textContent = "Kopierad! ✅"; setTimeout(function(){ knapp.textContent = "Kopiera koden"; }, 2000); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(klart, function(){ reserv(text); klart(); });
+    } else { reserv(text); klart(); }
+  });
+});
+function reserv(text){
+  var t = document.createElement("textarea"); t.value = text; document.body.appendChild(t);
+  t.select(); try { document.execCommand("copy"); } catch(e) {} document.body.removeChild(t);
+}
 </script>
 </body>
 </html>
