@@ -1015,6 +1015,25 @@ const HANDELSER = [
     text: "Två digitala julkalendrar för skola, fritids och bibliotek, och gratiskalendern Rädda julen! på TikTok.",
     lank: "julkalendrar.html",
     lanktext: "Se kalendrarna →"
+  },
+  {
+    datum: "2027-01-15",
+    visadatum: ["JAN", "2027"],   // valfritt: visas i stället för dag + månad
+    titel: "Floating Code Cup 2027: temat släpps",
+    emoji: "🏆",
+    text: "Anmälan till Floating Code Cup 2027 är öppen nu! Det är gratis och man tävlar hemifrån, var man än bor i Sverige. Temat släpps i januari.",
+    lank: "https://forms.gle/tF7uAgk39r8CFeTx8",
+    lanktext: "Anmäl ditt barn →",
+    lank2: "floating-code-cup.html",
+    lanktext2: "Läs mer om Cupen →"
+  },
+  {
+    datum: "2027-04-06",
+    visadatum: ["6–7", "APR"],
+    titel: "Floating Code på SETT-mässan",
+    emoji: "🏫",
+    text: "Vi ställer ut på SETT 2027 på Kistamässan i Stockholm, 6–7 april. Kom förbi och testa spel som barn har byggt! Mer info kommer.",
+    lank: ""
   }
 ];
 
@@ -1041,7 +1060,7 @@ const HANDELSER = [
     const el = document.createElement("div");
     el.className = "kal-card";
     el.innerHTML =
-      '<div class="kal-datum"><div class="dag">' + d.getDate() + '</div><div class="man">' + man[d.getMonth()] + '</div></div>' +
+      '<div class="kal-datum"><div class="dag">' + (h.visadatum ? h.visadatum[0] : d.getDate()) + '</div><div class="man">' + (h.visadatum ? h.visadatum[1] : man[d.getMonth()]) + '</div></div>' +
       '<div>' +
         '<h3>' + h.titel + (h.emoji ? ' ' + h.emoji : '') + '</h3>' +
         '<p>' + h.text + '</p>' +
