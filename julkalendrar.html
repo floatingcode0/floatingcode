@@ -6,7 +6,7 @@
 <title>Julkalendrar för skola, fritids &amp; bibliotek | Floating Code</title>
 <meta name="description" content="Digitala julkalendrar i programmering för skola, fritids och bibliotek. Video, uppgift och pedagogstöd i varje lucka. Inga förkunskaper krävs.">
 <meta property="og:title" content="Julkalendrar i programmering för skola, fritids &amp; bibliotek">
-<meta property="og:description" content="En lucka om dagen, ett helt eget spel till jul. Tre kalendrar för 5–13 år med video och pedagogstöd i varje lucka.">
+<meta property="og:description" content="En lucka om dagen, ett helt eget spel till jul. Två kalendrar för 5–9 år med video och pedagogstöd i varje lucka.">
 <meta property="og:image" content="https://floatingcode.se/logga.png">
 <meta property="og:url" content="https://floatingcode.se/julkalendrar.html">
 <meta property="og:type" content="website">
@@ -19,7 +19,7 @@
   "@type": "FAQPage",
   "mainEntity": [
     {"@type":"Question","name":"Hur mycket behöver jag som pedagog förbereda?","acceptedAnswer":{"@type":"Answer","text":"Ingenting utöver tekniken. Du behöver inga förkunskaper i programmering. Varje lucka har en video som visar allt, en färdig uppgift och en klart-koll. Pedagogguiden tar 5 minuter att läsa."}},
-    {"@type":"Question","name":"Behöver eleverna egna konton?","acceptedAnswer":{"@type":"Answer","text":"Tomtens julsaga (5–7 år): nej. Fånga julklapparna (8–9 år): nej, men ett kostnadsfritt lärarkonto på Scratch rekommenderas. Tomtens verkstad (10–13 år): ja, ett Roblox-konto per barn, guide ingår."}},
+    {"@type":"Question","name":"Behöver eleverna egna konton?","acceptedAnswer":{"@type":"Answer","text":"Tomtens julsaga (5–7 år): nej. Fånga julklapparna (8–9 år): nej, men ett kostnadsfritt lärarkonto på Scratch rekommenderas. Inga elevkonton behövs."}},
     {"@type":"Question","name":"Hur lång tid tar en lucka?","acceptedAnswer":{"@type":"Answer","text":"Cirka 20–40 minuter: en kort video, dagens bygguppgift och en diskussionsfråga. Passar en lektion, en fritidsaktivitet eller ett bibliotekspass."}},
     {"@type":"Question","name":"Hur beställer vi, och kan vi få faktura?","acceptedAnswer":{"@type":"Answer","text":"All beställning går via faktura, även e-faktura enligt kommunens rutiner. Kalenderkoden mejlas samma vardag, så ni kan komma igång innan fakturan förfaller."}},
     {"@type":"Question","name":"Behandlas elevernas personuppgifter?","acceptedAnswer":{"@type":"Answer","text":"Nej. Kalendern nås med en gemensam kalenderkod per enhet. Eleverna loggar aldrig in och inga elevuppgifter samlas in."}}
@@ -85,7 +85,7 @@
     display:grid;gap:20px;margin:36px 0 10px;
     grid-template-columns:1fr;
   }
-  @media(min-width:760px){.kort-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:760px){.kort-grid{grid-template-columns:repeat(2,1fr)}}
 
   .kal-kort{
     background:var(--snow);color:var(--navy);border-radius:var(--r);
@@ -317,14 +317,6 @@
         <div class="kal-fot"><span class="kal-pris">1 995 kr</span><span class="kal-pil">Läs mer →</span></div>
       </button>
 
-      <button class="kal-kort k-roblox" data-vy="vy-roblox">
-        <span class="kal-alder">10–13 år · Åk 4–7 · 8 luckor</span>
-        <h3>Tomtens verkstad</h3>
-        <span class="kal-verktyg">Roblox Studio på dator</span>
-        <p class="kal-desc">Barnen bygger och kodar ett vinterspel i riktiga Roblox Studio med Lua-skript, leaderboard och snöfall, och publicerar det på Roblox sista luckan.</p>
-        <div class="kal-fot"><span class="kal-pris">3 495 kr</span><span class="kal-pil">Läs mer →</span></div>
-      </button>
-
       <button class="kal-kort k-scratch" data-vy="vy-scratch">
         <span class="kal-alder">8–9 år · Åk 2–3 · 12 luckor</span>
         <h3>Fånga julklapparna</h3>
@@ -336,15 +328,15 @@
     </div>
 
     <div class="paket">
-      <h3>🎄 Hela paketet: alla tre kalendrarna</h3>
-      <p>För F–6-skolor och bibliotek som vill nå hela åldersspannet. ScratchJr berättar, Scratch spelar, Roblox skapar världar.</p>
-      <div class="pris"><s>10 485 kr</s> 7 995 kr</div>
-      <a class="paket-knapp" href="#" id="paketkop">Beställ hela paketet</a>
+      <h3>🎄 Paketet: båda kalendrarna</h3>
+      <p>För F–3-skolor, fritids och bibliotek som vill nå hela lågstadiet. ScratchJr berättar, Scratch spelar.</p>
+      <div class="pris"><s>6 990 kr</s> 5 995 kr</div>
+      <a class="paket-knapp" href="#" id="paketkop">Beställ paketet</a>
     </div>
 
     <div class="paket kommun">
       <h3>🏛 Kommunlicens</h3>
-      <p>Alla tre kalendrarna för <b>samtliga skolor, fritids och bibliotek i kommunen</b>. En faktura, en kalenderkod per kalender att sprida internt, och programmering på schemat hela december 2026, i hela kommunen.</p>
+      <p>Båda kalendrarna för <b>samtliga skolor, fritids och bibliotek i kommunen</b>. En faktura, en kalenderkod per kalender att sprida internt, och programmering på schemat hela december 2026, i hela kommunen.</p>
       <div class="pris">från 39 995 kr</div>
       <a class="paket-knapp" href="#" id="kommunkop">Begär offert via faktura</a>
     </div>
@@ -365,7 +357,7 @@
       <div class="lgr">
         <h3>📚 Kopplat till läroplanen</h3>
         <ul>
-          <li><b>Lgr22, teknik:</b> styrning av föremål med programmering (åk 1–3) och egna konstruktioner med programmering (åk 4–6). Barnen bygger, testar och felsöker sin egen kod, och varje lucka lyfter fram det vanligaste felet.</li>
+          <li><b>Lgr22, teknik:</b> styrning av föremål med programmering (åk 1–3). Barnen bygger, testar och felsöker sin egen kod, och varje lucka lyfter fram det vanligaste felet.</li>
           <li><b>Lgr22, bild:</b> det gestaltande arbetet med figurer, bakgrunder, egeninspelat ljud och berättande hör hemma i bildämnets digitala bildskapande.</li>
           <li><b>Digital kompetens:</b> eleverna går från konsumenter till skapare av digital teknik, ett av läroplanens övergripande mål.</li>
           <li><b>Fritidshemmet:</b> stödjer uppdraget kring skapande med digitala verktyg, färdigt att använda rakt av i verksamheten.</li>
@@ -407,19 +399,19 @@
         </details>
         <details>
           <summary>Behöver eleverna egna konton?</summary>
-          <p class="svar"><b>Tomtens julsaga (5–7 år):</b> nej, inga konton alls. <b>Fånga julklapparna (8–9 år):</b> nej, men ett kostnadsfritt lärarkonto på Scratch rekommenderas, guide ingår. <b>Tomtens verkstad (10–13 år):</b> ja, ett Roblox-konto per barn. Konto- och installationsguide till IT och vårdnadshavare ingår.</p>
+          <p class="svar"><b>Tomtens julsaga (5–7 år):</b> nej, inga konton alls. <b>Fånga julklapparna (8–9 år):</b> nej, men ett kostnadsfritt lärarkonto på Scratch rekommenderas, guide ingår.</p>
         </details>
         <details>
           <summary>Vilken teknik krävs?</summary>
-          <p class="svar"><b>5–7 år:</b> iPad eller Android-platta med gratisappen ScratchJr. <b>8–9 år:</b> valfri dator, Chromebook eller iPad, allt körs i webbläsaren. <b>10–13 år:</b> Windows- eller Mac-datorer med Roblox Studio (gratis). Beställ installationen av IT i november, checklista ingår.</p>
+          <p class="svar"><b>5–7 år:</b> iPad eller Android-platta med gratisappen ScratchJr. <b>8–9 år:</b> valfri dator, Chromebook eller iPad, allt körs i webbläsaren.</p>
         </details>
         <details>
           <summary>Hur många luckor har kalendrarna, och hur lång tid tar en lucka?</summary>
-          <p class="svar"><b>Tomtens julsaga:</b> 4 luckor (1–4 december). <b>Tomtens verkstad:</b> 8 luckor (1–10 december). <b>Fånga julklapparna:</b> 12 luckor (1–16 december). Antalet är satt efter hur mycket tid varje åldersgrupp orkar och hinner med i december, och luckorna öppnas på skoldagar så att inget hamnar på en helg. En lucka tar cirka <b>20–40 minuter</b> beroende på ålder och grupp: en kort video (2–5 min), dagens bygguppgift och en avslutande diskussionsfråga. Passar en lektion, en fritidsaktivitet eller ett bibliotekspass.</p>
+          <p class="svar"><b>Tomtens julsaga:</b> 4 luckor (1–4 december). <b>Fånga julklapparna:</b> 12 luckor (1–16 december). Antalet är satt efter hur mycket tid varje åldersgrupp orkar och hinner med i december, och luckorna öppnas på skoldagar så att inget hamnar på en helg. En lucka tar cirka <b>20–40 minuter</b> beroende på ålder och grupp: en kort video (2–5 min), dagens bygguppgift och en avslutande diskussionsfråga. Passar en lektion, en fritidsaktivitet eller ett bibliotekspass.</p>
         </details>
         <details>
           <summary>Hinner vi inte alla luckor, vad händer då?</summary>
-          <p class="svar">Ingen stress! Luckorna ligger kvar hela december och det går utmärkt att ta två luckor samma dag eller hoppa in senare. Kalendrarna är medvetet korta (4, 8 och 12 luckor) just för att de ska hinnas med under en december som alltid blir stökigare än man tänkt.</p>
+          <p class="svar">Ingen stress! Luckorna ligger kvar hela december och det går utmärkt att ta två luckor samma dag eller hoppa in senare. Kalendrarna är medvetet korta (4 och 12 luckor) just för att de ska hinnas med under en december som alltid blir stökigare än man tänkt.</p>
         </details>
         <details>
           <summary>Vad gäller för licensen?</summary>
@@ -539,55 +531,6 @@
   </div>
 </div>
 
-<!-- ============ VY: ROBLOX ============ -->
-<div class="vy" id="vy-roblox">
-  <div class="wrap">
-    <button class="tillbaka" data-vy="vy-oversikt">← Alla kalendrar</button>
-    <div class="produkt k-roblox">
-      <div class="produkt-topp">
-        <span class="kal-alder">10–13 år · Roblox Studio på dator · 8 luckor</span>
-        <h2>Tomtens verkstad</h2>
-        <p class="pitch">Barnen bygger och programmerar ett eget vinterspel i riktiga Roblox Studio, samma verktyg som spelen de spelar är byggda i. Hinderbana, Lua-skript, rörliga plattformar, poängtavla och snöfall. Åtta luckor, varje lucka ett nytt steg. Sista luckan publiceras spelet på Roblox. Allt byggs från grunden med Parts, samma regler som i Floating Code Cup.</p>
-      </div>
-      <div class="produkt-inner">
-        <div>
-          <h3>Luckorna: spelet växer varje dag</h3>
-          <ol class="lucklista">
-            <li>Välkommen till verkstan: Parts, material och ankring</li>
-            <li>Verkstaden växer fram: väggar, tak och lysande fönster</li>
-            <li>Banan tar form: spawn, hinderbana och hal is</li>
-            <li>Första skriptet! Lua på riktigt ⭐</li>
-            <li>Dörren och checkpoints: två skript som båda börjar med Touched</li>
-            <li>Den rörliga plattformen: ändra siffrorna och känn skillnaden</li>
-            <li>Samla julklappar: leaderboard och julmusik ⭐</li>
-            <li>Snöfall, speltest och premiär! Publicering på Roblox 🎄</li>
-          </ol>
-          <div class="teknik"><b>Teknik:</b> Windows- eller Mac-datorer med Roblox Studio (gratis) och ett Roblox-konto per barn. <b>Beställ installationen av er IT-avdelning i november</b>, checklista ingår.</div>
-        </div>
-        <div>
-          <div class="kop-ruta">
-            <div class="prisrad"><span class="pris">3 495 kr</span><span class="prisinfo">ex. moms</span></div>
-            <p class="licens">Licens för en skola, fritidsavdelning eller ett bibliotek. Obegränsat antal barngrupper under hela december 2026.</p>
-            <a class="kopknapp" href="#" data-kop="roblox-faktura">Beställ med faktura →</a>
-            <p class="kop-steg">Knappen öppnar ett färdigt mejl där ni fyller i fakturauppgifterna. Ni får <b>kalenderkoden och länken samma vardag</b>. Fakturan kommer separat, ni behöver inte betala innan ni kommit igång.<br><br>Går knappen inte att klicka? Mejla <b>info@floatingcode.se</b> så hjälper jag er.</p>
-          </div>
-          <div style="margin-top:22px">
-            <h3>Det här ingår</h3>
-            <ul class="ingar">
-              <li>8 luckor med video (3–5 min) och dagens uppgift</li>
-              <li>Pedagogguide: kom igång på 5 minuter</li>
-              <li>"Klart-kollen" och diskussionsfråga till varje lucka</li>
-              <li>5 kodsheets i A3 med alla Lua-skript</li>
-              <li>Utskrivbara diplom till alla barn</li>
-              <li>Konto- och installationsguide till vårdnadshavare och IT</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <footer>
   <p>Frågor? Mejla <a href="mailto:info@floatingcode.se" style="color:var(--mint)">info@floatingcode.se</a>, så hjälper vi gärna till att välja rätt kalender.</p>
   <p style="margin-top:6px">© 2026 Floating Code AB · Org.nr 559506-5433 · Stockholm · <a href="villkor.html" style="color:var(--mint)">Köpvillkor &amp; integritetspolicy</a></p>
@@ -607,9 +550,8 @@ const FAKTURAMEJL = "info@floatingcode.se";
 // priset ALSO står i HTML:en ovanför (kal-pris och prisrad).
 const KALENDRAR = [
   {id:"scratch", namn:"Fånga julklapparna", rad:"Scratch, 8–9 år, 12 luckor", pris:"4 995 kr"},
-  {id:"roblox",  namn:"Tomtens verkstad",   rad:"Roblox Studio, 10–13 år, 8 luckor", pris:"3 495 kr"},
   {id:"jr",      namn:"Tomtens julsaga",    rad:"ScratchJr, 5–7 år, 4 luckor", pris:"1 995 kr"},
-  {id:"paket",   namn:"Hela paketet",       rad:"alla tre kalendrarna", pris:"7 995 kr"}
+  {id:"paket",   namn:"Paketet",            rad:"båda kalendrarna", pris:"5 995 kr"}
 ];
 
 const KOMMUNPRIS = "från 39 995 kr";

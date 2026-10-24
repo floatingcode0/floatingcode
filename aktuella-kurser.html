@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <!-- ==========================================================
-  AKTUELLA KURSER – Floating Code
+  KURSER – Floating Code  (filen heter fortfarande
+  aktuella-kurser.html så att QR-koden på rollupen fungerar.
+  Byt INTE filnamn!)
 
-  SÅ LÄGGER DU UT EN NY KURS (tar 2 minuter):
-  • Scrolla ner till listan KURSTILLFALLEN i <script> längst ner.
-  • Kopiera ett befintligt kursblock { ... }, klistra in och
-    ändra texterna. Glöm inte kommatecknet mellan blocken!
-  • Kurser vars datum passerat försvinner AUTOMATISKT från
-    sidan – du behöver aldrig städa.
-  • fullbokad:true visar "Fullbokad" i stället för boka-knappen.
-  • lank:"" gör att knappen blir "Anmäl intresse" via mejl i
-    stället – bra innan betallänken är klar.
-  • Finns inga kommande kurser visas ett vänligt meddelande
-    med länk till nyhetsbrevet – helt automatiskt.
+  • DIGITALA KURSER: kopiera ett helt <div class="kurs-card">…</div>
+    för att lägga till en ny kurs. Byt pris och Stripe-länk.
+  • FÖRELÄSNINGEN: när du har en betallänk, byt href på knappen
+    "Anmäl intresse" mot Stripe-länken och knapptexten mot "Köp biljett".
+  • LIVEKURSER (lovkurser m.m.): fyll i listan KURSTILLFALLEN i
+    <script> längst ner. Är listan tom döljs hela sektionen.
 ========================================================== -->
 <html lang="sv">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aktuella kurser | Floating Code</title>
-<meta property="og:title" content="Aktuella kurser | Floating Code">
-<meta property="og:description" content="Kommande digitala kodkurser live: lovkurser och helgkurser i Scratch och Roblox Studio för barn.">
+<title>Kurser | Floating Code</title>
+<meta property="og:title" content="Kurser i spelutveckling för barn | Floating Code">
+<meta property="og:description" content="Digitala kurser i Roblox Studio och Scratch som barnen gör hemma i egen takt. Köp direkt och kom igång samma minut.">
 <meta property="og:image" content="https://floatingcode.se/logga.png">
 <meta property="og:type" content="website">
-<meta name="description" content="Kommande digitala kodkurser live med Floating Code: lovkurser och kurstillfällen i Scratch och Roblox Studio för barn.">
+<meta name="description" content="Digitala kurser i spelutveckling för barn: Roblox Studio (10–15 år) och Scratch (7–9 år). Köp direkt och kom igång samma minut. Även digital föreläsning för föräldrar.">
 <link rel="icon" type="image/png" href="logga.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -137,6 +134,40 @@ footer .flyt{
 }
 footer a{color:var(--mint)}
 @media(prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+
+/* ---- Kurser-sidan ---- */
+.vagval{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.6rem}
+.btn-ljus{background:#fff;color:var(--navy);border:2px solid var(--navy);box-shadow:none}
+.pedagog-rad{margin-top:1rem;font-size:.92rem;color:#56627F}
+section.block{margin-bottom:3rem}
+section.block > h2{font-size:clamp(1.4rem,4vw,1.8rem);margin-bottom:.4rem}
+section.block > p.ingress{max-width:38rem;margin-bottom:1.4rem}
+.kurs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
+@media(max-width:700px){.kurs-grid{grid-template-columns:1fr}}
+.kurs-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.kurs-topp{height:96px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--mint) 0%,var(--mint-strong) 100%)}
+.kurs-topp.lav{background:linear-gradient(135deg,var(--lavender) 0%,var(--lavender-strong) 100%)}
+.kurs-topp.navy{background:linear-gradient(135deg,var(--ink) 0%,var(--navy-deep) 100%)}
+.kurs-ikon{width:64px;height:64px;border-radius:50%;border:3px solid #fff;display:flex;align-items:center;justify-content:center;font-size:1.9rem;background:rgba(255,255,255,.18)}
+.kurs-body{padding:1.4rem 1.5rem 1.6rem;display:flex;flex-direction:column;flex:1}
+.kurs-body .tagg{align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:.25rem .7rem;border-radius:999px;background:var(--mint-soft);color:var(--mint-strong);margin-bottom:.8rem}
+.kurs-body .tagg.lav{background:var(--lavender-soft);color:var(--lavender-strong)}
+.kurs-body h3{font-size:1.2rem;margin-bottom:.4rem}
+.kurs-body p{font-size:.98rem}
+.kurs-body ul{list-style:none;margin:.9rem 0 1.2rem}
+.kurs-body li{font-size:.95rem;padding-left:1.2rem;position:relative;margin-bottom:.35rem}
+.kurs-body li::before{content:"▸";position:absolute;left:0;color:var(--lavender-strong)}
+.kurs-body .kursfot{margin-top:auto}
+.forelasning{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:start;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.7rem}
+@media(max-width:600px){.forelasning{grid-template-columns:1fr}}
+.forelasning .kurs-ikon{background:var(--navy);border-color:var(--lavender-soft)}
+.forelasning ul{list-style:none;margin:.8rem 0 1.1rem}
+.forelasning li{font-size:.95rem;padding-left:1.2rem;position:relative;margin-bottom:.35rem}
+.forelasning li::before{content:"▸";position:absolute;left:0;color:var(--mint-strong)}
+.faq details{background:var(--card);border-radius:16px;box-shadow:var(--shadow);margin-bottom:.8rem;padding:1rem 1.3rem}
+.faq summary{cursor:pointer;font-family:'Fredoka',sans-serif;font-weight:600;color:var(--navy);font-size:1.05rem}
+.faq details p{margin-top:.6rem;font-size:.97rem}
+#live[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -153,19 +184,127 @@ footer a{color:var(--mint)}
 
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow">live och digitalt</span>
-    <h1>Aktuella kurser 🗓️</h1>
-    <p>Här hittar du mina kommande digitala kodkurser live: lovkurser, helgkurser och andra tillfällen. Vissa kurser har begränsat antal platser, så anmäl dig i tid!</p>
+    <span class="eyebrow">kurser</span>
+    <h1>Kurser i spelutveckling 🎮</h1>
+    <p>Digitala kurser som ditt barn gör hemma i sin egen takt, och föreläsningar för dig som förälder. Köp direkt och kom igång samma minut.</p>
+    <div class="vagval">
+      <a class="btn" href="#digitala-kurser">🎮 För föräldrar: se kurserna</a>
+      <a class="btn btn-ljus" href="index.html#skolan">🏫 För skolor &amp; lärare →</a>
+    </div>
+    <p class="pedagog-rad">Är du pedagog? Se <a href="julkalendrar.html"><strong>julkalendrarna för skola, fritids &amp; bibliotek</strong></a>, eller workshops och föreläsningar under <a href="index.html#skolan"><strong>Skolan</strong></a>.</p>
   </div>
 </section>
 
 <main>
   <div class="wrap">
-    <div id="kurslista"></div>
+
+    <!-- ============ DIGITALA KURSER ============ -->
+    <section class="block" id="digitala-kurser">
+      <h2>Digitala kurser</h2>
+      <p class="ingress">Du betalar tryggt med kort och får direkt tillgång till kursens filmer. Kursen är er, och filmerna kan ses hur många gånger som helst.</p>
+      <div class="kurs-grid">
+
+        <!-- KURS: ROBLOX STUDIO (10–15 år) -->
+        <div class="kurs-card">
+          <div class="kurs-topp"><span class="kurs-ikon">🎮</span></div>
+          <div class="kurs-body">
+            <span class="tagg">3 filmer · nybörjare · 10–15 år</span>
+            <h3>Introduktion till Roblox Studio</h3>
+            <p>Kurspaketet där ditt barn kommer igång med riktig spelutveckling! I tre korta filmer bygger vi tillsammans, steg för steg.</p>
+            <ul>
+              <li>Kom igång med Roblox Studio och verktygen</li>
+              <li>Bygg din första bana med delar och färger</li>
+              <li>Skriv dina första rader Lua-kod</li>
+            </ul>
+            <div class="kursfot">
+              <span class="pris">595 kr <small>inkl. moms · tillgång direkt</small></span>
+              <a class="btn" href="https://buy.stripe.com/5kQbJ13Ba68r3KWbri8ww04">Köp kursen</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- KURS: SCRATCH (7–9 år) -->
+        <div class="kurs-card">
+          <div class="kurs-topp lav"><span class="kurs-ikon">🐱</span></div>
+          <div class="kurs-body">
+            <span class="tagg lav">3 filmer · nybörjare · 7–9 år</span>
+            <h3>Introduktion till Scratch</h3>
+            <p>Den perfekta starten för de yngre! Med färgglada kodblock bygger ditt barn sina första spel och animationer. Inga förkunskaper behövs.</p>
+            <ul>
+              <li>Lär känna Scratch och kodblocken</li>
+              <li>Skapa en figur som rör sig och pratar</li>
+              <li>Ljud, effekter och visa upp för familjen!</li>
+            </ul>
+            <div class="kursfot">
+              <span class="pris">495 kr <small>inkl. moms · tillgång direkt</small></span>
+              <a class="btn" href="https://buy.stripe.com/5kQ3cvfjS7cv3KW9ja8ww05">Köp kursen</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ FÖRELÄSNING FÖR FÖRÄLDRAR ============ -->
+    <section class="block" id="forelasning">
+      <h2>För dig som förälder</h2>
+      <div class="forelasning">
+        <span class="kurs-ikon">🔒</span>
+        <div>
+          <span class="tagg" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:.25rem .7rem;border-radius:999px;background:var(--lavender-soft);color:var(--lavender-strong)">digital föreläsning · för föräldrar</span>
+          <h3 style="margin-top:.7rem;font-size:1.25rem">Tryggt på Roblox</h3>
+          <p>Vad gör barnen egentligen i Roblox? En konkret genomgång av hur Roblox fungerar och hur ni gör spelandet tryggt, utan pekpinnar. Du ser den hemifrån.</p>
+          <ul>
+            <li>Vad barnen möter i spelen och i chatten</li>
+            <li>Så fungerar Robux och köp i spelen</li>
+            <li>Föräldrakontrollerna, steg för steg</li>
+          </ul>
+          <div class="kursfot">
+            <!-- Byt till Stripe-länken och knapptexten "Köp biljett" när föreläsningen är klar -->
+            <a class="btn" href="mailto:info@floatingcode.se?subject=Intresse%3A%20Tryggt%20p%C3%A5%20Roblox%20(digital%20f%C3%B6rel%C3%A4sning)">Anmäl intresse</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LIVEKURSER (döljs när listan är tom) ============ -->
+    <section class="block" id="live" hidden>
+      <h2>Livekurser</h2>
+      <p class="ingress">Kurser där vi bygger tillsammans live, till exempel på loven.</p>
+      <div id="kurslista"></div>
+    </section>
+
+    <!-- ============ VANLIGA FRÅGOR ============ -->
+    <section class="block faq" id="fragor">
+      <h2>Vanliga frågor</h2>
+      <details>
+        <summary>Behöver mitt barn kunna något innan?</summary>
+        <p>Nej. Kurserna är gjorda för nybörjare och visar allt steg för steg.</p>
+      </details>
+      <details>
+        <summary>Vad behöver vi för utrustning?</summary>
+        <p><b>Scratch:</b> en dator, Chromebook eller surfplatta med webbläsare. Inget behöver installeras.<br><b>Roblox Studio:</b> en Windows- eller Mac-dator med gratisprogrammet Roblox Studio och ett Roblox-konto. Det fungerar inte på surfplatta eller Chromebook. Det kan vara bra att du som vuxen hjälper till med kontot.</p>
+      </details>
+      <details>
+        <summary>Hur får vi tillgång till kursen?</summary>
+        <p>Direkt efter betalningen kommer du till en sida med din kurskod och länken till kursen. Du får också ett mejl med samma uppgifter. Filmerna streamas på floatingcode.se och kan ses hur många gånger som helst.</p>
+      </details>
+      <details>
+        <summary>Vilken kurs passar mitt barn?</summary>
+        <p><b>7–9 år:</b> Scratch, med färgglada kodblock. <b>10–15 år:</b> Roblox Studio, med riktig Lua-kod. Är barnet osäkert eller ligger mitt emellan är Scratch en bra start.</p>
+      </details>
+      <details>
+        <summary>Vem har gjort kurserna?</summary>
+        <p>Jag heter Angelica och är lärare med tio års erfarenhet av att lära barn programmera och skapa spel. Mina filmer har setts över 475 000 gånger på YouTube och TikTok.</p>
+      </details>
+      <details>
+        <summary>Kan jag ångra köpet?</summary>
+        <p>Eftersom du får tillgång till kursen direkt upphör ångerrätten när köpet är genomfört (det godkänner du i kassan). Men fungerar något inte, hör av dig så löser vi det. Läs mer i <a href="villkor.html">köpvillkoren</a>.</p>
+      </details>
+    </section>
 
     <div class="tips-ruta">
-      <p><strong>Vill du få nästa kurstillfälle direkt i inkorgen? 💌</strong><br>Nyhetsbrevet får alltid veta först när nya kurser släpps.</p>
-      <!-- Nyhetsbrevslänk ifylld -->
+      <p><strong>Vill du veta först när nya kurser släpps? 💌</strong><br>Skriv upp dig på nyhetsbrevet, så får du dessutom en gratis introduktion till Scratch &amp; Roblox Studio.</p>
       <a class="btn" href="https://forms.gle/MNNCKcmaanFLvzPh9">Skriv upp dig här!</a>
     </div>
   </div>
@@ -179,44 +318,22 @@ footer a{color:var(--mint)}
 
 <script>
 /* =========================================================
-   HÄR LÄGGER DU UT DINA KURSER!
-   Kopiera ett block { ... }, klistra in och ändra texterna.
-   • datum: kursens (första) dag, ÅÅÅÅ-MM-DD. Passerade datum
-     döljs automatiskt.
-   • tid: fritext, t.ex. "Kl. 10–12" eller "Mån–fre kl. 9–11"
-   • lank: betallänk, bokningslänk eller formulärlänk. Lämna ""
-     så blir knappen "Anmäl intresse" via mejl i stället.
-   • knapptext: (valfri) texten på knappen när lank är ifylld,
-     t.ex. "Anmäl intresse". Utelämnas den står det "Boka plats".
+   LIVEKURSER – HÄR LÄGGER DU UT KURSTILLFÄLLEN
+   Kopiera exemplet nedan (ta bort // framför raderna) och
+   ändra texterna. Passerade datum döljs automatiskt, och är
+   listan tom döljs hela sektionen "Livekurser".
+   • lank: betallänk. Lämna "" så blir knappen "Anmäl intresse" via mejl.
    • fullbokad: true/false
+   Exempel:
+   {
+     datum: "2027-02-20", titel: "Sportlovskurs i Roblox Studio",
+     tid: "Kl. 10–12 (digitalt via Discord)", alder: "10–15 år",
+     verktyg: "Roblox Studio", beskrivning: "…", pris: "299 kr",
+     lank: "", knapptext: "Boka plats", fullbokad: false
+   }
 ========================================================= */
 const KURSTILLFALLEN = [
-  {
-    datum: "2026-10-31",
-    titel: "Halloweenkurs: Gör ett spökligt Halloween-kort i Scratch 🎃",
-    tid: "Lördag kl. 10.00–12.00 (digitalt via Discord)",
-    alder: "7–9 år",
-    verktyg: "Scratch",
-    beskrivning: "Vi skapar ett eget animerat Halloween-kort med spöken, ljud och överraskningar! Föreläsningsformat: jag visar varje steg live, sedan bygger du själv i din egen takt och skriver i chatten så fort du fastnar, så hjälper jag dig direkt. Obegränsat antal platser, alla får vara med! Kursen genomförs vid minst 15 anmälda.",
-    pris: "249 kr",
-    lank: "https://buy.stripe.com/3cI9AT0oY1SbgxIane8ww09",
-    knapptext: "Boka plats",
-    fullbokad: false
-  },
-  {
-    datum: "2026-10-31",
-    titel: "Halloweenkurs: Bygg ett spökhus i Roblox Studio 👻",
-    tid: "Lördag kl. 12.30–14.30 (digitalt via Discord)",
-    alder: "10–15 år",
-    verktyg: "Roblox Studio",
-    beskrivning: "Vi bygger ett eget läskigt spökhus från grunden och avslutar med en kodningsdel som ger huset liv! Föreläsningsformat: jag visar varje steg live, sedan bygger du själv i din egen takt och skriver i chatten så fort du fastnar, så hjälper jag dig direkt. Obegränsat antal platser, alla får vara med! Kursen genomförs vid minst 15 anmälda.",
-    pris: "299 kr",
-    lank: "https://buy.stripe.com/28E28r3Ba1Sbchs66Y8ww0a",
-    knapptext: "Boka plats",
-    fullbokad: false
-  }
 ];
-
 /* ---- Nedanför behöver du inte ändra något ---- */
 const MEJL = "info@floatingcode.se";
 const man = ["JAN","FEB","MAR","APR","MAJ","JUN","JUL","AUG","SEP","OKT","NOV","DEC"];
@@ -228,12 +345,9 @@ const kommande = KURSTILLFALLEN
 
 const lista = document.getElementById("kurslista");
 
-if (kommande.length === 0){
-  lista.innerHTML =
-    '<div class="tom"><div class="stor">🌊</div>' +
-    '<h3>Inga inplanerade kurstillfällen just nu</h3>' +
-    '<p>Nya kurser släpps inför loven och helgerna. Skriv upp dig på nyhetsbrevet nedan så får du veta först. Eller kika på mina <a href="index.html#kurser">digitala kurspaket</a> som du kan börja med direkt!</p></div>';
-} else {
+if (kommande.length > 0){
+  document.getElementById("live").hidden = false;
+
   kommande.forEach(k => {
     const d = new Date(k.datum + "T00:00:00");
     const intresse = "mailto:" + MEJL +
