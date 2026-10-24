@@ -91,7 +91,7 @@ main{padding:40px 0 70px}
   width:42px;height:42px;border-radius:50%;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
 }
-.lektion:nth-child(even) .lektion-num{background:var(--lavender-soft);color:var(--lavender-strong)}
+.lektion:nth-of-type(even) .lektion-num{background:var(--lavender-soft);color:var(--lavender-strong)}
 .lektion h3{font-size:1.15rem}
 .video-ram{
   position:relative;padding-top:56.25%;background:var(--navy-deep);
@@ -99,6 +99,47 @@ main{padding:40px 0 70px}
 .video-ram iframe{
   position:absolute;top:0;left:0;width:100%;height:100%;border:0;
 }
+.installera{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.6rem 1.6rem 1.4rem;margin-bottom:2.2rem;border-top:6px solid var(--mint)}
+.installera h2,.omkursen h2{font-size:1.35rem;margin-bottom:.4rem}
+.installera .krav{font-size:.95rem;margin-bottom:1rem;color:#56627F}
+.installera ol{padding-left:1.3rem}
+.installera li{margin-bottom:.7rem;font-size:.98rem}
+.installera .knapp{display:inline-block;margin:.2rem 0 .1rem;padding:.6rem 1.2rem;border-radius:999px;background:var(--navy);color:#fff;font-family:'Fredoka',sans-serif;font-weight:600;text-decoration:none}
+.installera .tips{background:var(--lavender-soft);border-radius:14px;padding:.9rem 1.1rem;font-size:.93rem;margin-top:.6rem}
+.omkursen{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.6rem;margin-bottom:2.2rem;border-top:6px solid var(--lavender)}
+.omkursen .bygger{padding-left:1.3rem;margin:.6rem 0 1rem;columns:2;font-weight:700}
+@media(max-width:520px){.omkursen .bygger{columns:1}}
+.ordlista{background:var(--bg);border-radius:14px;padding:.8rem 1rem;margin:.8rem 0}
+.ordlista summary{cursor:pointer;font-family:'Fredoka',sans-serif;font-weight:600;color:var(--navy)}
+.ordlista dl{margin-top:.7rem}.ordlista dt{font-weight:800;color:var(--navy)}.ordlista dd{margin:0 0 .5rem}
+.fargkoll{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.fargkoll span{background:var(--bg);color:#fff;font-weight:800;font-size:.85rem;padding:.3rem .8rem;border-radius:999px}
+.stod{padding:1.4rem 1.4rem 1.6rem;display:grid;gap:1.2rem}
+.stod h4{font-family:'Fredoka',sans-serif;color:var(--navy);font-size:1.08rem;margin-bottom:.45rem}
+.stod ul,.stod ol{padding-left:1.3rem}
+.stod li{margin-bottom:.4rem;font-size:.97rem}
+.stod .pausa{font-size:.9rem;color:#56627F;margin-top:.4rem}
+.stod .tips{background:var(--mint-soft);border-radius:16px;padding:1rem 1.2rem}
+.stod .uppdrag{background:var(--navy);color:#fff;border-radius:16px;padding:1rem 1.2rem}
+.stod .uppdrag h4{color:var(--mint)}
+.kodruta .var{font-size:.93rem;margin-bottom:.6rem}
+.kodruta .skriv-tips{font-size:.88rem;color:#56627F;margin-top:.5rem}
+.scratchyta{background:#F9F9F9;background-image:radial-gradient(#DDE3EE 1px,transparent 1px);background-size:18px 18px;border:1px solid #E3E8F0;border-radius:14px;padding:1.2rem;overflow-x:auto}
+.sb{display:table;background:var(--bg);border:1px solid var(--bd);border-radius:6px;color:#fff;font-family:'Nunito',Helvetica,sans-serif;font-weight:700;font-size:.95rem;margin-top:-1px}
+.sb-rad{padding:.5rem .75rem;white-space:nowrap;display:flex;align-items:center;gap:.4rem}
+.sb.hatt{border-radius:22px 22px 6px 6px}
+.sb.hatt .sb-rad{padding-top:.9rem}
+.sb.ny{outline:3px solid #fff;outline-offset:-1px;box-shadow:0 0 0 5px var(--bd)}
+.sb .in{background:#fff;color:#575E75;border-radius:999px;padding:.12rem .6rem;font-weight:700}
+.sb .dd{background:rgba(0,0,0,.12);border:1px solid rgba(0,0,0,.15);border-radius:999px;padding:.12rem .6rem}
+.sb .flagga{color:#4CBF56;background:#fff;border-radius:4px;padding:0 .2rem;font-size:.9rem}
+.sb.c{padding-bottom:0}
+.sb.c .sb-inre{margin-left:1.1rem;background:#F9F9F9;border-radius:4px 0 0 4px;padding:1px 0}
+.sb.c .sb-inre .sb{margin-left:0}
+.sb.c .sb-fot{padding:.15rem .75rem;text-align:right;font-size:.95rem;min-height:1.6rem}
+.skarmbild{margin:0}
+.skarmbild img{max-width:100%;width:340px;border-radius:12px;border:1px solid #E3E8F0;display:block}
+.skarmbild figcaption{font-size:.88rem;color:#56627F;margin-top:.4rem}
 footer{
   background:var(--navy-deep);color:#9FB0D6;text-align:center;
   padding:2.2rem 22px;font-size:.92rem;
@@ -109,8 +150,7 @@ footer .flyt{
 </style>
 </head>
 <body>
-<!-- Kurskodslås: koden visas på tacksidan efter köp och i välkomstmejlet.
-     Testläge: öppna sidan med ?testa=1 för att hoppa över koden. -->
+<!-- Kurskodslås: koden visas på tacksidan efter köp och i välkomstmejlet. -->
 <div id="kursgrind" style="position:fixed;inset:0;z-index:999;background:linear-gradient(180deg,#141F3B,#1D2A4D);display:flex;align-items:center;justify-content:center;padding:20px">
   <div style="background:#fff;border-radius:22px;box-shadow:0 8px 28px rgba(29,42,77,.3);padding:36px 30px;max-width:420px;width:100%;text-align:center">
     <div style="font-size:2.4rem">🐱</div>
@@ -145,34 +185,106 @@ footer .flyt{
 <main>
   <div class="wrap">
 
+    <!-- ============ KOM IGÅNG: SCRATCH-KONTO (för vårdnadshavare) ============ -->
+    <section class="installera" id="kom-igang">
+      <h2>👋 Till dig som vuxen: skapa ett Scratch-konto först</h2>
+      <p class="krav">Det tar ungefär 5 minuter och är gratis. Scratch fungerar direkt i webbläsaren på <b>dator, Chromebook eller surfplatta</b>. Inget behöver installeras. Sitt gärna bredvid barnet under film 1.</p>
+      <ol>
+        <li><b>Gå till Scratch:</b><br><a class="knapp" href="https://scratch.mit.edu" target="_blank" rel="noopener">Öppna scratch.mit.edu →</a><br>Står sidan på engelska? Scrolla längst ner och välj <b>Svenska</b> i språkrutan.</li>
+        <li><b>Klicka på ”Gå med i Scratch”</b> uppe till höger.</li>
+        <li><b>Hitta på ett användarnamn.</b> Använd inte barnets riktiga namn, till exempel <i>KodRobot123</i>.</li>
+        <li><b>Välj ett lösenord</b> och skriv det två gånger. Skriv gärna upp det på en lapp.</li>
+        <li><b>Fyll i land och födelsemånad/år</b> (Sverige).</li>
+        <li><b>Skriv din egen e-postadress</b> som vuxen och skapa kontot.</li>
+        <li><b>Bekräfta kontot:</b> öppna mejlet från Scratch och klicka på knappen som bekräftar e-postadressen. Kolla skräpposten om det inte kommer. <b>Det här behövs för att barnet ska kunna dela sitt spel i film 3.</b></li>
+        <li><b>Klart!</b> Logga in och starta film 1 nedan.</li>
+      </ol>
+      <p class="tips">💡 Dela-knappen fungerar först när e-posten är bekräftad. Fastnar ni? Mejla <a href="mailto:info@floatingcode.se">info@floatingcode.se</a> så hjälper jag er.</p>
+    </section>
+
+    <section class="omkursen">
+      <h2>🐶 Det här gör du i kursen</h2>
+      <p>I tre filmer gör du ditt alldeles egna första spel i Scratch, där du bygger kod med färgglada block, ungefär som pussel:</p>
+      <ol class="bygger"><li>Skaffa konto och hitta runt</li><li>En figur som rör sig och pratar</li><li>Ljud och magiska effekter</li><li>Dela spelet med familjen</li></ol>
+      <details class="ordlista"><summary>📖 Ord som är bra att kunna</summary>
+        <dl>
+          <dt>Sprajt</dt><dd>En figur i ditt spel, till exempel katten eller en hund.</dd>
+          <dt>Scen</dt><dd>Rutan till höger där ditt spel syns.</dd>
+          <dt>Block</dt><dd>Pusselbitarna du bygger kod med. Färgen visar vad de gör.</dd>
+          <dt>Gröna flaggan</dt><dd>Startar spelet. Röda stoppskylten stoppar det.</dd>
+          <dt>Mina saker</dt><dd>Mappen där alla dina projekt sparas.</dd>
+        </dl>
+      </details>
+      <div class="fargkoll"><span style="--bg:#4C97FF">Rörelse</span><span style="--bg:#9966FF">Utseende</span><span style="--bg:#CF63CF">Ljud</span><span style="--bg:#FFBF00">Händelser</span><span style="--bg:#FFAB19">Kontroll</span></div>
+    </section>
+
     <!-- LEKTIONER – siffran i src är filmens Vimeo-ID -->
-    <div class="lektion">
+    <div class="lektion" id="film-1">
       <div class="lektion-head">
         <div class="lektion-num">1</div>
-        <h3>Mitt första spel – del 1</h3>
+        <h3>Film 1: Konto, språk och en rundtur i Scratch</h3>
       </div>
       <div class="video-ram">
-        <iframe src="https://player.vimeo.com/video/1239060690?dnt=1" allow="fullscreen" allowfullscreen title="Mitt första spel – del 1"></iframe>
+        <iframe src="https://player.vimeo.com/video/1239060690?dnt=1" allow="fullscreen" allowfullscreen title="Film 1: Konto, språk och en rundtur i Scratch"></iframe>
+      </div>
+      <div class="stod">
+        <div class="lar"><h4>⭐ Efter filmen kan du</h4><ul><li>Ha ett eget Scratch-konto och logga in</li><li>Hitta runt i Scratch</li><li>Döpa och spara ditt första projekt</li></ul></div>
+        <div class="steg"><h4>🧭 Steg för steg</h4><ol><li>Hämta en vuxen. Ni behöver en vuxens e-postadress till kontot.</li><li>Gå till <b>scratch.mit.edu</b>. Står allt på engelska? Scrolla längst ner och välj <b>Svenska</b>.</li><li>Klicka på <b>Gå med i Scratch</b> uppe till höger och skapa kontot (se rutan högst upp på sidan).</li><li>Menyn högst upp: <b>Skapa</b> är där du gör egna spel, <b>Utforska</b> är andras spel och <b>Idéer</b> har tips.</li><li>Mappen <b>Mina saker</b> uppe till höger är där allt du gör sparas.</li><li>Klicka på <b>Skapa</b>. Till vänster finns <b>blocken</b>, i mitten <b>kodytan</b> och till höger <b>scenen</b> med gröna flaggan (start) och röda stoppskylten (stopp).</li><li>Katten under scenen är en <b>sprajt</b>, alltså en figur i ditt spel.</li><li>Klicka i namnrutan högst upp och skriv <b>Mitt första spel</b>. Spara: <b>Arkiv → Spara nu</b>.</li></ol><p class="pausa">⏸️ Pausa filmen när du vill och gör samma sak själv.</p></div>
+        <div class="tips"><h4>💡 Tips och om något inte funkar</h4><ul><li>Det är okej att pausa filmen när du vill! Gör samma sak som jag och starta sen igen.</li><li>Skriv <b>inte</b> ditt riktiga namn som användarnamn. Hitta på något roligt, till exempel KodRobot123.</li><li>Be din vuxna skriva upp lösenordet på en lapp.</li><li>Ändrades språket i verkstaden? Klicka på den lilla <b>jordgloben</b> uppe till vänster och välj Svenska.</li><li>Scratch sparar ibland av sig själv, men tryck <b>Arkiv → Spara nu</b> själv också.</li></ul></div>
+        <div class="uppdrag"><h4>🎯 Ditt uppdrag</h4><p>Döp ditt projekt till Mitt första spel och spara det. Hittar du det i Mina saker?</p></div>
+        
       </div>
     </div>
-
-    <div class="lektion">
+    <div class="lektion" id="film-2">
       <div class="lektion-head">
         <div class="lektion-num">2</div>
-        <h3>Mitt första spel – del 2</h3>
+        <h3>Film 2: Din sprajt rör sig och pratar</h3>
       </div>
       <div class="video-ram">
-        <iframe src="https://player.vimeo.com/video/1239060688?dnt=1" allow="fullscreen" allowfullscreen title="Mitt första spel – del 2"></iframe>
+        <iframe src="https://player.vimeo.com/video/1239060688?dnt=1" allow="fullscreen" allowfullscreen title="Film 2: Din sprajt rör sig och pratar"></iframe>
+      </div>
+      <div class="stod">
+        <div class="lar"><h4>⭐ Efter filmen kan du</h4><ul><li>Välja en ny sprajt och ta bort katten</li><li>Få sprajten att säga något</li><li>Få sprajten att gå fram och tillbaka</li><li>Starta med gröna flaggan och stoppa med stoppskylten</li></ul></div>
+        <div class="steg"><h4>🧭 Steg för steg</h4><ol><li>Öppna <b>Mina saker</b> och klicka på <b>Se inuti</b> vid ditt projekt.</li><li>Klicka på den runda knappen <b>Välj en sprajt</b> under scenen och välj en figur, till exempel en hund.</li><li>Ta bort katten: klicka på kattens ruta och sen på den lilla <b>papperskorgen</b>.</li><li>Vill du ha en bakgrund? Klicka på <b>Välj en bakgrund</b> längst till höger.</li><li>Gul <b>Händelser</b>: dra in <b>när ⚑ klickas på</b>.</li><li>Lila <b>Utseende</b>: lägg <b>säg Hej! i 2 sekunder</b> under. Hör du klicket? Då sitter det fast! Skriv en egen text.</li><li>Blå <b>Rörelse</b>: lägg in <b>sätt rotationsstil vänster-höger</b>.</li><li>Orange <b>Kontroll</b>: lägg in <b>för alltid</b>. Lägg <b>gå 10 steg</b> och <b>om vid kanten, studsa</b> inuti.</li><li>Klicka på gröna flaggan och testa! Spara med <b>Arkiv → Spara nu</b>.</li></ol><p class="pausa">⏸️ Pausa filmen när du vill och gör samma sak själv.</p></div>
+        <div class="tips"><h4>💡 Tips och om något inte funkar</h4><ul><li>Går sprajten bara en liten bit? Den behöver <b>för alltid</b> runt <b>gå 10 steg</b>.</li><li>Fastnar den i kanten? Lägg <b>om vid kanten, studsa</b> inuti för alltid.</li><li>Går den upp och ner? Lägg <b>sätt rotationsstil vänster-höger</b> ovanför för alltid.</li><li>Sitter blocket inte fast? Dra det tills du ser en grå skugga och hör ett klick.</li></ul></div>
+        <div class="uppdrag"><h4>🎯 Ditt uppdrag</h4><p>Välj en egen figur, få den att säga något och gå fram och tillbaka.</p></div>
+        <div class="kodruta">
+          <h4>🧩 Koden: din sprajt rör sig och pratar</h4>
+          <p class="var">Bygg koden på din sprajt. Block som ligger inuti <b>för alltid</b> upprepas om och om igen.</p>
+          <div class="scratchyta"><div class="sb hatt" style="--bg:#FFBF00;--bd:#CC9900"><div class="sb-rad">när <span class="flagga">⚑</span> klickas på</div></div><div class="sb" style="--bg:#9966FF;--bd:#774DCB"><div class="sb-rad">säg <span class="in">Hej! Jag heter Doggy!</span> i <span class="in">2</span> sekunder</div></div><div class="sb" style="--bg:#4C97FF;--bd:#3373CC"><div class="sb-rad">sätt rotationsstil <span class="dd">vänster-höger ▾</span></div></div><div class="sb c" style="--bg:#FFAB19;--bd:#CF8B17"><div class="sb-rad">för alltid</div><div class="sb-inre"><div class="sb" style="--bg:#4C97FF;--bd:#3373CC"><div class="sb-rad">gå <span class="in">10</span> steg</div></div><div class="sb" style="--bg:#4C97FF;--bd:#3373CC"><div class="sb-rad">om vid kanten, studsa</div></div></div><div class="sb-fot">↻</div></div></div>
+          <p class="skriv-tips">Blocknamnen kan se lite olika ut beroende på din version av Scratch.</p>
+        </div><div class="kodruta">
+          <h4>🧩 Bonus: så ser det ut som att den går på riktigt</h4>
+          <p class="var">Lägg till <b>nästa klädsel</b> (lila Utseende) och <b>vänta 0.2 sekunder</b> (orange Kontroll) inuti för alltid. De nya blocken har en vit ram.</p>
+          <div class="scratchyta"><div class="sb hatt" style="--bg:#FFBF00;--bd:#CC9900"><div class="sb-rad">när <span class="flagga">⚑</span> klickas på</div></div><div class="sb" style="--bg:#9966FF;--bd:#774DCB"><div class="sb-rad">säg <span class="in">Hej! Jag heter Doggy!</span> i <span class="in">2</span> sekunder</div></div><div class="sb" style="--bg:#4C97FF;--bd:#3373CC"><div class="sb-rad">sätt rotationsstil <span class="dd">vänster-höger ▾</span></div></div><div class="sb c" style="--bg:#FFAB19;--bd:#CF8B17"><div class="sb-rad">för alltid</div><div class="sb-inre"><div class="sb" style="--bg:#4C97FF;--bd:#3373CC"><div class="sb-rad">gå <span class="in">10</span> steg</div></div><div class="sb" style="--bg:#4C97FF;--bd:#3373CC"><div class="sb-rad">om vid kanten, studsa</div></div><div class="sb ny" style="--bg:#9966FF;--bd:#774DCB"><div class="sb-rad">nästa klädsel</div></div><div class="sb ny" style="--bg:#FFAB19;--bd:#CF8B17"><div class="sb-rad">vänta <span class="in">0.2</span> sekunder</div></div></div><div class="sb-fot">↻</div></div></div>
+          
+        </div><figure class="skarmbild"><img src="foto/scratch-kod-film2.png" alt="Angelicas färdiga kod i Scratch: när flaggan klickas på, säg, sätt rotationsstil, starta ljud och för alltid med gå, studsa, nästa klädsel och vänta" loading="lazy"><figcaption>Så här ser min kod ut i Scratch, med bonusen och ett hundljud.</figcaption></figure>
       </div>
     </div>
-
-    <div class="lektion">
+    <div class="lektion" id="film-3">
       <div class="lektion-head">
         <div class="lektion-num">3</div>
-        <h3>Mitt första spel – del 3</h3>
+        <h3>Film 3: Ljud, effekter och dela ditt spel</h3>
       </div>
       <div class="video-ram">
-        <iframe src="https://player.vimeo.com/video/1239060689?dnt=1" allow="fullscreen" allowfullscreen title="Mitt första spel – del 3"></iframe>
+        <iframe src="https://player.vimeo.com/video/1239060689?dnt=1" allow="fullscreen" allowfullscreen title="Film 3: Ljud, effekter och dela ditt spel"></iframe>
+      </div>
+      <div class="stod">
+        <div class="lar"><h4>⭐ Efter filmen kan du</h4><ul><li>Lägga till ett ljud</li><li>Få sprajten att byta färg när man klickar på den</li><li>Dela spelet så att familjen kan spela</li></ul></div>
+        <div class="steg"><h4>🧭 Steg för steg</h4><ol><li>Öppna ditt projekt igen: <b>Mina saker → Se inuti</b>.</li><li>Klicka på din sprajt och sen på fliken <b>Ljud</b>. Klicka på högtalarknappen längst ner till vänster och välj ett ljud, till exempel Boing.</li><li>Gå tillbaka till fliken <b>Kod</b>.</li><li>Gul <b>Händelser</b>: dra in <b>när den här sprajten klickas på</b> på en tom plats.</li><li>Rosa <b>Ljud</b>: lägg <b>starta ljud</b> under och välj ditt ljud med pilen.</li><li>Lila <b>Utseende</b>: lägg <b>ändra färg effekt med 25</b> under. Klicka på figuren många gånger!</li><li>Lägg <b>ta bort grafiska effekter</b> direkt under gröna flagg-blocket.</li><li>Spara och klicka på <b>Dela</b> högst upp. Skriv hur man spelar i rutan <b>Instruktioner</b>.</li></ol><p class="pausa">⏸️ Pausa filmen när du vill och gör samma sak själv.</p></div>
+        <div class="tips"><h4>💡 Tips och om något inte funkar</h4><ul><li>Klicka på pilen i effekt-blocket. Där finns fler effekter, till exempel virvel, fisköga och spöke!</li><li>Vill du spela in ditt eget ljud? Fråga en vuxen först om du får använda mikrofonen.</li><li>Går det inte att klicka på <b>Dela</b>? Din vuxna behöver bekräfta mejlet från Scratch.</li><li>Skriv <b>aldrig</b> ditt riktiga namn, din skola eller var du bor på Scratch. Det är hemligt! 🔒</li></ul></div>
+        <div class="uppdrag"><h4>🎯 Ditt uppdrag</h4><p>Lägg till ett ljud och en effekt, dela ditt spel och visa det för din familj. Nu är du en riktig spelskapare! 🎉</p></div>
+        <div class="kodruta">
+          <h4>🧩 Ny kod: när någon klickar på figuren</h4>
+          <p class="var">En egen kod bredvid din andra kod.</p>
+          <div class="scratchyta"><div class="sb hatt" style="--bg:#FFBF00;--bd:#CC9900"><div class="sb-rad">när den här sprajten klickas på</div></div><div class="sb" style="--bg:#CF63CF;--bd:#BD42BD"><div class="sb-rad">starta ljud <span class="dd">Boing ▾</span></div></div><div class="sb" style="--bg:#9966FF;--bd:#774DCB"><div class="sb-rad">ändra <span class="dd">färg ▾</span> effekt med <span class="in">25</span></div></div></div>
+          
+        </div><div class="kodruta">
+          <h4>🧩 Ändring i flagg-koden</h4>
+          <p class="var">Lägg <b>ta bort grafiska effekter</b> direkt under flagg-blocket. Då blir figuren som vanligt igen varje gång du startar.</p>
+          <div class="scratchyta"><div class="sb hatt" style="--bg:#FFBF00;--bd:#CC9900"><div class="sb-rad">när <span class="flagga">⚑</span> klickas på</div></div><div class="sb ny" style="--bg:#9966FF;--bd:#774DCB"><div class="sb-rad">ta bort grafiska effekter</div></div><div class="sb" style="--bg:#9966FF;--bd:#774DCB"><div class="sb-rad">säg <span class="in">Hej! Jag heter Doggy!</span> i <span class="in">2</span> sekunder</div></div><div class="sb" style="--bg:#4C97FF;--bd:#3373CC"><div class="sb-rad">sätt rotationsstil <span class="dd">vänster-höger ▾</span></div></div><div class="sb c" style="--bg:#FFAB19;--bd:#CF8B17"><div class="sb-rad">för alltid</div><div class="sb-inre"><div class="sb" style="--bg:#4C97FF;--bd:#3373CC"><div class="sb-rad">gå <span class="in">10</span> steg</div></div><div class="sb" style="--bg:#4C97FF;--bd:#3373CC"><div class="sb-rad">om vid kanten, studsa</div></div></div><div class="sb-fot">↻</div></div></div>
+          
+        </div>
       </div>
     </div>
 
@@ -186,14 +298,18 @@ footer .flyt{
 
 
 <script>
-// ─── Kurskod (byt här om du vill byta kod) ───
-const KURSKOD = "SCRATCH8241";
+// Kurskoden lagras bara som ett "fingeravtryck" (SHA-256), så den syns inte i källkoden.
+// Vill du byta kod? Be Claude räkna ut ett nytt fingeravtryck.
+const KODHASH = "e60a4147ce1a3f86f2595145f0e16e7b9b9be3ca056b0004836852f3e231f5fd";
 (function(){
   const grind = document.getElementById("kursgrind");
-  if (new URLSearchParams(location.search).get("testa") === "1"){ grind.remove(); return; }
-  function prova(){
+  async function hash(s){
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("floatingcode:" + s));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,"0")).join("");
+  }
+  async function prova(){
     const v = document.getElementById("kurskodfalt").value.trim().toUpperCase();
-    if (v === KURSKOD.toUpperCase()){ grind.remove(); }
+    if (v && await hash(v) === KODHASH){ grind.remove(); }
     else { document.getElementById("kurskodfel").textContent = "Fel kod. Kolla bekräftelsemejlet från Floating Code."; }
   }
   document.getElementById("kurskodknapp").addEventListener("click", prova);

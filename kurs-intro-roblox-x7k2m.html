@@ -148,8 +148,7 @@ footer .flyt{
 </style>
 </head>
 <body>
-<!-- Kurskodslås: koden visas på tacksidan efter köp och i välkomstmejlet.
-     Testläge: öppna sidan med ?testa=1 för att hoppa över koden. -->
+<!-- Kurskodslås: koden visas på tacksidan efter köp och i välkomstmejlet. -->
 <div id="kursgrind" style="position:fixed;inset:0;z-index:999;background:linear-gradient(180deg,#141F3B,#1D2A4D);display:flex;align-items:center;justify-content:center;padding:20px">
   <div style="background:#fff;border-radius:22px;box-shadow:0 8px 28px rgba(29,42,77,.3);padding:36px 30px;max-width:420px;width:100%;text-align:center">
     <div style="font-size:2.4rem">🎮</div>
@@ -418,14 +417,18 @@ end)</textarea>
 
 
 <script>
-// ─── Kurskod (byt här om du vill byta kod) ───
-const KURSKOD = "ROBLOX5173";
+// Kurskoden lagras bara som ett "fingeravtryck" (SHA-256), så den syns inte i källkoden.
+// Vill du byta kod? Be Claude räkna ut ett nytt fingeravtryck.
+const KODHASH = "d2853bc0b1dc9384eac64ca300150c75a9002e1746769b7b2f1614d9655f5a6b";
 (function(){
   const grind = document.getElementById("kursgrind");
-  if (new URLSearchParams(location.search).get("testa") === "1"){ grind.remove(); return; }
-  function prova(){
+  async function hash(s){
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("floatingcode:" + s));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,"0")).join("");
+  }
+  async function prova(){
     const v = document.getElementById("kurskodfalt").value.trim().toUpperCase();
-    if (v === KURSKOD.toUpperCase()){ grind.remove(); }
+    if (v && await hash(v) === KODHASH){ grind.remove(); }
     else { document.getElementById("kurskodfel").textContent = "Fel kod. Kolla bekräftelsemejlet från Floating Code."; }
   }
   document.getElementById("kurskodknapp").addEventListener("click", prova);
