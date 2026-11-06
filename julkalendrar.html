@@ -6,7 +6,7 @@
 <title>Julkalendrar för skola, fritids &amp; bibliotek | Floating Code</title>
 <meta name="description" content="Digitala julkalendrar i programmering för skola, fritids och bibliotek. Video, uppgift och pedagogstöd i varje lucka. Inga förkunskaper krävs.">
 <meta property="og:title" content="Julkalendrar i programmering för skola, fritids &amp; bibliotek">
-<meta property="og:description" content="En lucka om dagen, ett helt eget spel till jul. Två kalendrar för 5–9 år med video och pedagogstöd i varje lucka.">
+<meta property="og:description" content="En lucka per skoldag, ett helt eget spel till jul. Två kalendrar för 5–9 år: 4 respektive 12 luckor, med video och pedagogstöd i varje lucka.">
 <meta property="og:image" content="https://floatingcode.se/logga.png">
 <meta property="og:url" content="https://floatingcode.se/julkalendrar.html">
 <meta property="og:type" content="website">
@@ -132,6 +132,10 @@
   .paket p{color:#e3e5ff;margin-top:6px;font-size:.98rem;line-height:1.55}
   .paket .pris{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:var(--snow);margin-top:8px}
   .paket .pris s{color:#9a9ecf;font-size:1rem;margin-right:10px}
+  .paket .kommun-jamforelse{
+    color:#b9bddf;font-size:.88rem;line-height:1.5;margin-top:8px;
+    max-width:44ch;margin-left:auto;margin-right:auto;
+  }
   .paket-knapp{
     display:inline-block;margin-top:14px;background:var(--gold);color:var(--navy);
     font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;
@@ -300,11 +304,12 @@
       <span class="eyebrow">Floating Code · Julkalendrar 2026</span>
       <h1>En lucka om dagen.<br>Ett helt <em>eget spel</em> till jul.</h1>
       <p class="ingress">Digitala julkalendrar i programmering för skola, fritids och bibliotek.
-      Video, dagens uppgift och pedagogstöd i varje lucka. Barnen bygger, ni behöver inga förkunskaper.</p>
+      Video, dagens uppgift och pedagogstöd i varje lucka. Barnen bygger, ni behöver inga förkunskaper.
+      Tomtens julsaga har 4 luckor, Fånga julklapparna 12.</p>
       <div class="steg">
         <span><b>1.</b> Mejla er beställning</span>
         <span><b>2.</b> Vi mejlar kalenderkoden samma vardag</span>
-        <span><b>3.</b> En lucka per skoldag, från 1 december</span>
+        <span><b>3.</b> En lucka per skoldag: 1–4 resp. 1–16 december</span>
       </div>
     </header>
 
@@ -337,7 +342,8 @@
     <div class="paket kommun">
       <h3>🏛 Kommunlicens</h3>
       <p>Båda kalendrarna för <b>samtliga skolor, fritids och bibliotek i kommunen</b>. En faktura, en kalenderkod per kalender att sprida internt, och programmering på schemat hela december 2026, i hela kommunen.</p>
-      <div class="pris">från 39 995 kr</div>
+      <div class="pris">från 24 995 kr</div>
+      <p class="kommun-jamforelse">Har ni fem enheter eller fler är kommunlicensen billigare än att köpa paketet till varje enhet. I en mellanstor kommun landar den på ungefär tusen kronor per skola.</p>
       <a class="paket-knapp" href="#" id="kommunkop">Begär offert via faktura</a>
     </div>
 
@@ -554,7 +560,7 @@ const KALENDRAR = [
   {id:"paket",   namn:"Paketet",            rad:"båda kalendrarna", pris:"5 995 kr"}
 ];
 
-const KOMMUNPRIS = "från 39 995 kr";
+const KOMMUNPRIS = "från 24 995 kr";
 
 /* ================================================================ */
 
