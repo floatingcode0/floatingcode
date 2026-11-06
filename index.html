@@ -366,17 +366,32 @@ header .wrap{max-width:1220px}
 .jul-list li::before{color:var(--mint)}
 .jul-knappar{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.4rem}
 .jul-knappar .btn-primary{background:var(--mint-strong);box-shadow:0 6px 18px rgba(47,169,143,.35)}
+.jul-notis{color:#C6D2EC;font-size:.85rem;margin-top:.8rem}
+.jul-notis strong{color:var(--mint)}
 .jul-visual{
-  display:grid;grid-template-columns:1fr 1fr;gap:.7rem;
-  padding:2rem;align-content:center;
+  display:grid;gap:.9rem;padding:2rem;align-content:center;justify-items:center;
 }
+.jul-teaser{
+  width:100%;max-width:240px;border-radius:18px;overflow:hidden;background:#000;
+  box-shadow:0 12px 32px rgba(0,0,0,.4);display:block;
+}
+.jul-teaser video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover}
+.jul-luckor{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;width:100%;max-width:280px}
 .jul-lucka{
-  aspect-ratio:1;border-radius:14px;border:2px dashed rgba(255,255,255,.4);
+  position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;
+  border:2px dashed rgba(255,255,255,.4);text-decoration:none;
   display:flex;align-items:center;justify-content:center;
-  font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.4rem;color:#fff;
+  font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;
 }
-.jul-lucka.oppen{background:var(--mint-strong);border-style:solid;transform:rotate(-4deg)}
-.jul-lucka.las{background:rgba(255,255,255,.08);font-size:1.1rem}
+.jul-lucka img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.jul-lucka span{position:relative;z-index:2;text-shadow:0 1px 5px rgba(0,0,0,.85)}
+.jul-lucka.oppen{border-style:solid;border-color:var(--mint-strong)}
+.jul-lucka.oppen span{position:absolute;left:5px;top:2px;font-size:.72rem}
+.jul-lucka.las{background:rgba(255,255,255,.08);font-size:1rem}
+.jul-mer{
+  color:var(--mint);font-weight:800;text-decoration:none;font-size:.85rem;text-align:center;
+}
+.jul-mer:hover{text-decoration:underline}
 
 /* SKOLAN */
 .skolan{background:var(--mint-soft)}
@@ -734,14 +749,60 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
         <div class="jul-knappar">
           <a class="btn btn-primary" href="https://www.tiktok.com/@floatingcode" target="_blank" rel="noopener">Följ på TikTok →</a>
         </div>
+        <p class="jul-notis">Luckorna finns bara på TikTok. Följ <strong>@floatingcode</strong> så missar du ingen.</p>
       </div>
-      <div class="jul-visual" aria-hidden="true">
-        <div class="jul-lucka">1</div>
-        <div class="jul-lucka oppen">2</div>
-        <div class="jul-lucka">3</div>
-        <div class="jul-lucka las">🔒</div>
+      <div class="jul-visual">
+        <div class="jul-teaser">
+          <video src="julkalender/teaser.mp4" poster="julkalender/teaser.jpg"
+                 controls playsinline preload="none"
+                 title="Teaser: Floating Codes julkalender"></video>
+        </div>
+        <!-- Luckorna: tysta gifar som smakprov. Klick leder till TikTok.
+             Skriptet längst ned byter till dagens luckor under december. -->
+        <div class="jul-luckor" id="jul-luckor">
+          <a class="jul-lucka oppen" href="https://www.tiktok.com/@floatingcode" target="_blank" rel="noopener">
+            <img src="julkalender/previews/lucka-01.gif" alt="Smakprov ur lucka 1" loading="lazy" width="320" height="320"><span>1</span>
+          </a>
+          <a class="jul-lucka oppen" href="https://www.tiktok.com/@floatingcode" target="_blank" rel="noopener">
+            <img src="julkalender/previews/lucka-02.gif" alt="Smakprov ur lucka 2" loading="lazy" width="320" height="320"><span>2</span>
+          </a>
+          <a class="jul-lucka oppen" href="https://www.tiktok.com/@floatingcode" target="_blank" rel="noopener">
+            <img src="julkalender/previews/lucka-03.gif" alt="Smakprov ur lucka 3" loading="lazy" width="320" height="320"><span>3</span>
+          </a>
+          <div class="jul-lucka las" aria-hidden="true"><span>🔒</span></div>
+        </div>
+        <a class="jul-mer" href="https://www.tiktok.com/@floatingcode" target="_blank" rel="noopener">Se alla luckor på TikTok →</a>
       </div>
     </div>
+    <script>
+    /* Under december visar luckrutorna dagens tre senaste luckor plus nasta,
+       fortfarande last. Utanfor december star markeringen ovan kvar. */
+    (function(){
+      var rutnat = document.getElementById('jul-luckor');
+      if (!rutnat) return;
+      var nu = new Date();
+      if (nu.getMonth() !== 11) return;
+      var oppen = Math.min(nu.getDate(), 24);
+      var start = Math.max(1, Math.min(oppen - 2, 21));
+      var tiktok = 'https://www.tiktok.com/@floatingcode';
+      var html = '';
+      for (var i = 0; i < 4; i++) {
+        var n = start + i;
+        if (n > 24) break;
+        var nr = n < 10 ? '0' + n : '' + n;
+        if (n <= oppen) {
+          html += '<a class="jul-lucka oppen" href="' + tiktok + '" target="_blank" rel="noopener">'
+                + '<img src="julkalender/previews/lucka-' + nr + '.gif" alt="Smakprov ur lucka ' + n
+                + '" loading="lazy" width="320" height="320"><span>' + n + '</span></a>';
+        } else if (n === oppen + 1) {
+          html += '<div class="jul-lucka las" aria-hidden="true"><span>🔒</span></div>';
+        } else {
+          html += '<div class="jul-lucka" aria-hidden="true"><span>' + n + '</span></div>';
+        }
+      }
+      rutnat.innerHTML = html;
+    })();
+    </script>
 
   </div>
 </section>
