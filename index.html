@@ -653,7 +653,8 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
           <li>Vill klassen koda i december? Tipsa din lärare om <a href="julkalendrar.html" style="color:var(--mint);font-weight:800">skolkalendrarna</a>!</li>
         </ul>
         <!-- Nedräkningen fylls i automatiskt: dagar kvar till lucka 1
-             under november, dagens lucka under 1–24 december. -->
+             under november, dagens lucka under 1–24 december.
+             Hela kortet visas 1 november–31 december. -->
         <div class="jul-ned" id="jul-ned"></div>
         <div class="jul-pris">0 kr <small style="font-size:.8rem;color:#C6D2EC">· gratis för alla · hela december</small></div>
         <div class="jul-knappar">
@@ -691,6 +692,9 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
       var rutnat = document.getElementById('jul-luckor');
       if (!rutnat) return;
       var nu = new Date();
+      /* Kortet visas 1 november–31 december och döljer sig självt övrig tid. */
+      var kort = rutnat.closest('.jul-card');
+      if (kort && nu.getMonth() < 10) { kort.style.display = 'none'; return; }
       /* Nedräkning till lucka 1 (november) och dagens lucka (1–24 dec) */
       var ned = document.getElementById('jul-ned');
       if (ned) {
@@ -699,6 +703,8 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
           ned.textContent = '⏳ ' + (kvar === 1 ? '1 dag' : kvar + ' dagar') + ' kvar till lucka 1';
         } else if (nu.getMonth() === 11 && nu.getDate() <= 24) {
           ned.textContent = '🎁 Lucka ' + nu.getDate() + ' är öppen i dag!';
+        } else if (nu.getMonth() === 11) {
+          ned.textContent = '🎄 Alla 24 luckor ligger kvar på TikTok';
         }
       }
       if (nu.getMonth() !== 11) return;
@@ -1070,7 +1076,13 @@ const HANDELSER = [
   const sektion = document.getElementById("kalender");
   const lista = document.getElementById("kal-lista");
   if (!sektion || !lista) return;
-  if (kommande.length === 0){ sektion.style.display = "none"; return; }
+  if (kommande.length === 0){
+    // Inga händelser: dölj listan, och hela sektionen om inte TikTok-kortet visas
+    lista.style.display = "none";
+    const julkort = sektion.querySelector(".jul-card");
+    if (!julkort || julkort.style.display === "none") sektion.style.display = "none";
+    return;
+  }
   kommande.forEach(h => {
     const d = new Date(h.datum + "T00:00:00");
     const el = document.createElement("div");
