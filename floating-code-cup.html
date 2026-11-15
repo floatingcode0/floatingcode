@@ -389,7 +389,7 @@ footer .flyt{
     <div>
       <span class="hero-badge">🏆 ANMÄLAN ÖPPEN · CUP 2027 · 8–15 ÅR</span>
       <h1>Floating Code Cup: Sveriges spelutvecklingstävling <span class="hl-mint">för barn</span></h1>
-      <p class="lead">Barn <strong>8–15 år</strong> från hela Sverige bygger sina egna spel i <strong>Roblox Studio</strong> och tävlar om att vinna Floating Code Cup. <strong class="hl-mint">Du tävlar hemifrån, var du än bor i landet, och det kostar ingenting att vara med.</strong> Årets tema släpps i januari 2027.</p>
+      <p class="lead">Barn <strong>8–15 år</strong> från hela Sverige bygger sina egna spel i <strong>Roblox Studio</strong> och tävlar om att vinna Floating Code Cup. <strong class="hl-mint">Du tävlar hemifrån, var du än bor i landet, och det kostar ingenting att vara med.</strong> Årets tema släpps <strong>4 januari 2027</strong>.<span id="tema-ned"></span></p>
       <p class="oppen-notis"><strong>🎉 Anmälan till Floating Code Cup 2027 är öppen!</strong> Första upplagan 2026 samlade över 100 barn från hela Sverige. <a href="#efter-cupen" style="color:var(--navy);font-weight:700">Se hur det blev ↓</a></p>
       <a class="btn btn-primary" href="https://forms.gle/tF7uAgk39r8CFeTx8" target="_blank" rel="noopener">Anmäl ditt barn till 2027 →</a>
       <a class="btn btn-ghost" href="#sponsor">För företag &amp; sponsorer</a>
@@ -401,7 +401,7 @@ footer .flyt{
       <ul class="cup-fakta">
         <li>För barn 8–15 år i hela Sverige</li>
         <li>Bygg ditt eget spel i Roblox Studio</li>
-        <li>Tema släpps i januari 2027</li>
+        <li>Temat släpps 4 januari 2027</li>
         <li>Tävla hemifrån, ingen måste vara på plats</li>
         <li>Final live på scen framför publik</li>
         <li>Följ allt på TikTok @floatingcode</li>
@@ -619,6 +619,16 @@ footer .flyt{
   <a href="aktuella-kurser.html" style="color:var(--mint)">Kurser</a> · <a href="julkalendrar.html" style="color:var(--mint)">Julkalendrar för skolan</a> · <a href="floating-code-cup.html" style="color:var(--mint)">Floating Code Cup</a> · <a href="villkor.html" style="color:var(--mint)">Köpvillkor &amp; integritet</a>
 </footer>
 
+<script>
+/* Nedräkning till att temat släpps. Byt datumet inför nästa år. */
+(function(){
+  var el = document.getElementById('tema-ned'); if (!el) return;
+  var nu = new Date(); nu.setHours(0,0,0,0);
+  var kvar = Math.round((new Date("2027-01-04T00:00:00") - nu) / 86400000);
+  if (kvar > 0) el.textContent = ' ⏳ ' + (kvar === 1 ? '1 dag' : kvar + ' dagar') + ' kvar!';
+  else if (kvar === 0) el.textContent = ' 🎉 I dag!';
+})();
+</script>
 <script>
 document.querySelectorAll('.nav-links a').forEach(a=>{
   a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open'));

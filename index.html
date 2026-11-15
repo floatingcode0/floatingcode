@@ -485,6 +485,10 @@ header .wrap{max-width:1220px}
 .kal-card h3{font-size:1.05rem;margin-bottom:.25rem}
 .kal-card p{margin:0 0 .45rem;font-size:.92rem}
 .kal-card a{font-weight:800;font-size:.92rem}
+/* Nedräkning i korten */
+.kal-ned{display:inline-block;margin:0 0 .55rem;padding:.2rem .65rem;border-radius:999px;background:var(--mint-soft);color:var(--navy);font-size:.82rem;font-weight:700;white-space:nowrap}
+.jul-ned{display:inline-block;margin:0 0 .9rem;padding:.35rem .9rem;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font-weight:800;font-size:1rem}
+.jul-ned:empty{display:none}
 
 /* ABOUT */
 .about{background:linear-gradient(180deg,var(--lavender-soft) 0%,var(--bg) 100%)}
@@ -648,6 +652,9 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
           <li>Lagom stora uppdrag, perfekta vid frukosten</li>
           <li>Vill klassen koda i december? Tipsa din lärare om <a href="julkalendrar.html" style="color:var(--mint);font-weight:800">skolkalendrarna</a>!</li>
         </ul>
+        <!-- Nedräkningen fylls i automatiskt: dagar kvar till lucka 1
+             under november, dagens lucka under 1–24 december. -->
+        <div class="jul-ned" id="jul-ned"></div>
         <div class="jul-pris">0 kr <small style="font-size:.8rem;color:#C6D2EC">· gratis för alla · hela december</small></div>
         <div class="jul-knappar">
           <a class="btn btn-primary" href="https://www.tiktok.com/@floatingcode" target="_blank" rel="noopener">Följ på TikTok →</a>
@@ -684,6 +691,16 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
       var rutnat = document.getElementById('jul-luckor');
       if (!rutnat) return;
       var nu = new Date();
+      /* Nedräkning till lucka 1 (november) och dagens lucka (1–24 dec) */
+      var ned = document.getElementById('jul-ned');
+      if (ned) {
+        if (nu.getMonth() === 10) {
+          var kvar = Math.round((new Date(nu.getFullYear(), 11, 1) - new Date(nu.getFullYear(), 10, nu.getDate())) / 86400000);
+          ned.textContent = '⏳ ' + (kvar === 1 ? '1 dag' : kvar + ' dagar') + ' kvar till lucka 1';
+        } else if (nu.getMonth() === 11 && nu.getDate() <= 24) {
+          ned.textContent = '🎁 Lucka ' + nu.getDate() + ' är öppen i dag!';
+        }
+      }
       if (nu.getMonth() !== 11) return;
       var oppen = Math.min(nu.getDate(), 24);
       var start = Math.max(1, Math.min(oppen - 2, 21));
@@ -990,6 +1007,8 @@ markeraAktiv();
      Passerade datum döljs automatiskt, de tre närmaste visas,
      och finns inga kommande händelser döljs hela sektionen.
    • emoji: valfri liten symbol som visas efter rubriken
+   • nedrakning: (valfri) { till: "ÅÅÅÅ-MM-DD", text: "till ..." }
+     visar "⏳ X dagar till ..." och räknar ner av sig själv
    • lank + lanktext: (valfria) länk under texten. Lämna
      lank: "" så visas ingen länk.
 ========================================================= */
@@ -1000,15 +1019,17 @@ const HANDELSER = [
     titel: "Julkalendrar för skola och fritids",
     emoji: "🎁",
     text: "Två digitala julkalendrar i programmering för skola, fritids och bibliotek. Lucka 1 öppnar 1 december, och licensen gäller hela skolan.",
+    nedrakning: { till: "2026-12-01", text: "till lucka 1" },
     lank: "julkalendrar.html",
     lanktext: "Se kalendrarna & priser →"
   },
   {
-    datum: "2027-01-15",
-    visadatum: ["CUP", "2027"],   // valfritt: visas i stället för dag + månad
-    titel: "Floating Code Cup 2027: anmälan öppen",
+    datum: "2027-01-04",
+    visadatum: ["4", "JAN"],   // valfritt: visas i stället för dag + månad
+    titel: "Floating Code Cup 2027: temat släpps 4 januari",
     emoji: "🏆",
-    text: "Sveriges spelutvecklingstävling i Roblox Studio för barn 8–15 år. Gratis, och man tävlar hemifrån var man än bor. Temat släpps i januari.",
+    text: "Sveriges spelutvecklingstävling i Roblox Studio för barn 8–15 år. Anmälan är öppen nu. Det är gratis, och man tävlar hemifrån var man än bor.",
+    nedrakning: { till: "2027-01-04", text: "till temat" },
     lank: "https://forms.gle/tF7uAgk39r8CFeTx8",
     lanktext: "Anmäl ditt barn →",
     lank2: "floating-code-cup.html",
@@ -1039,6 +1060,13 @@ const HANDELSER = [
     .filter(h => new Date(h.datum + "T00:00:00") >= idag)
     .sort((a,b) => a.datum.localeCompare(b.datum))
     .slice(0, 3);   // de tre närmaste visas
+  function nedrakningsrad(h){
+    if (!h.nedrakning) return '';
+    const kvar = Math.round((new Date(h.nedrakning.till + "T00:00:00") - idag) / 86400000);
+    if (kvar < 0) return '';
+    if (kvar === 0) return '<span class="kal-ned">🎉 I dag!</span>';
+    return '<span class="kal-ned">⏳ ' + (kvar === 1 ? '1 dag' : kvar + ' dagar') + ' ' + h.nedrakning.text + '</span>';
+  }
   const sektion = document.getElementById("kalender");
   const lista = document.getElementById("kal-lista");
   if (!sektion || !lista) return;
@@ -1051,6 +1079,7 @@ const HANDELSER = [
       '<div class="kal-datum"><div class="dag">' + (h.visadatum ? h.visadatum[0] : d.getDate()) + '</div><div class="man">' + (h.visadatum ? h.visadatum[1] : man[d.getMonth()]) + '</div></div>' +
       '<div>' +
         '<h3>' + h.titel + (h.emoji ? ' ' + h.emoji : '') + '</h3>' +
+        nedrakningsrad(h) +
         '<p>' + h.text + '</p>' +
         (h.lank ? '<a href="' + h.lank + '">' + (h.lanktext || 'Läs mer →') + '</a>' : '') +
         (h.lank2 ? '<br><a href="' + h.lank2 + '">' + (h.lanktext2 || 'Läs mer →') + '</a>' : '') +
