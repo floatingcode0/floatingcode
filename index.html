@@ -211,6 +211,19 @@ header .wrap{max-width:1220px}
   .btn:hover{transform:none}
 }
 
+/* DISCORD-RAD (alltid synlig, under säsongsbannern) */
+.discord-rad{
+  background:var(--lavender-soft);color:var(--navy);text-align:center;
+  font-size:.95rem;font-weight:700;padding:.55rem 22px;
+  border-bottom:1px solid rgba(29,42,77,.08);
+}
+.discord-rad a{
+  display:inline-block;margin-left:.5rem;background:#5865F2;color:#fff;
+  padding:.3rem .9rem;border-radius:999px;text-decoration:none;font-weight:800;white-space:nowrap;
+}
+.discord-rad a:hover{background:#4752C4}
+.discord-rad small{display:block;font-weight:600;font-size:.78rem;color:#56627F;margin-top:.2rem}
+
 /* SÄSONGSBANNER (julkalendrar) */
 .sasong{
   background:linear-gradient(90deg,var(--navy) 0%,var(--navy-deep) 100%);
@@ -571,6 +584,14 @@ footer .flyt{
   🎄 Julkalendrar i programmering 2026. Licensen gäller hela skolan eller fritids. <a href="julkalendrar.html">Se kalendrarna &amp; priser →</a>
 </div>
 
+<!-- DISCORD-RAD: alltid synlig högst upp. Byt länk i href om inbjudan ändras
+     (ändra då även i discord/index.html). -->
+<div class="discord-rad">
+  💬 Häng med i Flytisar, Floating Codes Discord för Roblox-byggare!
+  <a href="https://discord.gg/XdJKcejZKn" target="_blank" rel="noopener">Gå med i Discord →</a>
+  <small>Discord har 13-årsgräns. Yngre? Be en vuxen om hjälp.</small>
+</div>
+
 <header>
   <div class="wrap nav">
     <!-- Logotypen: syns alltid högst upp eftersom menyn är "fastklistrad".
@@ -590,6 +611,7 @@ footer .flyt{
       <li><a href="#skolan">Skolan</a></li>
       <li><a href="floating-code-cup.html">Cupen 🏆</a></li>
       <li><a href="#forelasningar">Föreläsningar</a></li>
+      <li><a href="https://discord.gg/XdJKcejZKn" target="_blank" rel="noopener">Discord 💬</a></li>
       <li><a href="#om-mig">Om mig</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
@@ -1003,7 +1025,7 @@ del.Touched:<span class="c-fn">Connect</span>(<span class="c-key">function</span
 <footer>
   <div class="flyt">Flyt lugnt! 🌊</div>
   © 2026 Floating Code AB · Org.nr 559506-5433 · Stockholm<br>
-  <a href="aktuella-kurser.html" style="color:var(--mint)">Kurser</a> · <a href="julkalendrar.html" style="color:var(--mint)">Julkalendrar för skolan</a> · <a href="floating-code-cup.html" style="color:var(--mint)">Floating Code Cup</a> · <a href="villkor.html" style="color:var(--mint)">Köpvillkor &amp; integritet</a>
+  <a href="aktuella-kurser.html" style="color:var(--mint)">Kurser</a> · <a href="julkalendrar.html" style="color:var(--mint)">Julkalendrar för skolan</a> · <a href="floating-code-cup.html" style="color:var(--mint)">Floating Code Cup</a> · <a href="https://discord.gg/XdJKcejZKn" style="color:var(--mint)" target="_blank" rel="noopener">Discord</a> · <a href="villkor.html" style="color:var(--mint)">Köpvillkor &amp; integritet</a>
 </footer>
 
 <script>
